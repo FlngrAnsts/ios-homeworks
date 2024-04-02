@@ -7,32 +7,37 @@
 
 import UIKit
 
+
 class ProfileViewController: UIViewController {
     
-
+    private lazy var profileHeaderView: ProfileHeaderView = {
+        let view = ProfileHeaderView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .lightGray
         
-        if let profileView = Bundle.main.loadNibNamed(
-            "ProfileHeaderView",
-            owner: nil,
-            options: nil
-        )?.first as? ProfileHeaderView {
-            view.addSubview(profileView)
-            
-        }
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.white // your colour here
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        
+        view.addSubview(profileHeaderView)
+        profileHeaderView.frame = view.bounds
+        
+        profileHeaderView.addSubviews()
         
         
     }
-
     
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//    }
-
-   // viewWillLayoutSubviews()
     
 }

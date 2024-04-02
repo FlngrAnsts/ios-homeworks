@@ -17,8 +17,7 @@
 		4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */; };
 		4D1DA1BD2BB4CB6600A1E777 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BC2BB4CB6600A1E777 /* Post.swift */; };
 		4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */; };
-		4D3BF2FB2BB70CFE00A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF2FA2BB70CFE00A3E0B0 /* ProfileHeaderView.swift */; };
-		4D3BF2FF2BB742EC00A3E0B0 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3BF2FE2BB742EC00A3E0B0 /* ProfileHeaderView.xib */; };
+		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +33,7 @@
 		4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		4D1DA1BC2BB4CB6600A1E777 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		4D3BF2FA2BB70CFE00A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		4D3BF2FE2BB742EC00A3E0B0 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
+		4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,17 +76,16 @@
 				4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */,
 				4D1DA1BC2BB4CB6600A1E777 /* Post.swift */,
 				4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */,
-				4D3BF2F92BB70CDD00A3E0B0 /* Profile */,
+				4D3BF3002BB986C700A3E0B0 /* Profile */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		4D3BF2F92BB70CDD00A3E0B0 /* Profile */ = {
+		4D3BF3002BB986C700A3E0B0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				4D3BF2FA2BB70CFE00A3E0B0 /* ProfileHeaderView.swift */,
-				4D3BF2FE2BB742EC00A3E0B0 /* ProfileHeaderView.xib */,
 				4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */,
+				4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -152,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D1DA1AC2BB4C8FC00A1E777 /* Assets.xcassets in Resources */,
-				4D3BF2FF2BB742EC00A3E0B0 /* ProfileHeaderView.xib in Resources */,
 				4D1DA1AF2BB4C8FC00A1E777 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,7 +164,7 @@
 				4D1DA1A72BB4C8FB00A1E777 /* ViewController.swift in Sources */,
 				4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */,
 				4D1DA1B92BB4CAA500A1E777 /* ProfileViewController.swift in Sources */,
-				4D3BF2FB2BB70CFE00A3E0B0 /* ProfileHeaderView.swift in Sources */,
+				4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */,
 				4D1DA1B72BB4CA7400A1E777 /* FeedViewController.swift in Sources */,
 				4D1DA1BD2BB4CB6600A1E777 /* Post.swift in Sources */,
 				4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */,
