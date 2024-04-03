@@ -37,12 +37,12 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    lazy var status: UITextView = {
-        let text = UITextView()
+    lazy var status: UILabel = {
+        let text = UILabel()
         text.frame = CGRect(x: 16+125+20, y: 16+125+16-34-28, width: self.screenSize.width - (16+125+20+16), height: 28
         )
         text.text = "Тут я что-то написал..."
-        text.backgroundColor = .none
+        
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = .gray
         
@@ -75,7 +75,6 @@ class ProfileHeaderView: UIView {
         print(status.text!)
     }
     
-    
     func addSubviews() {
         addSubview(avatar)
         addSubview(userName)
@@ -83,5 +82,12 @@ class ProfileHeaderView: UIView {
         addSubview(showButton)
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews()
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 }

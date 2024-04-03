@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileHeaderView)
         profileHeaderView.frame = view.bounds
         
-        profileHeaderView.addSubviews()
+        
         
         
     }
