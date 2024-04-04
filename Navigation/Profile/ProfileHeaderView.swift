@@ -13,9 +13,12 @@ class ProfileHeaderView: UIView {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
-    lazy var avatar: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 16, y: 16, width: 125, height: 125))
+    
+    lazy var avatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        
         imageView.image = UIImage(named: "Avatar")
+        
         
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -23,36 +26,37 @@ class ProfileHeaderView: UIView {
         imageView.layer.cornerRadius = 65.0
         imageView.clipsToBounds = true
         
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
-    lazy var userName: UILabel = {
+    lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         
-        label.frame = CGRect(x: 16+125+20, y: 27, width: self.screenSize.width - (16+125+20+16), height: 20)
         label.text = "Anastasiya"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
         
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
-    lazy var status: UILabel = {
+    lazy var statusLabel: UILabel = {
         let text = UILabel()
-        text.frame = CGRect(x: 16+125+20, y: 16+125+16-34-28, width: self.screenSize.width - (16+125+20+16), height: 28
-        )
-        text.text = "Тут я что-то написал..."
         
+        text.text = "Тут я что-то написал..."
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = .gray
+        
+        text.translatesAutoresizingMaskIntoConstraints = false
         
         return text
     }()
     
-    lazy var showButton: UIButton = {
+    lazy var setStatusButton: UIButton = {
         let button = UIButton()
-        
-        button.frame = CGRect(x: 16, y: 16+125+16, width: screenSize.width - 32, height: 50)
         
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -68,18 +72,43 @@ class ProfileHeaderView: UIView {
         
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
     @objc func buttonPressed(_ sender: UIButton) {
-        print(status.text!)
+        print(statusLabel.text!)
     }
     
     func addSubviews() {
-        addSubview(avatar)
-        addSubview(userName)
-        addSubview(status)
-        addSubview(showButton)
+        addSubview(avatarImageView)
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
+        addSubview(setStatusButton)
+    }
+    
+    
+    func setupContraints() {
+        let safeAreaGuide = safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            avatarImageView.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 16),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 125),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 125),
+            
+            fullNameLabel.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 27),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+            
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+            
+            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20)
+            
+        ])
     }
     
     override init(frame: CGRect) {
