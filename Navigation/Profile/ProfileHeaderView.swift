@@ -88,7 +88,6 @@ class ProfileHeaderView: UIView {
         addSubview(setStatusButton)
     }
     
-    
     func setupContraints() {
         let safeAreaGuide = safeAreaLayoutGuide
         

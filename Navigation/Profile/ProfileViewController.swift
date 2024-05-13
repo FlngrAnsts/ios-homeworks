@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -20,8 +21,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .lightGray
-        
+        self.view.backgroundColor = .lightGray
+        self.navigationItem.title = "Profile"
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white // your colour here
@@ -30,14 +31,10 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.isTranslucent = false
         
-        
         view.addSubview(profileHeaderView)
-        profileHeaderView.frame = view.bounds
         
         profileHeaderView.setupContraints()
-        
         setupContraints()
-        
     }
     
     private func setupContraints() {
@@ -48,10 +45,7 @@ class ProfileViewController: UIViewController {
                 profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
                 profileHeaderView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
                 profileHeaderView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor)
-//                redView.heightAnchor.constraint(equalToConstant: 300.0),
-//                redView.widthAnchor.constraint(equalToConstant: 300.0),
-//                redView.centerXAnchor.constraint(equalTo: safeAreaGuide.centerXAnchor),
-//                redView.centerYAnchor.constraint(equalTo: safeAreaGuide.centerYAnchor),
+
                 
             ])
         }
