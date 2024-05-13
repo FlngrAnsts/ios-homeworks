@@ -14,7 +14,6 @@ class LogInViewController: UIViewController {
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.backgroundColor = .systemBlue
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -25,8 +24,7 @@ class LogInViewController: UIViewController {
         let contentView = UIView()
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        //contentView.backgroundColor = .systemRed
-        
+
         return contentView
     }()
     
@@ -163,7 +161,7 @@ class LogInViewController: UIViewController {
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        scrollView.contentInset.bottom += keyboardHeight ?? 0.0
+        scrollView.contentInset.bottom = keyboardHeight ?? 0.0
     }
     
     @objc func willHideKeyboard(_ notification: NSNotification) {
@@ -191,8 +189,8 @@ class LogInViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            logoView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 120),
-            logoView.centerXAnchor.constraint(equalTo: safeAreaGuide.centerXAnchor),
+            logoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+            logoView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logoView.heightAnchor.constraint(equalToConstant: 100),
             logoView.widthAnchor.constraint(equalToConstant: 100),
             
@@ -207,8 +205,8 @@ class LogInViewController: UIViewController {
             passwordView.heightAnchor.constraint(equalToConstant: 50),
             
             logInButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 16),
-            logInButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
-            logInButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+            logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
