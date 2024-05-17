@@ -9,8 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var post = Post(title: "Мой пост")
-    
     private lazy var actionButton: UIButton = {
         
         let button = UIButton()
@@ -52,7 +50,7 @@ class FeedViewController: UIViewController {
         
         self.navigationController?.pushViewController(postViewController, animated: true)
         
-        postViewController.titlePost = post.title
+        postViewController.titlePost = Post.make()[0].author
         
         
     }

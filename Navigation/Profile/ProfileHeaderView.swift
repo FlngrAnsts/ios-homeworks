@@ -11,14 +11,17 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    let screenSize: CGRect = UIScreen.main.bounds
-    
+    override var intrinsicContentSize: CGSize {
+            CGSize(
+                width: UIView.noIntrinsicMetric,
+                height: 230
+            )
+        }
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         
         imageView.image = UIImage(named: "Avatar")
-        
         
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -88,24 +91,27 @@ class ProfileHeaderView: UIView {
         addSubview(setStatusButton)
     }
     
+
+    
     func setupContraints() {
         let safeAreaGuide = safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            avatarImageView.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 16),
             avatarImageView.heightAnchor.constraint(equalToConstant: 125),
             avatarImageView.widthAnchor.constraint(equalToConstant: 125),
             
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 27),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+            fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
             
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
             setStatusButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
             
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20)
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
             
         ])
     }
@@ -113,6 +119,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
+        setupContraints()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

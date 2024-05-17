@@ -10,44 +10,100 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private lazy var profileHeaderView: ProfileHeaderView = {
-        let view = ProfileHeaderView()
+    fileprivate let data = Post.make()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView.init(
+            frame: .zero,
+            style: .plain
+        )
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
+        return tableView
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .lightGray
-        self.navigationItem.title = "Profile"
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.white // your colour here
+        setupView()
+        addSubviews()
         
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        self.navigationController?.navigationBar.isTranslucent = false
+        // 1. Задаем размеры и позицию tableView
+        setupConstraints()
         
-        view.addSubview(profileHeaderView)
+        // 2-4.
+        tuneTableView()
         
-        profileHeaderView.setupContraints()
-        setupContraints()
     }
     
-    private func setupContraints() {
-            let safeAreaGuide = view.safeAreaLayoutGuide
-            
-            NSLayoutConstraint.activate([
-                profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-                profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-                profileHeaderView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
-                profileHeaderView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor)
-
-                
-            ])
-        }
+    private func setupView(){
+        self.view.backgroundColor = .white
+        self.navigationItem.title = "Profile"
+        
+        
+        
+    }
+    
+    private func addSubviews(){
+        view.addSubview(tableView)
+    }
+    
+    private func setupConstraints(){
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
+        ])
+    }
+    
+    private func tuneTableView(){
+        
+        let headerView = ProfileHeaderView()
+        tableView.setAndLayout(headerView: headerView)
+        tableView.tableFooterView = UIView()
+        tableView.register(
+            PostTableViewCell.self,
+            forCellReuseIdentifier: PostTableViewCell.cellID
+        )
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+    }
     
 }
+
+
+extension ProfileViewController: UITableViewDataSource {
+    
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        data.count
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: PostTableViewCell.cellID,
+            for: indexPath
+        ) as? PostTableViewCell else {
+            fatalError("could not dequeueReusableCell")
+        }
+        
+        cell.update(data[indexPath.row])
+        
+        return cell
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {}
+
