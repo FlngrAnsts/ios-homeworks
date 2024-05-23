@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */; };
+		4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA8C2BF7661400D745C0 /* UITableView.swift */; };
 		4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1A22BB4C8FB00A1E777 /* AppDelegate.swift */; };
 		4D1DA1A52BB4C8FB00A1E777 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1A42BB4C8FB00A1E777 /* SceneDelegate.swift */; };
 		4D1DA1A72BB4C8FB00A1E777 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1A62BB4C8FB00A1E777 /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		4D12EA8C2BF7661400D745C0 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		4D1DA19F2BB4C8FB00A1E777 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1DA1A22BB4C8FB00A1E777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D1DA1A42BB4C8FB00A1E777 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +53,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D12EA882BF764EA00D745C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4D1DA1BC2BB4CB6600A1E777 /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4D12EA8B2BF765EC00D745C0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4D12EA8C2BF7661400D745C0 /* UITableView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		4D1DA1962BB4C8FB00A1E777 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +88,8 @@
 		4D1DA1A12BB4C8FB00A1E777 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				4D12EA8B2BF765EC00D745C0 /* Utils */,
+				4D12EA882BF764EA00D745C0 /* Model */,
 				4D1DA1A22BB4C8FB00A1E777 /* AppDelegate.swift */,
 				4D1DA1A42BB4C8FB00A1E777 /* SceneDelegate.swift */,
 				4D1DA1A62BB4C8FB00A1E777 /* ViewController.swift */,
@@ -76,7 +98,6 @@
 				4D1DA1B02BB4C8FC00A1E777 /* Info.plist */,
 				4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */,
 				4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */,
-				4D1DA1BC2BB4CB6600A1E777 /* Post.swift */,
 				4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */,
 				4D3BF3002BB986C700A3E0B0 /* Profile */,
 			);
@@ -89,6 +110,7 @@
 				4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */,
 				4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */,
 				4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */,
+				4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -163,10 +185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */,
 				4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */,
 				4D1DA1A72BB4C8FB00A1E777 /* ViewController.swift in Sources */,
 				4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */,
 				4D1DA1B92BB4CAA500A1E777 /* ProfileViewController.swift in Sources */,
+				4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */,
 				4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */,
 				4D1DA1B72BB4CA7400A1E777 /* FeedViewController.swift in Sources */,
 				4D1DA1BD2BB4CB6600A1E777 /* Post.swift in Sources */,

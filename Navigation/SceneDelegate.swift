@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         tabBarController.selectedIndex = 1
-        tabBarController.tabBar.barTintColor = .blue
+        tabBarController.tabBar.barTintColor = .white
         tabBarController.tabBar.backgroundColor = .white
         
         window.rootViewController = tabBarController
