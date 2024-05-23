@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import StorageService
+
 
 
 class ProfileViewController: UIViewController {
@@ -17,6 +19,7 @@ class ProfileViewController: UIViewController {
             frame: .zero,
             style: .plain
         )
+        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -38,10 +41,13 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupView(){
-        self.view.backgroundColor = .white
+        
+#if DEBUG
+        self.view.backgroundColor = .yellow
+#else
+        self.view.backgroundColor = .cyan
+#endif
         self.navigationItem.title = "Profile"
-        
-        
         
     }
     
