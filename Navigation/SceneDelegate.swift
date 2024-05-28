@@ -34,8 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tag: 1
         )
         
-        let profileViewController = ProfileViewController()
-        profileViewController.title = "Profile"
+        //let photosViewController = PhotosViewController()
         
         let tabBarController = UITabBarController()
         
