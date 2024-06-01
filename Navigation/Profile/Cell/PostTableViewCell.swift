@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -22,11 +23,13 @@ class PostTableViewCell: UITableViewCell {
         
         return label
     }()
-
+    
     lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .black
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
@@ -61,28 +64,49 @@ class PostTableViewCell: UITableViewCell {
         return text
     }()
     
+    
     override init(
         style: UITableViewCell.CellStyle,
-                reuseIdentifier: String?
+        reuseIdentifier: String?
     ){
         super.init(
             style: style,
             reuseIdentifier: reuseIdentifier
-            )
-
-            tuneView()
-            addSubviews()
-            setupConstraints()
+        )
+        
+        tuneView()
+        addSubviews()
+        setupConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func tuneView(){
         
         contentView.backgroundColor = .white
         accessoryType = .none
+        
+    }
+    
+    func update(_ model: Post) {
+        postTitleView.text = model.author
+        postTextView.text = model.description
+        postLikesView.text = "Likes: \(model.likes)"
+        postViewsView.text = "Views: \(model.views)"
+        
+        let postImage = UIImage(named: model.image)
+        guard let postImage else { return }
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImage(
+            sourceImage: postImage,
+            filter: .sepia(intensity: 0.8)
+        ) { convertedImage in
+            postImageView.image = convertedImage
+        }
         
     }
     
@@ -99,7 +123,7 @@ class PostTableViewCell: UITableViewCell {
             postTitleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             postTitleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             postTitleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-           
+            
             postImageView.topAnchor.constraint(equalTo: postTitleView.bottomAnchor, constant: 16),
             postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -117,34 +141,22 @@ class PostTableViewCell: UITableViewCell {
             postViewsView.topAnchor.constraint(equalTo: postTextView.bottomAnchor, constant: 16),
             postViewsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             postViewsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            ])
+        ])
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func update(_ model: Post) {
-        postTitleView.text = model.author
-        postImageView.image = UIImage(named: model.image)
-        postTextView.text = model.description
-        postLikesView.text = "Likes: \(model.likes)"
-        postViewsView.text = "Views: \(model.views)"
-        
-    }
     
     override var intrinsicContentSize: CGSize {
-            CGSize(
-                width: UIView.noIntrinsicMetric,
-                height: 1000
-            )
-        }
-
+        CGSize(
+            width: UIView.noIntrinsicMetric,
+            height: 1000
+        )
+    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+    }
 }

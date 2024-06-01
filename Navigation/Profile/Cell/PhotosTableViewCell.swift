@@ -79,6 +79,7 @@ class PhotosTableViewCell: UITableViewCell {
             tuneView()
             addSubviews()
             setupConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
