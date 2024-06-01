@@ -51,7 +51,7 @@ class ProfileHeaderView: UIView {
             target: self,
             action: #selector(didLongPressRoot(gesture:))
         )
-        longPressRoot.minimumPressDuration = 1.0
+        longPressRoot.minimumPressDuration = 0.5
         addGestureRecognizer(longPressRoot)
         
         return imageView
@@ -135,7 +135,7 @@ class ProfileHeaderView: UIView {
     
     private func openAnimationExample() {
         let centerX = UIScreen.main.bounds.width/2
-        let centerY = (UIScreen.main.bounds.height)*0.4
+        let centerY = (UIScreen.main.bounds.height)*0.45
         
         let newSize = UIScreen.main.bounds.width/Constant.avatarSize
         
@@ -174,7 +174,7 @@ class ProfileHeaderView: UIView {
                 
                 
             completion: { finished in
-                print("Did finish animate avatarView")
+                print("Did finish Open animate")
             })
             
         }

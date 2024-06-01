@@ -39,11 +39,6 @@ class ProfileViewController: UIViewController {
                 
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//            super.viewDidAppear(animated)
-//            
-//            launchAnimationExample()
-//        }
     
     private func setupView(){
         
@@ -144,23 +139,7 @@ extension ProfileViewController: UITableViewDataSource {
         }
         
     }
-//    private func launchAnimationExample() {
-//            let centerOrigin = animatedView.center
-//            
-//            UIView.animate(
-//                withDuration: 5.0,
-//                delay: 2.0,
-//                options: .curveLinear
-//            ) {
-//                self.animatedView.center = CGPoint(
-//                    x: 2.0 * centerOrigin.x,
-//                    y: 2.0 * centerOrigin.y
-//                )
-//                self.animatedView.backgroundColor = .systemPink
-//            } completion: { finished in
-//                print("Did finish UIView.animate() example")
-//            }
-//        }
+
     
 }
 
