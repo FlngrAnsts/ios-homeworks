@@ -12,11 +12,25 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     override var intrinsicContentSize: CGSize {
-            CGSize(
-                width: UIView.noIntrinsicMetric,
-                height: 230
-            )
-        }
+        CGSize(
+            width: UIView.noIntrinsicMetric,
+            height: 230
+        )
+    }
+    
+    private enum Constant {
+        static let avatarSize: CGFloat = 125
+        static let closeAnimateButtonSize: CGFloat = 40
+    }
+    
+    lazy  var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
+        
+        return view
+    }()
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -30,6 +44,15 @@ class ProfileHeaderView: UIView {
         imageView.clipsToBounds = true
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        imageView.isUserInteractionEnabled = true
+        
+        let longPressRoot = UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(didLongPressRoot(gesture:))
+        )
+        longPressRoot.minimumPressDuration = 1.0
+        addGestureRecognizer(longPressRoot)
         
         return imageView
     }()
@@ -80,49 +103,166 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    lazy var closeAnimateButton: UIButton = {
+        let button = UIButton(type: .custom)
+        
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.alpha = 0
+        
+        button.addTarget(self, action: #selector(closeAnimateButtonPressed(_:)), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     @objc func buttonPressed(_ sender: UIButton) {
         print(statusLabel.text!)
     }
     
-    func addSubviews() {
-        addSubview(avatarImageView)
-        addSubview(fullNameLabel)
-        addSubview(statusLabel)
-        addSubview(setStatusButton)
+    @objc func closeAnimateButtonPressed(_ sender: UIButton) {
+        closeAnimationExample()
+        print(statusLabel.text!)
     }
     
-
+    @objc private func didLongPressRoot(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            openAnimationExample()
+            print("Did long press ")
+        }
+    }
     
-    func setupContraints() {
-        let safeAreaGuide = safeAreaLayoutGuide
+    
+    private func openAnimationExample() {
+        let centerX = UIScreen.main.bounds.width/2
+        let centerY = (UIScreen.main.bounds.height)*0.4
         
-        NSLayoutConstraint.activate([
-            avatarImageView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
-            avatarImageView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 16),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 125),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 125),
+        let newSize = UIScreen.main.bounds.width/Constant.avatarSize
+        
+        UIView.animateKeyframes(
+            withDuration: 0.8,
+            delay: 1.0,
+            options: .calculationModeCubic,
+            animations: {
+                // 1
+                UIView.addKeyframe(
+                    withRelativeStartTime: 0.0,
+                    relativeDuration: 0.5
+                ) {
+                    self.avatarImageView.center = CGPoint(
+                        x: centerX,
+                        y: centerY
+                    )
+                    self.avatarImageView.transform = CGAffineTransform(
+                        scaleX: newSize,
+                        y: newSize
+                    )
+                    self.avatarImageView.layer.cornerRadius = 0
+                    self.avatarImageView.layer.borderWidth = 0
+                    
+                    self.backgroundView.alpha = 0.6
+                }
+                
+                // 2
+                UIView.addKeyframe(
+                    withRelativeStartTime: 0.5,
+                    relativeDuration: 0.3
+                ) {
+                    self.closeAnimateButton.alpha = 1
+                }
+            },
+                
+                
+            completion: { finished in
+                print("Did finish animate avatarView")
+            })
             
-            fullNameLabel.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
-            fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+        }
             
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+            private func closeAnimationExample() {
+                
+                let center = 16 + Constant.avatarSize/2
+                
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 1.0,
+                    options: .curveLinear
+                ) {
+                    
+                    self.closeAnimateButton.alpha = 0.0
+                    
+                    self.backgroundView.alpha = 0.0
+                    
+                    self.avatarImageView.center = CGPoint(
+                        x: center,
+                        y: center
+                    )
+                    
+                    self.avatarImageView.layer.cornerRadius = 65
+                    self.avatarImageView.layer.borderWidth = 3
+                    self.avatarImageView.transform = CGAffineTransform.identity
+                    
+                    
+                } completion: { finished in
+                    print("Did finish close animate")
+                }
+            }
             
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
             
-        ])
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubviews()
-        setupContraints()
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
+            
+            func addSubviews() {
+                
+                addSubview(fullNameLabel)
+                addSubview(statusLabel)
+                addSubview(setStatusButton)
+                addSubview(backgroundView)
+                addSubview(closeAnimateButton)
+                addSubview(avatarImageView)
+                
+            }
+            
+            
+            func setupContraints() {
+                let safeAreaGuide = safeAreaLayoutGuide
+                
+                NSLayoutConstraint.activate([
+                    avatarImageView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
+                    avatarImageView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 16),
+                    avatarImageView.heightAnchor.constraint(equalToConstant: Constant.avatarSize),
+                    avatarImageView.widthAnchor.constraint(equalToConstant: Constant.avatarSize),
+                    
+                    fullNameLabel.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 27),
+                    fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+                    fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+                    
+                    setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+                    setStatusButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
+                    setStatusButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+                    
+                    statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+                    statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+                    
+                    backgroundView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+                    backgroundView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+                    backgroundView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
+                    backgroundView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+                    backgroundView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+                    
+                    closeAnimateButton.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 16),
+                    closeAnimateButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+                    closeAnimateButton.widthAnchor.constraint(equalToConstant: Constant.closeAnimateButtonSize),
+                    closeAnimateButton.heightAnchor.constraint(equalToConstant: Constant.closeAnimateButtonSize),
+                    
+                ])
+            }
+            
+            override init(frame: CGRect) {
+                super.init(frame: frame)
+                addSubviews()
+                setupContraints()
+            }
+            required init?(coder: NSCoder) {
+                fatalError("init(coder:) has not been implemented")
+            }
+            
+            }

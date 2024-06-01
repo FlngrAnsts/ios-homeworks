@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        tableView.isUserInteractionEnabled = true
+        
         return tableView
     }()
     
@@ -33,11 +35,15 @@ class ProfileViewController: UIViewController {
         
         // 1. Задаем размеры и позицию tableView
         setupConstraints()
-        
-        // 2-4.
         tuneTableView()
-        
+                
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//            super.viewDidAppear(animated)
+//            
+//            launchAnimationExample()
+//        }
     
     private func setupView(){
         
@@ -72,6 +78,7 @@ class ProfileViewController: UIViewController {
         let headerView = ProfileHeaderView()
         tableView.setAndLayout(headerView: headerView)
         tableView.tableFooterView = UIView()
+        
         
         tableView.register(
             PhotosTableViewCell.self,
@@ -137,6 +144,24 @@ extension ProfileViewController: UITableViewDataSource {
         }
         
     }
+//    private func launchAnimationExample() {
+//            let centerOrigin = animatedView.center
+//            
+//            UIView.animate(
+//                withDuration: 5.0,
+//                delay: 2.0,
+//                options: .curveLinear
+//            ) {
+//                self.animatedView.center = CGPoint(
+//                    x: 2.0 * centerOrigin.x,
+//                    y: 2.0 * centerOrigin.y
+//                )
+//                self.animatedView.backgroundColor = .systemPink
+//            } completion: { finished in
+//                print("Did finish UIView.animate() example")
+//            }
+//        }
+    
 }
 
 extension ProfileViewController: UITableViewDelegate {}
