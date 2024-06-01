@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DB4660D51C48CF484F3C6E1 /* libPods-Navigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB6024AC418DC2B02863E16 /* libPods-Navigation.a */; };
 		4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */; };
 		4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA8C2BF7661400D745C0 /* UITableView.swift */; };
 		4D1B819F2C06124800212D36 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B819E2C06124800212D36 /* Reusable.swift */; };
@@ -25,6 +26,7 @@
 		4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */; };
 		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 		4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */; };
+		4DAD435C2C0B4D3A00426D7E /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4DAD435B2C0B4D3A00426D7E /* iOSIntPackage */; };
 		4DBFBD022BFF61A0009E6EFB /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD012BFF61A0009E6EFB /* StorageService.docc */; };
 		4DBFBD082BFF61A0009E6EFB /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; };
 		4DBFBD0F2BFF61A0009E6EFB /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */; };
@@ -32,6 +34,7 @@
 		4DBFBD132BFF61A0009E6EFB /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; };
 		4DBFBD142BFF61A0009E6EFB /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4DBFBD1C2BFF61D6009E6EFB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BC2BB4CB6600A1E777 /* Post.swift */; };
+		8EA412337489EAD24C391383 /* libPods-StorageService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC902B696DA5BAE1A4DABC6 /* libPods-StorageService.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39A9FE5D3053DDD33A6E20F4 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
+		49A5BCFB2F026B2067D38C47 /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4D12EA8C2BF7661400D745C0 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		4D1B819E2C06124800212D36 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -99,6 +104,10 @@
 		4DBFBD012BFF61A0009E6EFB /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		4DBFBD072BFF61A0009E6EFB /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		4EB6024AC418DC2B02863E16 /* libPods-Navigation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Navigation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53A7BA9DC9A62F375DC57A11 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
+		79FC98CFAB7D16504C56DF15 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
+		7FC902B696DA5BAE1A4DABC6 /* libPods-StorageService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StorageService.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +115,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DAD435C2C0B4D3A00426D7E /* iOSIntPackage in Frameworks */,
 				4DBFBD132BFF61A0009E6EFB /* StorageService.framework in Frameworks */,
+				3DB4660D51C48CF484F3C6E1 /* libPods-Navigation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EA412337489EAD24C391383 /* libPods-StorageService.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +140,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CFAA6B4CAB749B9A44B7BF1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				53A7BA9DC9A62F375DC57A11 /* Pods-Navigation.debug.xcconfig */,
+				79FC98CFAB7D16504C56DF15 /* Pods-Navigation.release.xcconfig */,
+				39A9FE5D3053DDD33A6E20F4 /* Pods-StorageService.debug.xcconfig */,
+				49A5BCFB2F026B2067D38C47 /* Pods-StorageService.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4D12EA882BF764EA00D745C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +195,8 @@
 				4DBFBCFF2BFF61A0009E6EFB /* StorageService */,
 				4DBFBD0D2BFF61A0009E6EFB /* StorageServiceTests */,
 				4D1DA1A02BB4C8FB00A1E777 /* Products */,
+				3CFAA6B4CAB749B9A44B7BF1 /* Pods */,
+				C64DB2F37B0C92B63F2D6EC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +257,15 @@
 			path = StorageServiceTests;
 			sourceTree = "<group>";
 		};
+		C64DB2F37B0C92B63F2D6EC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EB6024AC418DC2B02863E16 /* libPods-Navigation.a */,
+				7FC902B696DA5BAE1A4DABC6 /* libPods-StorageService.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -250,6 +284,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D1DA1B32BB4C8FC00A1E777 /* Build configuration list for PBXNativeTarget "Navigation" */;
 			buildPhases = (
+				8A89BAEDF6C39DFBEE2FC161 /* [CP] Check Pods Manifest.lock */,
 				4D1DA19B2BB4C8FB00A1E777 /* Sources */,
 				4D1DA19C2BB4C8FB00A1E777 /* Frameworks */,
 				4D1DA19D2BB4C8FB00A1E777 /* Resources */,
@@ -261,6 +296,9 @@
 				4DBFBD122BFF61A0009E6EFB /* PBXTargetDependency */,
 			);
 			name = Navigation;
+			packageProductDependencies = (
+				4DAD435B2C0B4D3A00426D7E /* iOSIntPackage */,
+			);
 			productName = Navigation;
 			productReference = 4D1DA19F2BB4C8FB00A1E777 /* Navigation.app */;
 			productType = "com.apple.product-type.application";
@@ -269,6 +307,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DBFBD1A2BFF61A0009E6EFB /* Build configuration list for PBXNativeTarget "StorageService" */;
 			buildPhases = (
+				2C779F761C33A157DBBC495A /* [CP] Check Pods Manifest.lock */,
 				4DBFBCF92BFF61A0009E6EFB /* Headers */,
 				4DBFBCFA2BFF61A0009E6EFB /* Sources */,
 				4DBFBCFB2BFF61A0009E6EFB /* Frameworks */,
@@ -333,6 +372,9 @@
 				Base,
 			);
 			mainGroup = 4D1DA1962BB4C8FB00A1E777;
+			packageReferences = (
+				4DAD435A2C0B4D3A00426D7E /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+			);
 			productRefGroup = 4D1DA1A02BB4C8FB00A1E777 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,6 +411,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C779F761C33A157DBBC495A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StorageService-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A89BAEDF6C39DFBEE2FC161 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Navigation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D1DA19B2BB4C8FB00A1E777 /* Sources */ = {
@@ -564,6 +653,7 @@
 		};
 		4D1DA1B42BB4C8FC00A1E777 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53A7BA9DC9A62F375DC57A11 /* Pods-Navigation.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -592,6 +682,7 @@
 		};
 		4D1DA1B52BB4C8FC00A1E777 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79FC98CFAB7D16504C56DF15 /* Pods-Navigation.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -620,6 +711,7 @@
 		};
 		4DBFBD162BFF61A0009E6EFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39A9FE5D3053DDD33A6E20F4 /* Pods-StorageService.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -654,6 +746,7 @@
 		};
 		4DBFBD172BFF61A0009E6EFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49A5BCFB2F026B2067D38C47 /* Pods-StorageService.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -760,6 +853,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4DAD435A2C0B4D3A00426D7E /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4DAD435B2C0B4D3A00426D7E /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DAD435A2C0B4D3A00426D7E /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4D1DA1972BB4C8FB00A1E777 /* Project object */;
 }
