@@ -8,15 +8,35 @@
 import UIKit
 import StorageService
 
+//protocol profileVIewControllerDelegate: AnyObject {
+//    func scrollOn()
+//    func scrollOff()
+//}
+//
+//extension ProfileViewController: profileVIewControllerDelegate {
+//
+//    func scrollOn() {
+//        self.tableView.isScrollEnabled = true
+//        self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = true
+//    }
+//    
+//    func scrollOff() {
+//        self.tableView.isScrollEnabled = false
+//        self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = false
+//    }
+//}
 
 class ProfileViewController: UIViewController {
+    
+    var user: User?
+    
     
     fileprivate let data = Post.make()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
-            style: .plain
+            style: .grouped
         )
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +56,13 @@ class ProfileViewController: UIViewController {
         // 1. Задаем размеры и позицию tableView
         setupConstraints()
         tuneTableView()
-                
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.beginAppearanceTransition(true, animated: true)
+        self.endAppearanceTransition()
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     
@@ -45,7 +71,7 @@ class ProfileViewController: UIViewController {
 #if DEBUG
         self.view.backgroundColor = .systemGray4
 #else
-        self.view.backgroundColor = .cyan
+        self.view.backgroundColor = .systemGray6
 #endif
         self.navigationController?.navigationBar.isHidden = true
         
@@ -71,7 +97,11 @@ class ProfileViewController: UIViewController {
     private func tuneTableView(){
         
         let headerView = ProfileHeaderView()
+        if let user = user{
+            headerView.setupProfile(user: user)
+        }
         tableView.setAndLayout(headerView: headerView)
+        
         tableView.tableFooterView = UIView()
         
         
@@ -89,8 +119,8 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         
     }
-    
 }
+
 
 extension ProfileViewController: UITableViewDataSource {
     

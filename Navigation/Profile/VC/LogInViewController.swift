@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -119,6 +121,19 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private lazy var error: UILabel = {
+        let label = UILabel()
+        label.text = "Неверный логин"
+        label.textColor = .red
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.isHidden = true
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -142,6 +157,7 @@ class LogInViewController: UIViewController {
         contentView.addSubview(loginView)
         contentView.addSubview(passwordView)
         contentView.addSubview(logInButton)
+        contentView.addSubview(error)
         
         scrollView.addSubview(contentView)
     }
@@ -170,7 +186,22 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        let userProfile: UserService
+        
+#if DEBUG
+        userProfile = TestUserService()
+#else
+        userProfile = CurrentUserService()
+#endif
+        
+        
+        
+        if let user = userProfile.authorizationkUser(login: loginView.text!){
+            profileVC.user = user
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            error.isHidden = false
+        }
     }
     
     private func setupContraints() {
@@ -210,6 +241,11 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
+            error.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 60),
+            error.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
+            error.trailingAnchor.constraint( equalTo: contentView.trailingAnchor,constant: -16),
+            error.heightAnchor.constraint(equalToConstant: 20 ),
+            
         ])
     }
     
@@ -236,6 +272,8 @@ class LogInViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
+    
+    
 }
 
 extension LogInViewController: UITextFieldDelegate {
