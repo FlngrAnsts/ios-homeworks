@@ -27,7 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             image: UIImage(systemName: "doc.richtext"),
             tag: 0
         )
-        let delegate = LoginInspector()
+        
+//        let delegate = LoginInspector()
         
         let factory = MyLoginFactory.makeLoginInspector()
         
@@ -39,8 +40,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tag: 1
         )
         
+//        let profileVC = ProfileViewController()
         
-        
+      
         let tabBarController = UITabBarController()
         
         let controllers = [feedViewController, logInViewController]

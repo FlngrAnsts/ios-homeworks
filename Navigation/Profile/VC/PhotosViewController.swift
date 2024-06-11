@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+
+    //fileprivate lazy var photos: [Photo] = Photo.make()
     
-    fileprivate lazy var photos: [Photo] = Photo.make()
+    lazy var images: [UIImage] = []
+    
+    private let imagePublisherFacade = ImagePublisherFacade()
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -33,12 +38,31 @@ class PhotosViewController: UIViewController {
         setupView()
         setupSubviews()
         setupLayouts()
+        subscribeProtocolObserver()
+        addImage()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+        
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            
+            let navigationBar = self.navigationController?.navigationBar
+            navigationBar?.tintColor = .systemBlue
+            navigationBar?.barStyle = .default
+        }
+        
+        override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            imagePublisherFacade.removeSubscription(for: self)
+        }
     
     private func setupView() {
         view.backgroundColor = .systemBackground
-        self.navigationItem.title = "Photo Gallery"
-        self.navigationController?.navigationBar.isHidden = false
+        title = "Photo Gallery"
         
     }
     
@@ -64,6 +88,15 @@ class PhotosViewController: UIViewController {
         ])
     }
     
+    func subscribeProtocolObserver() {
+        imagePublisherFacade.subscribe(self)
+    }
+    
+    func addImage(){
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: Photo.make().map{
+            UIImage(named: $0.image)!
+        })
+    }
     
     private enum LayoutConstant {
         static let spacing: CGFloat = 8.0
@@ -76,7 +109,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        photos.count
+        images.count
     }
     
     func collectionView(
@@ -87,8 +120,8 @@ extension PhotosViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotosCollectionViewCell.identifier,
             for: indexPath) as! PhotosCollectionViewCell
         
-        let photo = photos[indexPath.row]
-        cell.setup(with: photo)
+        let image = images[indexPath.row]
+        cell.setup(image: image)
         
         return cell
     }
@@ -134,4 +167,11 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         )
     }
     
+}
+
+extension PhotosViewController: ImageLibrarySubscriber{
+    func receive(images: [UIImage]){
+           self.images = images
+           collectionView.reloadData()
+       }
 }

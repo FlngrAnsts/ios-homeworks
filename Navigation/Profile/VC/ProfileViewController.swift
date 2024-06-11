@@ -8,23 +8,6 @@
 import UIKit
 import StorageService
 
-//protocol profileVIewControllerDelegate: AnyObject {
-//    func scrollOn()
-//    func scrollOff()
-//}
-//
-//extension ProfileViewController: profileVIewControllerDelegate {
-//
-//    func scrollOn() {
-//        self.tableView.isScrollEnabled = true
-//        self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = true
-//    }
-//    
-//    func scrollOff() {
-//        self.tableView.isScrollEnabled = false
-//        self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = false
-//    }
-//}
 
 class ProfileViewController: UIViewController {
     

@@ -9,10 +9,6 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    var loginText = ""
-    var passwordText = ""
-    
-    
     
     var loginDelegate: LoginViewControllerDelegate
     
@@ -77,7 +73,8 @@ class LogInViewController: UIViewController {
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
-        textView.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
+        
+        textView.text = "Grivus"
         
         textView.delegate = self
         return textView
@@ -109,7 +106,8 @@ class LogInViewController: UIViewController {
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
-        textView.addTarget(self, action: #selector(passwordTextChanged(_:)), for: .editingChanged)
+        
+        textView.text = "123"
         
         textView.isSecureTextEntry = true
         
@@ -228,18 +226,6 @@ class LogInViewController: UIViewController {
                 present(alert, animated: true)
             }
             
-        }
-    }
-    
-    @objc func loginTextChanged(_ textField: UITextField){
-        if let text = textField.text {
-            loginText =  text
-        }
-    }
-    
-    @objc func passwordTextChanged(_ textField: UITextField){
-        if let text = textField.text {
-            passwordText =  text
         }
     }
     
