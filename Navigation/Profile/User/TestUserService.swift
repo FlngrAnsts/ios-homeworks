@@ -8,18 +8,11 @@
 import UIKit
 
 class TestUserService: UserService {
+
+    var user : User
     
-    var user = User(login: "CT-7567",
-                    fullName: "Capitan Rex",
-                    avatar: UIImage(named: "Rex")!,
-                    status: "Меня зовут Рекс. Но для вас я - Капитан"
-    )
-    
-    init(user: User = User(login: "CT-7567",
-                           fullName: "Capitan Rex",
-                           avatar: UIImage(named: "Rex")!,
-                           status: "Меня зовут Рекс. Но для вас я - Капитан"
-    )) {
+    init (user : User)
+    {
         self.user = user
     }
     

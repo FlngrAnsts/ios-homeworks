@@ -8,14 +8,14 @@
 import UIKit
 
 protocol UserService {
-    //var user: User { get set }
-    func authorizationkUser(login: String) -> User?
+    var user: User { get set }
+    func checkUser(login: String) -> User?
     
 }
-//extension UserService {
-//    func checkUser(login: String) -> User? {
-//        return login == login ? user : nil
-//    }
-//}
+extension UserService {
+    func checkUser(login: String) -> User? {
+        return login == login ? user : nil
+    }
+}
 
 

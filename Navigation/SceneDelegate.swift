@@ -16,6 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
+
+        
         let window = UIWindow(windowScene: scene)
         
         let feedViewController = FeedViewController()
@@ -25,14 +27,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             image: UIImage(systemName: "doc.richtext"),
             tag: 0
         )
+        let delegate = LoginInspector()
         
-        let logInViewController = LogInViewController()
+        let logInViewController = LogInViewController(delegate: delegate)
         logInViewController.title = "Profile"
         logInViewController.tabBarItem = UITabBarItem(
             title: "Profile",
             image: UIImage(systemName: "person.circle"),
             tag: 1
         )
+        
+        
         
         let tabBarController = UITabBarController()
         

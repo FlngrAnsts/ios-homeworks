@@ -9,19 +9,9 @@ import UIKit
 
 class CurrentUserService: UserService {
     
-    var user = User(
-        login: "Grivus",
-        fullName: "General Grivus",
-        avatar: UIImage(named: "grivus")!,
-        status: "Уничтожить их! Но сперва помучить!"
-    )
+    var user : User
     
-    init(user: User = User(
-        login: "Grivus",
-        fullName: "General Grivus",
-        avatar: UIImage(named: "grivus")!,
-        status: "Уничтожить их! Но сперва помучить!"
-    )) {
+    init (user : User) {
         self.user = user
     }
     

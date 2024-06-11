@@ -9,7 +9,21 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-
+    var loginText = ""
+    var passwordText = ""
+    
+    
+    
+    var loginDelegate: LoginViewControllerDelegate
+    
+        init(delegate: LoginViewControllerDelegate) {
+            self.loginDelegate = delegate
+               super.init(nibName: nil, bundle: nil)
+           }
+    
+           required init?(coder: NSCoder) {
+               fatalError("init(coder:) has not been implemented")
+           }
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -26,7 +40,7 @@ class LogInViewController: UIViewController {
         let contentView = UIView()
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return contentView
     }()
     
@@ -63,6 +77,7 @@ class LogInViewController: UIViewController {
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
+        textView.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
         
         textView.delegate = self
         return textView
@@ -94,6 +109,7 @@ class LogInViewController: UIViewController {
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
+        textView.addTarget(self, action: #selector(passwordTextChanged(_:)), for: .editingChanged)
         
         textView.isSecureTextEntry = true
         
@@ -101,9 +117,9 @@ class LogInViewController: UIViewController {
         return textView
     }()
     
-    lazy var logInButton: UIButton = {
+    lazy var logInButton: CustomButton = {
         
-        let button = UIButton(type: .roundedRect)
+        let button = CustomButton()
         
         button.layer.cornerRadius = 10
         
@@ -186,21 +202,44 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         let profileVC = ProfileViewController()
-        let userProfile: UserService
         
+        var userProfile: UserService
 #if DEBUG
-        userProfile = TestUserService()
+        userProfile = TestUserService(user: users[0])
 #else
-        userProfile = CurrentUserService()
+        userProfile = CurrentUserService(user: users[1])
 #endif
         
-        
-        
-        if let user = userProfile.authorizationkUser(login: loginView.text!){
-            profileVC.user = user
-            self.navigationController?.pushViewController(profileVC, animated: true)
-        } else {
-            error.isHidden = false
+        if let user = userProfile.checkUser(login: loginView.text!){
+            
+            if (loginDelegate.check(login: loginView.text!, password: passwordView.text!)){
+                
+                profileVC.user = user
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: {action in print("Ввести логин и пароль еще раз")
+                }))
+                
+                alert.modalTransitionStyle = .flipHorizontal
+                alert.modalPresentationStyle = .pageSheet
+                
+                present(alert, animated: true)
+            }
+            
+        }
+    }
+    
+    @objc func loginTextChanged(_ textField: UITextField){
+        if let text = textField.text {
+            loginText =  text
+        }
+    }
+    
+    @objc func passwordTextChanged(_ textField: UITextField){
+        if let text = textField.text {
+            passwordText =  text
         }
     }
     
