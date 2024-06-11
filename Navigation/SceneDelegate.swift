@@ -29,7 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         let delegate = LoginInspector()
         
-        let logInViewController = LogInViewController(delegate: delegate)
+        let factory = MyLoginFactory.makeLoginInspector()
+        
+        let logInViewController = LogInViewController(delegate: factory)
         logInViewController.title = "Profile"
         logInViewController.tabBarItem = UITabBarItem(
             title: "Profile",
