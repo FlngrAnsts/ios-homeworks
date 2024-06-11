@@ -15,6 +15,7 @@
 		4D0DC8412C18B42700FC1422 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8402C18B42700FC1422 /* LoginFactory.swift */; };
 		4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8422C18B47D00FC1422 /* MyLoginFactory.swift */; };
 		4D0DC8492C18C79400FC1422 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D0DC8482C18C79400FC1422 /* iOSIntPackage */; };
+		4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */; };
 		4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */; };
 		4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA8C2BF7661400D745C0 /* UITableView.swift */; };
 		4D1B819F2C06124800212D36 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B819E2C06124800212D36 /* Reusable.swift */; };
@@ -92,6 +93,7 @@
 		4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		4D0DC8402C18B42700FC1422 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		4D0DC8422C18B47D00FC1422 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
+		4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4D12EA8C2BF7661400D745C0 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		4D1B819E2C06124800212D36 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -172,6 +174,24 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		4D0DC84A2C18DC1300FC1422 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				4D1B819E2C06124800212D36 /* Reusable.swift */,
+				4D0DC8342C1712B200FC1422 /* CustomButton.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		4D0DC84B2C18E70200FC1422 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */,
+				4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		4D12EA882BF764EA00D745C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,8 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				4D12EA8C2BF7661400D745C0 /* UITableView.swift */,
-				4D1B819E2C06124800212D36 /* Reusable.swift */,
-				4D0DC8342C1712B200FC1422 /* CustomButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -237,9 +255,9 @@
 				4D1DA1AB2BB4C8FC00A1E777 /* Assets.xcassets */,
 				4D12EA882BF764EA00D745C0 /* Model */,
 				4D3BF3002BB986C700A3E0B0 /* Profile */,
-				4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */,
 				4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */,
 				4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */,
+				4D0DC84A2C18DC1300FC1422 /* UIView */,
 				4D12EA8B2BF765EC00D745C0 /* Utils */,
 				4D1DA1A22BB4C8FB00A1E777 /* AppDelegate.swift */,
 				4D1DA1A42BB4C8FB00A1E777 /* SceneDelegate.swift */,
@@ -258,6 +276,7 @@
 				4D0DC8362C17150300FC1422 /* Login */,
 				4DFF97E82C0BAAFF0039C9F8 /* User */,
 				4D1B81A32C06137F00212D36 /* Cell */,
+				4D0DC84B2C18E70200FC1422 /* Feed */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -451,6 +470,7 @@
 				4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */,
 				4D1DA1A72BB4C8FB00A1E777 /* ViewController.swift in Sources */,
 				4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */,
+				4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */,
 				4D1DA1B92BB4CAA500A1E777 /* ProfileViewController.swift in Sources */,
 				4DFF97E72C0BA7460039C9F8 /* User.swift in Sources */,
 				4D1B81A22C06135700212D36 /* Photo.swift in Sources */,

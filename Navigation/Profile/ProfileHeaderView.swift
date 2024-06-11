@@ -9,13 +9,6 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    //var profileVC: profileVIewControllerDelegate?
-//    var user: User?{
-//        didSet {
-//            setupProfile()
-//        }
-//    }
-    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
@@ -52,12 +45,11 @@ class ProfileHeaderView: UIView {
         
         imageView.isUserInteractionEnabled = true
         
-        let longPressRoot = UILongPressGestureRecognizer(
-            target: self,
-            action: #selector(didLongPressRoot(gesture:))
-        )
-        longPressRoot.minimumPressDuration = 0.5
-        addGestureRecognizer(longPressRoot)
+        let tap = UITapGestureRecognizer(
+                   target: self,
+                   action: #selector(tapAvatar)
+               )
+        imageView.addGestureRecognizer(tap)
         
         return imageView
     }()
@@ -88,11 +80,10 @@ class ProfileHeaderView: UIView {
         return text
     }()
     
-    lazy var setStatusButton: UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+    lazy var setStatusButton: CustomButton = {
+        let button = CustomButton(title: "Show status", titleColor: .white){
+            self.buttonPressed()
+        }
         
         button.backgroundColor = .systemBlue
         
@@ -103,12 +94,11 @@ class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
+    
     
     lazy var closeAnimateButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -123,19 +113,18 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    @objc func buttonPressed(_ sender: UIButton) {
+    func buttonPressed() {
         print(statusLabel.text!)
     }
     
     @objc func closeAnimateButtonPressed(_ sender: UIButton) {
         closeAnimationExample()
-        print(statusLabel.text!)
     }
     
-    @objc private func didLongPressRoot(gesture: UIGestureRecognizer) {
+    @objc private func tapAvatar(gesture: UIGestureRecognizer) {
         if gesture.state == .ended {
             openAnimationExample()
-            print("Did long press ")
+            print("Did tap ")
         }
     }
     

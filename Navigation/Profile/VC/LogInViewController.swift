@@ -117,18 +117,15 @@ class LogInViewController: UIViewController {
     
     lazy var logInButton: CustomButton = {
         
-        let button = CustomButton()
+        let button = CustomButton(title: "Log In", titleColor: .white){
+            self.buttonPressed()
+        }
         
         button.layer.cornerRadius = 10
-        
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
         
         button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
         
         button.clipsToBounds = true
-        
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -198,7 +195,7 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
-    @objc func buttonPressed(_ sender: UIButton) {
+    func buttonPressed() {
         let profileVC = ProfileViewController()
         
         var userProfile: UserService
