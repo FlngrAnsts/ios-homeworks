@@ -13,8 +13,25 @@ class ProfileViewController: UIViewController {
     
     var user: User?
     
+    private var viewModel: ProfileViewModel
     
-    fileprivate let data = Post.make()
+    private let activityIndicator: UIActivityIndicatorView = {
+           let indicator = UIActivityIndicatorView(style: .medium)
+           indicator.translatesAutoresizingMaskIntoConstraints = false
+           return indicator
+       }()
+    
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    fileprivate var data = Post.make()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
@@ -39,6 +56,8 @@ class ProfileViewController: UIViewController {
         // 1. Задаем размеры и позицию tableView
         setupConstraints()
         tuneTableView()
+        bindViewModel()
+        viewModel.changeStateIfNeeded()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +65,32 @@ class ProfileViewController: UIViewController {
         self.endAppearanceTransition()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    private func bindViewModel() {
+        viewModel.currentState = { [weak self] state in
+            guard let self else { return }
+            switch state {
+            case .initial:
+                print("initial")
+            case .loading:
+                tableView.isHidden = true
+                activityIndicator.isHidden = false
+                activityIndicator.startAnimating()
+            case .loaded(let post):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    self.data = post
+                    tableView.isHidden = false
+                    tableView.reloadData()
+                    activityIndicator.isHidden = true
+                    activityIndicator.stopAnimating()
+                }
+            case .error:
+                print("error")
+            }
+            
+        }
     }
     
     
@@ -152,7 +197,7 @@ extension ProfileViewController: UITableViewDataSource {
         }
         
     }
-
+    
     
 }
 

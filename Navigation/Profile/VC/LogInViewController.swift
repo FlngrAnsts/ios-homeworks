@@ -196,7 +196,9 @@ class LogInViewController: UIViewController {
     }
     
     func buttonPressed() {
-        let profileVC = ProfileViewController()
+        let service = PostService()
+        let viewModel = ProfileViewModel(service: service)
+        let profileVC = ProfileViewController(viewModel: viewModel)
         
         var userProfile: UserService
 #if DEBUG

@@ -13,4 +13,13 @@ class FeedModel {
     func check (word: String) -> Bool {
         return word == secretWord
     }
+//    func check(word: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+//        // Имитирует запрос данных из сети (делая паузу в 3 секунды)
+//        DispatchQueue.global().asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+//            guard let self else { return}
+//            // Главное
+//            completion(.success(word == secretWord))
+//            completion(.failure(<#T##any Error#>))
+//        })
+//    }
 }
