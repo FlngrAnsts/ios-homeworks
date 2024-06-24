@@ -11,6 +11,7 @@ import StorageService
 class FeedViewController: UIViewController {
     
     let feedModel = FeedModel()
+    var coordinator: FeedCoordinator?
     
     private lazy var actionButton: CustomButton = {
         

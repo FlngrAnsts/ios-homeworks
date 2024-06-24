@@ -8,7 +8,7 @@
 import UIKit
 
 struct MyLoginFactory: LoginFactory{
-    static func makeLoginInspector() -> LoginInspector{
+    func makeLoginInspector() -> LoginInspector{
         return LoginInspector()
     }
 }

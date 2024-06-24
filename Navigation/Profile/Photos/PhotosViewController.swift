@@ -11,6 +11,7 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
 
     //fileprivate lazy var photos: [Photo] = Photo.make()
+    var coordinator: ProfileCoordinator?
     
     lazy var images: [UIImage] = []
     

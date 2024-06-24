@@ -11,6 +11,7 @@ import StorageService
 final class ProfileViewModel: ProfileVMProtocol{
     
     private let service: PostService
+    
     var currentState: ((State) -> Void)?
     
     var state: State = .initial {

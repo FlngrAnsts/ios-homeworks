@@ -13,7 +13,9 @@ class ProfileViewController: UIViewController {
     
     var user: User?
     
-    private var viewModel: ProfileViewModel
+    var viewModel: ProfileViewModel
+    
+    var coordinator: ProfileCoordinator?
     
     private let activityIndicator: UIActivityIndicatorView = {
            let indicator = UIActivityIndicatorView(style: .medium)

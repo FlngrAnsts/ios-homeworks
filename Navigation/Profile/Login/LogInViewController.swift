@@ -9,17 +9,18 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var viewModel: LogInModelProtocol?
+    var coordinator: ProfileCoordinator?
     
-    var loginDelegate: LoginViewControllerDelegate
     
-        init(delegate: LoginViewControllerDelegate) {
-            self.loginDelegate = delegate
-               super.init(nibName: nil, bundle: nil)
-           }
+    init(viewModel: LoginViewModel ) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
-           required init?(coder: NSCoder) {
-               fatalError("init(coder:) has not been implemented")
-           }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -196,36 +197,23 @@ class LogInViewController: UIViewController {
     }
     
     func buttonPressed() {
-        let service = PostService()
-        let viewModel = ProfileViewModel(service: service)
-        let profileVC = ProfileViewController(viewModel: viewModel)
         
-        var userProfile: UserService
-#if DEBUG
-        userProfile = TestUserService(user: users[0])
-#else
-        userProfile = CurrentUserService(user: users[1])
-#endif
-        
-        if let user = userProfile.checkUser(login: loginView.text!){
+        coordinator?.user = viewModel!.userButtonPressed(loginVM: loginView.text ?? "", passwordVM: passwordView.text ?? "")
+        if viewModel!.isLogIn {
+            coordinator?.isAuthorized = viewModel!.isLogIn
+            coordinator?.showProfile()
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
             
-            if (loginDelegate.check(login: loginView.text!, password: passwordView.text!)){
-                
-                profileVC.user = user
-                self.navigationController?.pushViewController(profileVC, animated: true)
-            } else {
-                let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: {action in print("Ввести логин и пароль еще раз")
-                }))
-                
-                alert.modalTransitionStyle = .flipHorizontal
-                alert.modalPresentationStyle = .pageSheet
-                
-                present(alert, animated: true)
-            }
+            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: {action in print("Ввести логин и пароль еще раз")
+            }))
             
+            alert.modalTransitionStyle = .flipHorizontal
+            alert.modalPresentationStyle = .pageSheet
+            
+            present(alert, animated: true)
         }
+        
     }
     
     private func setupContraints() {
