@@ -38,5 +38,19 @@ class FeedCoordinator: Coordinator {
         navigationController.pushViewController(feedVC, animated: true)
     }
     
+    func showInfo(){
+        
+        let infoVC = InfoViewController()
+        infoVC.coordinator = self
+        navigationController.pushViewController(infoVC, animated: true)
+    }
+    
+    func showPost(){
+        
+        let postVC = PostViewController()
+        postVC.coordinator = self
+        navigationController.pushViewController(postVC, animated: true)
+    }
+    
     
 }

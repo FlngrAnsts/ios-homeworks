@@ -35,7 +35,7 @@ final class LoginViewModel: LogInModelProtocol {
         
         if let user = userForProfile.checkUser(login: loginVM){
             
-            if let check = (loginDelegate?.check(login: loginVM, password: passwordVM)){
+            if (loginDelegate?.check(login: loginVM, password: passwordVM)) != nil{
                 
                 isLogIn = true
                 userProfile = user

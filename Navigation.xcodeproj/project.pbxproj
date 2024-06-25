@@ -280,7 +280,6 @@
 				4DFF97E82C0BAAFF0039C9F8 /* User */,
 				4D3BF3002BB986C700A3E0B0 /* Profile */,
 				4D0DC84B2C18E70200FC1422 /* Feed */,
-				4D1B81A32C06137F00212D36 /* Cell */,
 				4D0DC84A2C18DC1300FC1422 /* UIView */,
 				4D12EA8B2BF765EC00D745C0 /* Utils */,
 				4D1DA1AD2BB4C8FC00A1E777 /* LaunchScreen.storyboard */,
@@ -293,9 +292,10 @@
 		4D3BF3002BB986C700A3E0B0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4D1B81A32C06137F00212D36 /* Cell */,
 				4D1B81A02C06125C00212D36 /* Photos */,
-				4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */,
 				4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */,
+				4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */,
 				4DCE97332C1AF0C7005D3661 /* ProfileVMProtocol.swift */,
 				4DCE97352C1AF251005D3661 /* ProfileViewModel.swift */,
 				4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */,

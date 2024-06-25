@@ -10,12 +10,13 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController {
 
-    //fileprivate lazy var photos: [Photo] = Photo.make()
+    fileprivate lazy var photos: [Photo] = Photo.make()
+    
+    lazy var images: [UIImage] = photos.map({UIImage(named: $0.image) ?? UIImage()})
+    
     var coordinator: ProfileCoordinator?
     
-    lazy var images: [UIImage] = []
-    
-    private let imagePublisherFacade = ImagePublisherFacade()
+    //lazy var images: [UIImage] = []
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -39,9 +40,34 @@ class PhotosViewController: UIViewController {
         setupView()
         setupSubviews()
         setupLayouts()
-        subscribeProtocolObserver()
-        addImage()
+        
+//        processImage()
+        processImageOfThresd()
+
     }
+    
+    
+    func processImageOfThresd(){
+        
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
+        ImageProcessor().processImagesOnThread(
+            sourceImages: photos.map({UIImage(named: $0.image) ?? UIImage()}),
+            filter: .noir,
+            qos: .background)
+        { [weak self] cgImages in
+            self?.images = cgImages.compactMap{$0}.map{UIImage(cgImage: $0)}
+            
+            let stopTime = CFAbsoluteTimeGetCurrent()
+                print("Code execution time: \(stopTime-startTime) s.")
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
+        
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -54,11 +80,14 @@ class PhotosViewController: UIViewController {
             let navigationBar = self.navigationController?.navigationBar
             navigationBar?.tintColor = .systemBlue
             navigationBar?.barStyle = .default
+
         }
+    
+
         
         override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
-            imagePublisherFacade.removeSubscription(for: self)
+            
         }
     
     private func setupView() {
@@ -89,20 +118,12 @@ class PhotosViewController: UIViewController {
         ])
     }
     
-    func subscribeProtocolObserver() {
-        imagePublisherFacade.subscribe(self)
-    }
-    
-    func addImage(){
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: Photo.make().map{
-            UIImage(named: $0.image)!
-        })
-    }
-    
     private enum LayoutConstant {
         static let spacing: CGFloat = 8.0
     }
 }
+
+
 
 extension PhotosViewController: UICollectionViewDataSource {
     
@@ -121,8 +142,11 @@ extension PhotosViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotosCollectionViewCell.identifier,
             for: indexPath) as! PhotosCollectionViewCell
         
+//        let photo = photos[indexPath.row]
+//        cell.setup(with: photo)
+        
         let image = images[indexPath.row]
-        cell.setup(image: image)
+        cell.setupImg(image: image)
         
         return cell
     }
@@ -170,9 +194,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension PhotosViewController: ImageLibrarySubscriber{
-    func receive(images: [UIImage]){
-           self.images = images
-           collectionView.reloadData()
-       }
-}
+//extension PhotosViewController: ImageLibrarySubscriber {
+//    func receive(images: [UIImage]) {
+//        images = images
+//        collectionView.reloadData()
+//    }
+//    
+//}
+
+

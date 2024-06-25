@@ -19,8 +19,9 @@ extension Photo {
     
     public static func make() -> [Photo] {
         
-        (1...20).map{Photo(id: $0, image: "Image_\($0)")}
+        (1...15).map{Photo(id: $0, image: "Image_\($0)")}
         
     }
     
 }
+
