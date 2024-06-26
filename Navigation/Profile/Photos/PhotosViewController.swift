@@ -41,7 +41,6 @@ class PhotosViewController: UIViewController {
         setupSubviews()
         setupLayouts()
         
-//        processImage()
         processImageOfThresd()
 
     }

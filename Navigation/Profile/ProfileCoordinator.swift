@@ -18,10 +18,14 @@ class ProfileCoordinator: Coordinator {
     var isAuthorized = false
     var user:User?
     
+//    var loginDelegate: LoginViewControllerDelegate
+    
+    
     init(navigationController: UINavigationController, factory: ControllerFactory) {
         
         self.navigationController = navigationController
         self.factory = factory
+        
     }
     
     
@@ -35,9 +39,8 @@ class ProfileCoordinator: Coordinator {
     
     func showLogIn(){
         let viewModel = LoginViewModel()
-        let logInVC = LogInViewController(viewModel: viewModel)
-        let factory = MyLoginFactory()
-        viewModel.loginDelegate = factory.makeLoginInspector()
+        let logInVC = LogInViewController(viewModel: viewModel, delegate: MyLoginFactory().makeLoginInspector())
+
         logInVC.coordinator = self
         navigationController.pushViewController(logInVC, animated: true)
     }

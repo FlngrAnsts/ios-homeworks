@@ -13,8 +13,11 @@ class LogInViewController: UIViewController {
     var coordinator: ProfileCoordinator?
     
     
-    init(viewModel: LoginViewModel ) {
+    var loginDelegate: LoginViewControllerDelegate
+        
+    init(viewModel: LoginViewModel, delegate: LoginViewControllerDelegate) {
         self.viewModel = viewModel
+        self.loginDelegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -108,7 +111,7 @@ class LogInViewController: UIViewController {
         
         textView.autocapitalizationType = .none
         
-        textView.text = "123"
+//        textView.text = "a123"
         
         textView.isSecureTextEntry = true
         
@@ -146,6 +149,34 @@ class LogInViewController: UIViewController {
         return label
     }()
     
+    lazy var generatePassBtn: CustomButton = {
+        
+        let button = CustomButton(title: "Generate Password", titleColor: .white){
+            self.generatePass()
+        }
+        
+        button.layer.cornerRadius = 10
+        
+        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
+        
+        button.clipsToBounds = true
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        
+        let indicator = UIActivityIndicatorView(style: .medium)
+        
+        indicator.isHidden = true
+        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return indicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -170,6 +201,8 @@ class LogInViewController: UIViewController {
         contentView.addSubview(passwordView)
         contentView.addSubview(logInButton)
         contentView.addSubview(error)
+        contentView.addSubview(generatePassBtn)
+        contentView.addSubview(activityIndicator)
         
         scrollView.addSubview(contentView)
     }
@@ -198,20 +231,69 @@ class LogInViewController: UIViewController {
     
     func buttonPressed() {
         
-        coordinator?.user = viewModel!.userButtonPressed(loginVM: loginView.text ?? "", passwordVM: passwordView.text ?? "")
-        if viewModel!.isLogIn {
-            coordinator?.isAuthorized = viewModel!.isLogIn
-            coordinator?.showProfile()
-        } else {
-            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
+        let service = PostService()
+        let viewModel = ProfileViewModel(service: service)
+        let profileVC = ProfileViewController(viewModel: viewModel)
+        
+        var userProfile: UserService
+#if DEBUG
+        userProfile = TestUserService(user: users[0])
+#else
+        userProfile = CurrentUserService(user: users[1])
+#endif
+        
+        if let user = userProfile.checkUser(login: loginView.text!){
             
-            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: {action in print("Ввести логин и пароль еще раз")
-            }))
+            if (loginDelegate.check(login: loginView.text!, password: passwordView.text!)){
+                
+                profileVC.user = user
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            } else  {
+                let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: {action in print("Ввести логин и пароль еще раз")
+                }))
+                
+                alert.modalTransitionStyle = .flipHorizontal
+                alert.modalPresentationStyle = .pageSheet
+                
+                present(alert, animated: true)
+            }
             
-            alert.modalTransitionStyle = .flipHorizontal
-            alert.modalPresentationStyle = .pageSheet
+        }
+    }
+    
+    func generatePass(){
+        
+//        loginView.text = userService.user.login
+//        passwordView.text = userService.user.password
+        
+        let generate = BruteForce()
+        
+        var password = ""
+        
+        var userProfile: UserService
+#if DEBUG
+        userProfile = TestUserService(user: users[0])
+#else
+        userProfile = CurrentUserService(user: users[1])
+#endif
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
+//        очередь для подбора пороля
+        let queue = DispatchQueue(label: "bruteForce", qos: .default)
+        queue.async {
             
-            present(alert, animated: true)
+            password = generate.bruteForce(passwordToUnlock: userProfile.user.password)
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.passwordView.isSecureTextEntry = false
+                self.passwordView.text = password
+            }
         }
         
     }
@@ -251,12 +333,22 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             error.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 60),
             error.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
             error.trailingAnchor.constraint( equalTo: contentView.trailingAnchor,constant: -16),
             error.heightAnchor.constraint(equalToConstant: 20 ),
+            
+            generatePassBtn.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 32),
+            generatePassBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            generatePassBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            generatePassBtn.heightAnchor.constraint(equalToConstant: 50),
+            generatePassBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: passwordView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: passwordView.centerYAnchor),
+            
             
         ])
     }

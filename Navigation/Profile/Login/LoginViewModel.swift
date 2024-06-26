@@ -41,6 +41,7 @@ final class LoginViewModel: LogInModelProtocol {
                 userProfile = user
             } else {
                 isLogIn = false
+                
             }
             
         }

@@ -33,6 +33,7 @@
 		4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */; };
 		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 		4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */; };
+		4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */; };
 		4D6F56A92C1C37CC006F1E8E /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */; };
 		4D6F56AB2C1C38B4006F1E8E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F56AA2C1C38B4006F1E8E /* LoginViewModel.swift */; };
 		4D6F56AD2C1C4930006F1E8E /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F56AC2C1C4930006F1E8E /* FeedCoordinator.swift */; };
@@ -123,6 +124,7 @@
 		4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		4D6F56AA2C1C38B4006F1E8E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4D6F56AC2C1C4930006F1E8E /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				4D0DC8372C17152500FC1422 /* Checker.swift */,
 				4D0DC83B2C1725BE00FC1422 /* LoginViewControllerDelegate.swift */,
 				4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */,
+				4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 			files = (
 				4DCE973B2C1B2671005D3661 /* PostService.swift in Sources */,
 				4D0DC8412C18B42700FC1422 /* LoginFactory.swift in Sources */,
+				4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */,
 				4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */,
 				4DC9B4192C299FCB0027A242 /* ControllerFactory.swift in Sources */,
 				4D1B819F2C06124800212D36 /* Reusable.swift in Sources */,
