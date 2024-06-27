@@ -9,6 +9,8 @@ import UIKit
 import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
+    var timer : Timer?
 
     fileprivate lazy var photos: [Photo] = Photo.make()
     
@@ -42,6 +44,9 @@ class PhotosViewController: UIViewController {
         setupLayouts()
         
         processImageOfThresd()
+        
+//        self.timer?.invalidate()
+//        self.timer = nil
 
     }
     

@@ -13,19 +13,25 @@ class ProfileViewController: UIViewController {
     
     var user: User?
     
+    var timer : Timer?
+    var count = 10.0
+    
+   
+    
     var viewModel: ProfileViewModel
     
     var coordinator: ProfileCoordinator?
     
     private let activityIndicator: UIActivityIndicatorView = {
-           let indicator = UIActivityIndicatorView(style: .medium)
-           indicator.translatesAutoresizingMaskIntoConstraints = false
-           return indicator
-       }()
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -55,19 +61,79 @@ class ProfileViewController: UIViewController {
         setupView()
         addSubviews()
         
-        // 1. Задаем размеры и позицию tableView
         setupConstraints()
         tuneTableView()
         bindViewModel()
         viewModel.changeStateIfNeeded()
+          
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+//        
+//        view.addGestureRecognizer(tapGesture)
         
     }
+    
+    
+    @objc func handleTap(sender: UITapGestureRecognizer){
+        print("tapped")
+        killTimer()
+        
+        timerTest()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.beginAppearanceTransition(true, animated: true)
         self.endAppearanceTransition()
         
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        timerTest()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        killTimer()
+    }
+    
+    func timerTest(){
+        
+        count = 10.0
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0,
+                                     repeats: count == 0 ? false : true,
+                                     block: { [weak self] timer in
+            guard let self else {return}
+            
+                print (count)
+                if count == 0 {
+                    killTimer()
+                    logOut()
+                }
+                count -= 1
+        })
+        
+    }
+    
+    func logOut(){
+            timer?.invalidate()
+            let viewModel = LoginViewModel()
+            let logInVC = LogInViewController(viewModel: viewModel, delegate: MyLoginFactory().makeLoginInspector())
+            
+            self.navigationController?.pushViewController(logInVC, animated: false)
+    }
+    
+    func killTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    
     
     private func bindViewModel() {
         viewModel.currentState = { [weak self] state in

@@ -19,6 +19,7 @@ class LogInViewController: UIViewController {
         self.viewModel = viewModel
         self.loginDelegate = delegate
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -111,7 +112,7 @@ class LogInViewController: UIViewController {
         
         textView.autocapitalizationType = .none
         
-//        textView.text = "a123"
+        textView.text = "a123"
         
         textView.isSecureTextEntry = true
         
@@ -264,10 +265,7 @@ class LogInViewController: UIViewController {
     }
     
     func generatePass(){
-        
-//        loginView.text = userService.user.login
-//        passwordView.text = userService.user.password
-        
+           
         let generate = BruteForce()
         
         var password = ""

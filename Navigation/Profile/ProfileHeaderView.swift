@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+   
+    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
@@ -115,15 +117,18 @@ class ProfileHeaderView: UIView {
     
     func buttonPressed() {
         print(statusLabel.text!)
+      
     }
     
     @objc func closeAnimateButtonPressed(_ sender: UIButton) {
         closeAnimationExample()
+     
     }
     
     @objc private func tapAvatar(gesture: UIGestureRecognizer) {
         if gesture.state == .ended {
             openAnimationExample()
+            
             print("Did tap ")
         }
     }

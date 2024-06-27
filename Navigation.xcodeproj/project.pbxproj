@@ -177,9 +177,8 @@
 		4D0DC8362C17150300FC1422 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */,
-				4D6F56AA2C1C38B4006F1E8E /* LoginViewModel.swift */,
 				4D0DC83F2C18B40C00FC1422 /* Factory */,
+				4D6F56AA2C1C38B4006F1E8E /* LoginViewModel.swift */,
 				4D0DC8372C17152500FC1422 /* Checker.swift */,
 				4D0DC83B2C1725BE00FC1422 /* LoginViewControllerDelegate.swift */,
 				4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */,
@@ -295,13 +294,13 @@
 		4D3BF3002BB986C700A3E0B0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				4D1B81A32C06137F00212D36 /* Cell */,
-				4D1B81A02C06125C00212D36 /* Photos */,
-				4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */,
 				4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */,
 				4DCE97332C1AF0C7005D3661 /* ProfileVMProtocol.swift */,
 				4DCE97352C1AF251005D3661 /* ProfileViewModel.swift */,
 				4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */,
+				4DDD08822C2D6F0100B8FB37 /* VC */,
+				4D1B81A32C06137F00212D36 /* Cell */,
+				4D1B81A02C06125C00212D36 /* Photos */,
 				4D0DC8362C17150300FC1422 /* Login */,
 			);
 			path = Profile;
@@ -335,6 +334,15 @@
 				4DC9B4162C2994760027A242 /* TabBarController.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		4DDD08822C2D6F0100B8FB37 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */,
+				4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		4DFF97E82C0BAAFF0039C9F8 /* User */ = {
