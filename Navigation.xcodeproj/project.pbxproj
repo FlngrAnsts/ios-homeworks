@@ -37,6 +37,8 @@
 		4D6F56A92C1C37CC006F1E8E /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */; };
 		4D6F56AB2C1C38B4006F1E8E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F56AA2C1C38B4006F1E8E /* LoginViewModel.swift */; };
 		4D6F56AD2C1C4930006F1E8E /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F56AC2C1C4930006F1E8E /* FeedCoordinator.swift */; };
+		4D8BFF952C2DC10400A47076 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF942C2DC10400A47076 /* Error.swift */; };
+		4D8BFF972C33192600A47076 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF962C33192600A47076 /* CheckerService.swift */; };
 		4DBFBD022BFF61A0009E6EFB /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD012BFF61A0009E6EFB /* StorageService.docc */; };
 		4DBFBD082BFF61A0009E6EFB /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; };
 		4DBFBD0F2BFF61A0009E6EFB /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */; };
@@ -128,6 +130,8 @@
 		4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		4D6F56AA2C1C38B4006F1E8E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4D6F56AC2C1C4930006F1E8E /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		4D8BFF942C2DC10400A47076 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		4D8BFF962C33192600A47076 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
 		4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBFBD002BFF61A0009E6EFB /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		4DBFBD012BFF61A0009E6EFB /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				4D0DC83B2C1725BE00FC1422 /* LoginViewControllerDelegate.swift */,
 				4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */,
 				4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */,
+				4D8BFF962C33192600A47076 /* CheckerService.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				4D1DA1AD2BB4C8FC00A1E777 /* LaunchScreen.storyboard */,
 				4D1DA1B02BB4C8FC00A1E777 /* Info.plist */,
 				4DC9B4182C299FCB0027A242 /* ControllerFactory.swift */,
+				4D8BFF942C2DC10400A47076 /* Error.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */,
 				4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */,
 				4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */,
+				4D8BFF952C2DC10400A47076 /* Error.swift in Sources */,
 				4D1DA1B92BB4CAA500A1E777 /* ProfileViewController.swift in Sources */,
 				4DFF97E72C0BA7460039C9F8 /* User.swift in Sources */,
 				4D1B81A22C06135700212D36 /* Photo.swift in Sources */,
@@ -533,6 +540,7 @@
 				4DFF97F02C11E79E0039C9F8 /* TestUserService.swift in Sources */,
 				4DCE97362C1AF251005D3661 /* ProfileViewModel.swift in Sources */,
 				4D6F56A92C1C37CC006F1E8E /* ProfileCoordinator.swift in Sources */,
+				4D8BFF972C33192600A47076 /* CheckerService.swift in Sources */,
 				4D0DC83E2C17274A00FC1422 /* LoginInspector.swift in Sources */,
 				4D1DA1B72BB4CA7400A1E777 /* FeedViewController.swift in Sources */,
 				4DCE97342C1AF0C7005D3661 /* ProfileVMProtocol.swift in Sources */,

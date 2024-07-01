@@ -12,9 +12,10 @@ class LogInViewController: UIViewController {
     var viewModel: LogInModelProtocol?
     var coordinator: ProfileCoordinator?
     
+    //    var logInResult = LogInError.self
     
     var loginDelegate: LoginViewControllerDelegate
-        
+    
     init(viewModel: LoginViewModel, delegate: LoginViewControllerDelegate) {
         self.viewModel = viewModel
         self.loginDelegate = delegate
@@ -230,6 +231,27 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
+    func logInError (caseOf error: LogInError){
+        var errorMassage = ""
+        
+        switch error {
+        case .userNotFound:
+            errorMassage = "Такой пользователь не существует"
+        case .incorrectPassord:
+            errorMassage = "Неверный пароль"
+        }
+        
+        
+        let alert = UIAlertController(title: "Ошибка", message: errorMassage, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+        
+        alert.modalTransitionStyle = .flipHorizontal
+        alert.modalPresentationStyle = .pageSheet
+        
+        present(alert, animated: true)
+    }
+    
     func buttonPressed() {
         
         let service = PostService()
@@ -243,25 +265,42 @@ class LogInViewController: UIViewController {
         userProfile = CurrentUserService(user: users[1])
 #endif
         
-        if let user = userProfile.checkUser(login: loginView.text!){
-            
-            if (loginDelegate.check(login: loginView.text!, password: passwordView.text!)){
-                
-                profileVC.user = user
-                self.navigationController?.pushViewController(profileVC, animated: true)
-            } else  {
-                let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: {action in print("Ввести логин и пароль еще раз")
-                }))
-                
-                alert.modalTransitionStyle = .flipHorizontal
-                alert.modalPresentationStyle = .pageSheet
-                
-                present(alert, animated: true)
+        
+        if (loginView.text?.isEmpty != nil && passwordView.text?.isEmpty != nil){
+            do{
+                try loginDelegate.check(login: loginView.text!, password: passwordView.text!){ result in
+                    switch result{
+                    case .success(_):
+                        
+//                        let profileVC = ProfileViewController(viewModel: viewModel)
+                        profileVC.user = userProfile.user
+                        self.navigationController?.pushViewController(profileVC, animated: true)
+                    case .failure(let error):
+                        self.logInError(caseOf: error)
+                    }
+                }
+            }
+            catch LogInError.userNotFound{
+                logInError(caseOf: .userNotFound)
+            }
+            catch LogInError.incorrectPassord{
+                logInError(caseOf: .incorrectPassord)
+            }
+            catch {
+                print("some error")
             }
             
+        }else{
+            let alert = UIAlertController(title: "Ошибка", message: "Введите логин и пароль", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+            
+            alert.modalTransitionStyle = .flipHorizontal
+            alert.modalPresentationStyle = .pageSheet
+            
+            present(alert, animated: true)
         }
+        
     }
     
     func generatePass(){

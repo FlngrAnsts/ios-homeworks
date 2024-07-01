@@ -66,9 +66,9 @@ class ProfileViewController: UIViewController {
         bindViewModel()
         viewModel.changeStateIfNeeded()
           
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-//        
-//        view.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        
+        view.addGestureRecognizer(tapGesture)
         
     }
     
@@ -106,8 +106,7 @@ class ProfileViewController: UIViewController {
         count = 10.0
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0,
-                                     repeats: count == 0 ? false : true,
-                                     block: { [weak self] timer in
+                                     repeats: count == 0 ? false : true) { [weak self] timer in
             guard let self else {return}
             
                 print (count)
@@ -116,12 +115,11 @@ class ProfileViewController: UIViewController {
                     logOut()
                 }
                 count -= 1
-        })
+        }
         
     }
     
     func logOut(){
-            timer?.invalidate()
             let viewModel = LoginViewModel()
             let logInVC = LogInViewController(viewModel: viewModel, delegate: MyLoginFactory().makeLoginInspector())
             

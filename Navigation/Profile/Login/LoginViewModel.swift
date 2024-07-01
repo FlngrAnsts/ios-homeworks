@@ -14,6 +14,8 @@ protocol LogInModelProtocol{
     func userButtonPressed(loginVM: String, passwordVM: String) -> User
 }
 
+
+
 final class LoginViewModel: LogInModelProtocol {
     
     var isLogIn = false
@@ -31,20 +33,6 @@ final class LoginViewModel: LogInModelProtocol {
         userForProfile = CurrentUserService(user: users[1])
 #endif
         
-        var userProfile: User?
-        
-        if let user = userForProfile.checkUser(login: loginVM){
-            
-            if (loginDelegate?.check(login: loginVM, password: passwordVM)) != nil{
-                
-                isLogIn = true
-                userProfile = user
-            } else {
-                isLogIn = false
-                
-            }
-            
-        }
-        return userProfile!
+        return userForProfile.user
     }
 }

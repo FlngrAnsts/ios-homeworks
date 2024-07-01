@@ -8,7 +8,11 @@
 import UIKit
 
 struct MyLoginFactory: LoginFactory{
-    func makeLoginInspector() -> LoginInspector{
-        return LoginInspector()
+    func makeLoginInspector() -> LoginInspector {
+        return LoginInspector(checkerService: makeCheckerService())
+    }
+    
+    func makeCheckerService() -> CheckerServiceProtocol {
+        return CheckerService()
     }
 }

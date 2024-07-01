@@ -25,9 +25,7 @@ extension String {
 
 class BruteForce{
     
-//    var shared = BruteForce()
-    
-    var passwordToUnlock: String = ""
+//    var passwordToUnlock: String = ""
     
     func bruteForce(passwordToUnlock: String) -> String {
         let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
@@ -73,18 +71,6 @@ class BruteForce{
                                    : Character("")
     }
 
-    func generatePassword() {
-            
-            let length = 4
-            let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
-            
-            passwordToUnlock = String((0..<length).compactMap{ _ in
-                let character: Character = Character(ALLOWED_CHARACTERS.randomElement() ?? "")
-                
-                passwordToUnlock.append(character)
-                return character
-            })
-            
-        }
+
     
 }
