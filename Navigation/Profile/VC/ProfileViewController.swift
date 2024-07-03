@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     var timer : Timer?
     var count = 10.0
     
-   
+    
     
     var viewModel: ProfileViewModel
     
@@ -63,12 +63,12 @@ class ProfileViewController: UIViewController {
         
         setupConstraints()
         tuneTableView()
-        bindViewModel()
+//        bindViewModel()
         viewModel.changeStateIfNeeded()
-          
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         
-        view.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+//        
+//        view.addGestureRecognizer(tapGesture)
         
     }
     
@@ -91,14 +91,14 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        timerTest()
+//                timerTest()
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        killTimer()
+//                killTimer()
     }
     
     func timerTest(){
@@ -109,21 +109,21 @@ class ProfileViewController: UIViewController {
                                      repeats: count == 0 ? false : true) { [weak self] timer in
             guard let self else {return}
             
-                print (count)
-                if count == 0 {
-                    killTimer()
-                    logOut()
-                }
-                count -= 1
+            print (count)
+            if count == 0 {
+                killTimer()
+                logOut()
+            }
+            count -= 1
         }
         
     }
     
     func logOut(){
-            let viewModel = LoginViewModel()
-            let logInVC = LogInViewController(viewModel: viewModel, delegate: MyLoginFactory().makeLoginInspector())
-            
-            self.navigationController?.pushViewController(logInVC, animated: false)
+        let viewModel = LoginViewModel()
+        let logInVC = LogInViewController(viewModel: viewModel, delegate: MyLoginFactory().makeLoginInspector())
+        
+        self.navigationController?.pushViewController(logInVC, animated: false)
     }
     
     func killTimer() {
@@ -188,6 +188,28 @@ class ProfileViewController: UIViewController {
         ])
     }
     
+    private func audioVC(){
+        
+        let audioVC = AudioViewController()
+        self.navigationController?.pushViewController(audioVC, animated: true)
+    }
+    
+    private func photosVC(){
+        let viewController = PhotosViewController()
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func videoVC(){
+        let videoVC = VideoViewController()
+        
+        self.navigationController?.pushViewController(videoVC, animated: true)
+    }
+    
+    private func audioRecVC(){
+        
+    }
+    
     private func tuneTableView(){
         
         let headerView = ProfileHeaderView()
@@ -202,6 +224,11 @@ class ProfileViewController: UIViewController {
         tableView.register(
             PhotosTableViewCell.self,
             forCellReuseIdentifier: PhotosTableViewCell.cellID
+        )
+        
+        tableView.register(
+            MediaTableViewCell.self,
+            forCellReuseIdentifier: MediaTableViewCell.cellID
         )
         
         tableView.register(
@@ -222,7 +249,7 @@ extension ProfileViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        data.count + 1
+        data.count + 2
     }
     
     func tableView(
@@ -238,10 +265,25 @@ extension ProfileViewController: UITableViewDataSource {
             ) as? PhotosTableViewCell else {
                 fatalError("could not dequeueReusableCell")
             }
+            cell.buttonTapCallback = photosVC
             
             return cell
         }
-        //рисует ячейку постов
+//        ячейка медиа
+        if (indexPath.row == 1) {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: MediaTableViewCell.cellID,
+            for: indexPath
+        ) as? MediaTableViewCell else {
+            fatalError("could not dequeueReusableCell")
+        }
+            cell.buttonTapAudioCallback = audioVC
+//            cell.buttonTapVideoCallback = videoVC
+//            cell.buttonTapRECCallback = audioRecVC
+        
+        return cell
+    }
+                //рисует ячейку постов
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: PostTableViewCell.cellID,
             for: indexPath
@@ -249,21 +291,10 @@ extension ProfileViewController: UITableViewDataSource {
             fatalError("could not dequeueReusableCell")
         }
         
-        cell.update(data[indexPath.row-1])
+        cell.update(data[indexPath.row-2])
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let  tableRow = indexPath.row
-        if tableRow == 0 {
-            let viewController = PhotosViewController()
-            
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-        
-    }
-    
     
 }
 
