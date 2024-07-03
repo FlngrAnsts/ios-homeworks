@@ -86,34 +86,8 @@ class VideoTableViewCell: UITableViewCell {
     func update(_ model: Video) {
         labelView.text = model.label
         
-//        let queue = DispatchQueue(label: "video", qos:
-//                .default)
-//        queue.async {
-//            let image = self.createThumbnailOfVideoFromRemoteUrl(url:  model.url)
-//            DispatchQueue.main.async {
-//                if let image = image{
-//                    self.contentVideoView.image = image
-//                }
-//                
-//            }
-//        }
-        
     }
     
-    func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
-        let asset = AVAsset(url: URL(string: url)!)
-        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
-        let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 60)
-        do {
-            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-            let thumbnail = UIImage(cgImage: img)
-            return thumbnail
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
