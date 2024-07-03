@@ -161,7 +161,7 @@ class AudioViewController: UIViewController {
             setupAugioSession()
         }
         catch {
-            print(error)
+            print("error")
         }
         
     }

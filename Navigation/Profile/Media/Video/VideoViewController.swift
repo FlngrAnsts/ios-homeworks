@@ -8,28 +8,17 @@
 import UIKit
 import AVFoundation
 import AVKit
-import WebKit
 
-class VideoViewController: UIViewController, WKUIDelegate {
+class VideoViewController: UIViewController {
     
-    lazy var videoList = Video.make()
+    fileprivate var videoList = Video.make()
     
-    var webView: WKWebView!
-        
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
-//        view.addSubview(webView)
-        view = webView
-    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
-            style: .grouped
+            style: .plain
         )
-        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.isUserInteractionEnabled = true
@@ -40,17 +29,13 @@ class VideoViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setupView()
-//        addSubviews()
-//        setupConstraints()
-//        tuneTableView()
-
-//        view.addSubview(webView)
-        let myURL = URL(string: videoList[0].url)
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
+        setupView()
+        addSubviews()
+        setupConstraints()
+        tuneTableView()
+        
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -91,7 +76,6 @@ class VideoViewController: UIViewController, WKUIDelegate {
     }
     
     private func tuneTableView(){
-//        tableView.tableFooterView = UIView()
         
         tableView.register(
             VideoTableViewCell.self,
@@ -103,20 +87,6 @@ class VideoViewController: UIViewController, WKUIDelegate {
         
     }
     
-//    func playVideo(){
-//        let url = URL(string: videoList[indexPath.row].url)
-//        
-//        if let url = url {
-//            let player = AVPlayer(url: url)
-//            
-//            let controller = AVPlayerViewController()
-//            controller.player = player
-//            
-//            present(controller, animated: true) {
-//                player.play()
-//            }
-//        }
-//    }
     
 }
 
@@ -135,7 +105,7 @@ extension VideoViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         
-                //рисует ячейку постов
+        //рисует ячейку постов
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: VideoTableViewCell.cellID,
             for: indexPath
@@ -144,28 +114,25 @@ extension VideoViewController: UITableViewDataSource {
         }
         
         cell.update(videoList[indexPath.row])
-//        cell.buttonTapVideoCallback =
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: videoList[indexPath.row].url)
-        
-        //        let myURL = URL(string: videoList[1].url)
-                let myRequest = URLRequest(url: url!)
-                webView.load(myRequest)
-        
-        if let url = url {
-            let player = AVPlayer(url: url)
-            
-            let controller = AVPlayerViewController()
-            controller.player = player
-            
-            present(controller, animated: true) {
-                player.play()
-            }
+        guard let videoPath = Bundle.main.path(forResource: videoList[indexPath.row].url, ofType: "mp4")
+        else {
+            print("ERROR")
+            return
         }
+        let videoUrl = URL(filePath: videoPath)
+        let player = AVPlayer(url: videoUrl)
+        let controller = AVPlayerViewController()
+        controller.player = player
+        controller.showsTimecodes = true
+        present(controller, animated: true) {
+            player.play()
+        }
+        
     }
     
 }

@@ -13,41 +13,26 @@ class VideoTableViewCell: UITableViewCell {
     
     static let cellID = "VideoTableViewCell"
     
-//    var video: Video? = nil
+    var video: Video? = nil
     
-    var buttonTapVideoCallback: () -> () = {}
-    
-    lazy var labelView: UIButton = {
-        let label = UIButton()
+    lazy var labelView: UILabel = {
+        let label = UILabel()
         
-//        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.clipsToBounds = true
-
-        label.setTitle("", for: .normal)
-        label.setTitleColor(.black, for: .normal)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-        label.addTarget(self, action: #selector(tapVideoButton(_:)), for: .touchUpInside)
-        
+        label.textColor = .black
+        label.numberOfLines = 2
         return label
     }()
     
-    @objc func tapVideoButton(_: UIResponder){
-        buttonTapVideoCallback()
-    }
+    lazy var contentVideoView: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .black
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-//    lazy var contentImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.backgroundColor = .black
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
-    
-//    lazy var contentVideoView: UIView = {
-//        let content = UIView()
-//        return content
-//    }()
     
     override var intrinsicContentSize: CGSize {
         CGSize(
@@ -83,28 +68,62 @@ class VideoTableViewCell: UITableViewCell {
     
     private func setupConstraints(){
         NSLayoutConstraint.activate([
+            labelView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             labelView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             labelView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            labelView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-                
-            ])
+            labelView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
+            
+//            contentVideoView.topAnchor.constraint(equalTo: labelView.bottomAnchor, constant: 16),
+//            contentVideoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            contentVideoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+//            contentVideoView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
+//            contentVideoView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            
+        ])
     }
     
     func update(_ model: Video) {
+        labelView.text = model.label
         
-        labelView.setTitle(model.label, for: .normal)
+//        let queue = DispatchQueue(label: "video", qos:
+//                .default)
+//        queue.async {
+//            let image = self.createThumbnailOfVideoFromRemoteUrl(url:  model.url)
+//            DispatchQueue.main.async {
+//                if let image = image{
+//                    self.contentVideoView.image = image
+//                }
+//                
+//            }
+//        }
         
     }
-
+    
+    func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
+        let asset = AVAsset(url: URL(string: url)!)
+        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
+        assetImgGenerate.appliesPreferredTrackTransform = true
+        let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 60)
+        do {
+            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+            let thumbnail = UIImage(cgImage: img)
+            return thumbnail
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

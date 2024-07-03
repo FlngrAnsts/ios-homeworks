@@ -278,7 +278,7 @@ extension ProfileViewController: UITableViewDataSource {
             fatalError("could not dequeueReusableCell")
         }
             cell.buttonTapAudioCallback = audioVC
-//            cell.buttonTapVideoCallback = videoVC
+            cell.buttonTapVideoCallback = videoVC
 //            cell.buttonTapRECCallback = audioRecVC
         
         return cell

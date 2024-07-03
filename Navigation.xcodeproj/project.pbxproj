@@ -158,6 +158,10 @@
 		4D8BFFAE2C3540A100A47076 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		4D8BFFB22C35412C00A47076 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Imagine Dragons .mp4"; sourceTree = "<group>"; };
+		4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lost [Official Music Video] - Linkin Park.mp4"; sourceTree = "<group>"; };
+		4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Clone Wars - Warriors.mp4"; sourceTree = "<group>"; };
+		4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4"; sourceTree = "<group>"; };
 		4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBFBD002BFF61A0009E6EFB /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		4DBFBD012BFF61A0009E6EFB /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 		4D8BFFB12C35411600A47076 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				4D8FE5C62C358575006E8C7B /* video */,
 				4D8BFFB22C35412C00A47076 /* VideoViewController.swift */,
 				4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */,
 			);
@@ -388,6 +393,17 @@
 				4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		4D8FE5C62C358575006E8C7B /* video */ = {
+			isa = PBXGroup;
+			children = (
+				4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */,
+				4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */,
+				4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */,
+				4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */,
+			);
+			path = video;
 			sourceTree = "<group>";
 		};
 		4DBFBCFF2BFF61A0009E6EFB /* StorageService */ = {
