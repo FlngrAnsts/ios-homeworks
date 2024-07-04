@@ -11,8 +11,8 @@ import AVKit
 
 class VideoViewController: UIViewController {
     
-    fileprivate var videoList = Video.make()
-    
+//    fileprivate var videoList = Video.make()
+    fileprivate var videoList = Video.makeWeb()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
@@ -51,7 +51,6 @@ class VideoViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         
     }
     
@@ -119,13 +118,12 @@ extension VideoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let videoPath = Bundle.main.path(forResource: videoList[indexPath.row].url, ofType: "mp4")
+        guard let videoURL = URL(string: videoList[indexPath.row].url)
         else {
             print("ERROR")
             return
         }
-        let videoUrl = URL(filePath: videoPath)
-        let player = AVPlayer(url: videoUrl)
+        let player = AVPlayer(url: videoURL)
         let controller = AVPlayerViewController()
         controller.player = player
         controller.showsTimecodes = true

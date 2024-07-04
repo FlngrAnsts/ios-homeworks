@@ -52,6 +52,10 @@
 		4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAE2C3540A100A47076 /* Video.swift */; };
 		4D8BFFB32C35412C00A47076 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB22C35412C00A47076 /* VideoViewController.swift */; };
 		4D8BFFB52C35416400A47076 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */; };
+		4DA0F4AC2C35A98A003575F2 /* Lost [Official Music Video] - Linkin Park.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */; };
+		4DA0F4AD2C35A990003575F2 /* Imagine Dragons .mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */; };
+		4DA0F4AE2C35A993003575F2 /* The Clone Wars - Warriors.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */; };
+		4DA0F4AF2C35A996003575F2 /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */; };
 		4DBFBD022BFF61A0009E6EFB /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD012BFF61A0009E6EFB /* StorageService.docc */; };
 		4DBFBD082BFF61A0009E6EFB /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; };
 		4DBFBD0F2BFF61A0009E6EFB /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */; };
@@ -582,12 +586,16 @@
 			files = (
 				4D8BFF9F2C34417B00A47076 /* 01 UGLY.mp3 in Resources */,
 				4D1DA1AC2BB4C8FC00A1E777 /* Assets.xcassets in Resources */,
+				4DA0F4AF2C35A996003575F2 /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 in Resources */,
 				4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */,
 				4D8BFFAB2C3443E500A47076 /* Enemy.mp3 in Resources */,
 				4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */,
 				4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */,
 				4D8BFFA12C3441FF00A47076 /* 02 Inside Beast.mp3 in Resources */,
+				4DA0F4AE2C35A993003575F2 /* The Clone Wars - Warriors.mp4 in Resources */,
+				4DA0F4AD2C35A990003575F2 /* Imagine Dragons .mp4 in Resources */,
 				4D1DA1AF2BB4C8FC00A1E777 /* Base in Resources */,
+				4DA0F4AC2C35A98A003575F2 /* Lost [Official Music Video] - Linkin Park.mp4 in Resources */,
 				4D8BFFAD2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 in Resources */,
 				4D8BFFA72C34423300A47076 /* 05 Suicide Circus.mp3 in Resources */,
 			);

@@ -9,15 +9,16 @@ import UIKit
 import AVFoundation
 import WebKit
 
-class VideoTableViewCell: UITableViewCell {
+class VideoTableViewCell: UITableViewCell, WKUIDelegate, WKNavigationDelegate {
     
     static let cellID = "VideoTableViewCell"
     
-    var video: Video? = nil
+    private enum Constants{
+        static let buttonHeight = (UIScreen.main.bounds.width)/2
+    }
     
     lazy var labelView: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -25,15 +26,16 @@ class VideoTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var contentVideoView: UIImageView = {
-        let image = UIImageView()
-        image.backgroundColor = .black
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
+    lazy var contentVideoView: WKWebView = {
+        var webView = WKWebView()
+        let webViewConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        return webView
     }()
 
-    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
@@ -63,7 +65,7 @@ class VideoTableViewCell: UITableViewCell {
     
     private func addSubviews(){
         contentView.addSubview(labelView)
-//        contentView.addSubview(contentVideoView)
+        contentView.addSubview(contentVideoView)
     }
     
     private func setupConstraints(){
@@ -71,20 +73,31 @@ class VideoTableViewCell: UITableViewCell {
             labelView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             labelView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             labelView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            labelView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+//            labelView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
             
-//            contentVideoView.topAnchor.constraint(equalTo: labelView.bottomAnchor, constant: 16),
-//            contentVideoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            contentVideoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            contentVideoView.topAnchor.constraint(equalTo: labelView.bottomAnchor, constant: 16),
+            contentVideoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            contentVideoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            contentVideoView.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
 //            contentVideoView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
-//            contentVideoView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            contentVideoView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            contentVideoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
         ])
     }
     
     func update(_ model: Video) {
         labelView.text = model.label
+        
+        let queue = DispatchQueue(label: "bruteForce", qos: .default)
+        queue.async {
+            let request = URLRequest(url: URL(string: model.url)!)
+            
+            DispatchQueue.main.async {
+                self.contentVideoView.load(request)
+            }
+        }
         
     }
     

@@ -22,4 +22,18 @@ extension Video {
                         
         ]
     }
+    
+    static func makeWeb() -> [Video] {
+        return [
+            
+            Video(url: "https://www.youtube.com/embed/eX3ZyLNbV_Y?si=XDuCWznKfrZ_2XhY", label: "The Clone Wars 『Warriors』"),
+            
+            Video(url: "https://www.youtube.com/embed/eEFVxI9lqjU?si=n1ZuQB0XYFYfZAxD", label: "『Everything Goes On』"),
+//
+            Video(url: "https://www.youtube.com/embed/F5tSoaJ93ac?si=H4L5XfIempwxTQUY", label: "Imagine Dragons & JID 『Enemy』"),
+//
+            Video(url: "https://www.youtube.com/embed/0nlJuwO0GDs?si=Ne0BPQjtBfDmS9uQ", label: "『Get Jinxed』"),
+//
+        ]
+    }
 }
