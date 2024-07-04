@@ -14,7 +14,6 @@
 		4D0DC83E2C17274A00FC1422 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */; };
 		4D0DC8412C18B42700FC1422 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8402C18B42700FC1422 /* LoginFactory.swift */; };
 		4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8422C18B47D00FC1422 /* MyLoginFactory.swift */; };
-		4D0DC8492C18C79400FC1422 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D0DC8482C18C79400FC1422 /* iOSIntPackage */; };
 		4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */; };
 		4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */; };
 		4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA8C2BF7661400D745C0 /* UITableView.swift */; };
@@ -31,6 +30,9 @@
 		4D1DA1B92BB4CAA500A1E777 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */; };
 		4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */; };
 		4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */; };
+		4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E192C36C87600A51058 /* 01 UGLY.mp3 */; };
+		4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */; };
+		4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D308E1E2C36CA5000A51058 /* iOSIntPackage */; };
 		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 		4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */; };
 		4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */; };
@@ -41,13 +43,11 @@
 		4D8BFF972C33192600A47076 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF962C33192600A47076 /* CheckerService.swift */; };
 		4D8BFF992C34223600A47076 /* MediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF982C34223600A47076 /* MediaTableViewCell.swift */; };
 		4D8BFF9C2C342C5200A47076 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF9B2C342C5200A47076 /* AudioViewController.swift */; };
-		4D8BFF9F2C34417B00A47076 /* 01 UGLY.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFF9E2C34417B00A47076 /* 01 UGLY.mp3 */; };
 		4D8BFFA12C3441FF00A47076 /* 02 Inside Beast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA02C3441FF00A47076 /* 02 Inside Beast.mp3 */; };
 		4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA22C34421200A47076 /* 07 Last Heaven.mp3 */; };
 		4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA42C34422100A47076 /* 11 Filth in the Beauty.mp3 */; };
 		4D8BFFA72C34423300A47076 /* 05 Suicide Circus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA62C34423300A47076 /* 05 Suicide Circus.mp3 */; };
 		4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA82C34426500A47076 /* 03 Ninth Odd Smell.mp3 */; };
-		4D8BFFAB2C3443E500A47076 /* Enemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAA2C3443E500A47076 /* Enemy.mp3 */; };
 		4D8BFFAD2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAC2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 */; };
 		4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAE2C3540A100A47076 /* Video.swift */; };
 		4D8BFFB32C35412C00A47076 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB22C35412C00A47076 /* VideoViewController.swift */; };
@@ -142,6 +142,8 @@
 		4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		4D1DA1BC2BB4CB6600A1E777 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		4D308E192C36C87600A51058 /* 01 UGLY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 UGLY.mp3"; sourceTree = "<group>"; };
+		4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Enemy.mp3; sourceTree = "<group>"; };
 		4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
@@ -152,13 +154,11 @@
 		4D8BFF962C33192600A47076 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
 		4D8BFF982C34223600A47076 /* MediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewCell.swift; sourceTree = "<group>"; };
 		4D8BFF9B2C342C5200A47076 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
-		4D8BFF9E2C34417B00A47076 /* 01 UGLY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 UGLY.mp3"; sourceTree = "<group>"; };
 		4D8BFFA02C3441FF00A47076 /* 02 Inside Beast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "02 Inside Beast.mp3"; sourceTree = "<group>"; };
 		4D8BFFA22C34421200A47076 /* 07 Last Heaven.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "07 Last Heaven.mp3"; sourceTree = "<group>"; };
 		4D8BFFA42C34422100A47076 /* 11 Filth in the Beauty.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "11 Filth in the Beauty.mp3"; sourceTree = "<group>"; };
 		4D8BFFA62C34423300A47076 /* 05 Suicide Circus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "05 Suicide Circus.mp3"; sourceTree = "<group>"; };
 		4D8BFFA82C34426500A47076 /* 03 Ninth Odd Smell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "03 Ninth Odd Smell.mp3"; sourceTree = "<group>"; };
-		4D8BFFAA2C3443E500A47076 /* Enemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Enemy.mp3; sourceTree = "<group>"; };
 		4D8BFFAC2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3"; sourceTree = "<group>"; };
 		4D8BFFAE2C3540A100A47076 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		4D8BFFB22C35412C00A47076 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DBFBD132BFF61A0009E6EFB /* StorageService.framework in Frameworks */,
-				4D0DC8492C18C79400FC1422 /* iOSIntPackage in Frameworks */,
+				4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +360,13 @@
 		4D8BFF9D2C34408A00A47076 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				4D8BFF9E2C34417B00A47076 /* 01 UGLY.mp3 */,
+				4D308E192C36C87600A51058 /* 01 UGLY.mp3 */,
 				4D8BFFA02C3441FF00A47076 /* 02 Inside Beast.mp3 */,
 				4D8BFFA22C34421200A47076 /* 07 Last Heaven.mp3 */,
 				4D8BFFA42C34422100A47076 /* 11 Filth in the Beauty.mp3 */,
 				4D8BFFA62C34423300A47076 /* 05 Suicide Circus.mp3 */,
 				4D8BFFA82C34426500A47076 /* 03 Ninth Odd Smell.mp3 */,
-				4D8BFFAA2C3443E500A47076 /* Enemy.mp3 */,
+				4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */,
 				4D8BFFAC2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 */,
 			);
 			path = Music;
@@ -494,7 +494,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				4D0DC8482C18C79400FC1422 /* iOSIntPackage */,
+				4D308E1E2C36CA5000A51058 /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = 4D1DA19F2BB4C8FB00A1E777 /* Navigation.app */;
@@ -569,7 +569,7 @@
 			);
 			mainGroup = 4D1DA1962BB4C8FB00A1E777;
 			packageReferences = (
-				4D0DC8472C18C79400FC1422 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				4D308E1D2C36CA5000A51058 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = 4D1DA1A02BB4C8FB00A1E777 /* Products */;
 			projectDirPath = "";
@@ -587,18 +587,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D8BFF9F2C34417B00A47076 /* 01 UGLY.mp3 in Resources */,
 				4D1DA1AC2BB4C8FC00A1E777 /* Assets.xcassets in Resources */,
 				4DA0F4AF2C35A996003575F2 /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 in Resources */,
 				4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */,
-				4D8BFFAB2C3443E500A47076 /* Enemy.mp3 in Resources */,
 				4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */,
 				4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */,
 				4D8BFFA12C3441FF00A47076 /* 02 Inside Beast.mp3 in Resources */,
 				4DA0F4AE2C35A993003575F2 /* The Clone Wars - Warriors.mp4 in Resources */,
 				4DA0F4AD2C35A990003575F2 /* Imagine Dragons .mp4 in Resources */,
 				4D1DA1AF2BB4C8FC00A1E777 /* Base in Resources */,
+				4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */,
 				4DA0F4AC2C35A98A003575F2 /* Lost [Official Music Video] - Linkin Park.mp4 in Resources */,
+				4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */,
 				4D8BFFAD2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 in Resources */,
 				4D8BFFA72C34423300A47076 /* 05 Suicide Circus.mp3 in Resources */,
 			);
@@ -1042,7 +1042,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4D0DC8472C18C79400FC1422 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		4D308E1D2C36CA5000A51058 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
@@ -1053,9 +1053,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4D0DC8482C18C79400FC1422 /* iOSIntPackage */ = {
+		4D308E1E2C36CA5000A51058 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4D0DC8472C18C79400FC1422 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = 4D308E1D2C36CA5000A51058 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
