@@ -9,4 +9,5 @@ import UIKit
 
 protocol LoginFactory{
     func makeLoginInspector() -> LoginInspector
+    func makeCheckerService() -> CheckerServiceProtocol
 }

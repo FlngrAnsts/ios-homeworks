@@ -11,7 +11,7 @@ class PostService{
     let post = Post.make()
     func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void) {
         // Имитирует запрос данных из сети (делая паузу в 3 секунды)
-        DispatchQueue.global().asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1, execute: { [weak self] in
             guard let self else { return}
             // Главное
             completion(.success(post))

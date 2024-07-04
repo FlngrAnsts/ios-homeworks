@@ -12,6 +12,8 @@ class PostViewController: UIViewController {
     
     var titlePost: String = ""
     
+    var coordinator: FeedCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -8,5 +8,7 @@
 import UIKit
 
 protocol LoginViewControllerDelegate {
-    func check(login: String, password: String) -> Bool
+//    func check(login: String, password: String) throws -> Bool
+    func check(login: String, password: String, completion: @escaping (Result<String, LogInError>) -> Void) throws
+    
 }

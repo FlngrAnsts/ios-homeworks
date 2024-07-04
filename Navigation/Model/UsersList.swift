@@ -11,14 +11,14 @@ var users: [User] = [
     User(
         login: "Grivus",
         fullName: "General Grivus",
-       password: "123",
+       password: "a123",
         avatar: UIImage(named: "grivus")!,
         status: "Уничтожить их! Но сперва помучить!"
     ),
     User(
         login: "CT-7567",
         fullName: "Capitan Rex",
-        password: "456",
+        password: "b456",
         avatar: UIImage(named: "Rex")!,
         status: "Меня зовут Рекс. Но для вас я - Капитан"
     ),

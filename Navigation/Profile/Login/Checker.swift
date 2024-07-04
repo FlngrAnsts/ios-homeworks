@@ -32,7 +32,18 @@ class Checker {
     func check(login: String, password: String)-> Bool{
            login ==  userLogin && password == userPassword
        }
+    
+    func checkLogin(login: String)->Bool{
+        login == userLogin
+    }
+    
+    func checkPassword(password: String)->Bool{
+        password == userPassword
+    }
+    
    }
+
+
 
    extension Checker: NSCopying {
        func copy(with zone: NSZone? = nil) -> Any {
