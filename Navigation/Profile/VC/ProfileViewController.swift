@@ -207,7 +207,9 @@ class ProfileViewController: UIViewController {
     }
     
     private func audioRecVC(){
+        let audioRecVC = AudioRecVideoViewController()
         
+        self.navigationController?.pushViewController(audioRecVC, animated: true)
     }
     
     private func tuneTableView(){
@@ -279,7 +281,7 @@ extension ProfileViewController: UITableViewDataSource {
         }
             cell.buttonTapAudioCallback = audioVC
             cell.buttonTapVideoCallback = videoVC
-//            cell.buttonTapRECCallback = audioRecVC
+            cell.buttonTapRECCallback = audioRecVC
         
         return cell
     }

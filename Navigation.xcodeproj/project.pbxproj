@@ -56,6 +56,7 @@
 		4DA0F4AD2C35A990003575F2 /* Imagine Dragons .mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */; };
 		4DA0F4AE2C35A993003575F2 /* The Clone Wars - Warriors.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */; };
 		4DA0F4AF2C35A996003575F2 /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */; };
+		4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */; };
 		4DBFBD022BFF61A0009E6EFB /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD012BFF61A0009E6EFB /* StorageService.docc */; };
 		4DBFBD082BFF61A0009E6EFB /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; };
 		4DBFBD0F2BFF61A0009E6EFB /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */; };
@@ -166,6 +167,7 @@
 		4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lost [Official Music Video] - Linkin Park.mp4"; sourceTree = "<group>"; };
 		4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Clone Wars - Warriors.mp4"; sourceTree = "<group>"; };
 		4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4"; sourceTree = "<group>"; };
+		4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecVideoViewController.swift; sourceTree = "<group>"; };
 		4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBFBD002BFF61A0009E6EFB /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		4DBFBD012BFF61A0009E6EFB /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 		4D8BFF9A2C342C2400A47076 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */,
 				4D8BFFB12C35411600A47076 /* Video */,
 				4D8BFFB02C3540EE00A47076 /* Audio */,
 				4D8BFF982C34223600A47076 /* MediaTableViewCell.swift */,
@@ -636,6 +639,7 @@
 				4D0DC8382C17152500FC1422 /* Checker.swift in Sources */,
 				4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */,
 				4DFF97EC2C11D87D0039C9F8 /* CurrentUserService.swift in Sources */,
+				4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */,
 				4D6F56AD2C1C4930006F1E8E /* FeedCoordinator.swift in Sources */,
 				4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */,
 				4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */,

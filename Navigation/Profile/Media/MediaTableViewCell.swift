@@ -60,14 +60,15 @@ class MediaTableViewCell: UITableViewCell {
         button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 10
         button.setImage(UIImage(systemName: "music.mic.circle"), for: .normal)
-        
-//        button.addTarget(self, action: #selector(closeAnimateButtonPressed(_:)), for: .touchUpInside)
-        
+        button.addTarget(self, action: #selector(tapAudioRecButton(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
+    @objc func tapAudioRecButton(_: UIResponder){
+        buttonTapRECCallback()
+    }
 
     
     
@@ -123,17 +124,6 @@ class MediaTableViewCell: UITableViewCell {
         
     }
 
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-////        openAudioVC()
-//
-//        // Configure the view for the selected state
-//    }
+
 
 }
