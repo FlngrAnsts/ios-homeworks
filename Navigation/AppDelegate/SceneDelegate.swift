@@ -18,6 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
+        let config = AppConfiguration.allCases.randomElement()
+        NetvorkManager.request(for: config!)
+        
+        
+        
         window?.rootViewController = mainCoordinator.tabBarController
         window?.makeKeyAndVisible()
         
