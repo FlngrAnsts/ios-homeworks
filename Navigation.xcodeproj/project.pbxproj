@@ -33,6 +33,7 @@
 		4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E192C36C87600A51058 /* 01 UGLY.mp3 */; };
 		4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */; };
 		4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D308E1E2C36CA5000A51058 /* iOSIntPackage */; };
+		4D308E222C36D1C100A51058 /* NetvorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D308E212C36D1C100A51058 /* NetvorkManager.swift */; };
 		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 		4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */; };
 		4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */; };
@@ -144,6 +145,7 @@
 		4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		4D308E192C36C87600A51058 /* 01 UGLY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 UGLY.mp3"; sourceTree = "<group>"; };
 		4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Enemy.mp3; sourceTree = "<group>"; };
+		4D308E212C36D1C100A51058 /* NetvorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetvorkManager.swift; sourceTree = "<group>"; };
 		4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 		4D12EA8B2BF765EC00D745C0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4DC9B4182C299FCB0027A242 /* ControllerFactory.swift */,
 				4D12EA8C2BF7661400D745C0 /* UITableView.swift */,
 			);
 			path = Utils;
@@ -319,18 +322,26 @@
 			children = (
 				4DCE973C2C1C31CA005D3661 /* AppDelegate */,
 				4D1DA1AB2BB4C8FC00A1E777 /* Assets.xcassets */,
+				4D8BFF942C2DC10400A47076 /* Error.swift */,
 				4D12EA882BF764EA00D745C0 /* Model */,
 				4DFF97E82C0BAAFF0039C9F8 /* User */,
 				4D3BF3002BB986C700A3E0B0 /* Profile */,
 				4D0DC84B2C18E70200FC1422 /* Feed */,
+				4D308E202C36D14800A51058 /* Network Service */,
 				4D0DC84A2C18DC1300FC1422 /* UIView */,
 				4D12EA8B2BF765EC00D745C0 /* Utils */,
 				4D1DA1AD2BB4C8FC00A1E777 /* LaunchScreen.storyboard */,
 				4D1DA1B02BB4C8FC00A1E777 /* Info.plist */,
-				4DC9B4182C299FCB0027A242 /* ControllerFactory.swift */,
-				4D8BFF942C2DC10400A47076 /* Error.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		4D308E202C36D14800A51058 /* Network Service */ = {
+			isa = PBXGroup;
+			children = (
+				4D308E212C36D1C100A51058 /* NetvorkManager.swift */,
+			);
+			path = "Network Service";
 			sourceTree = "<group>";
 		};
 		4D3BF3002BB986C700A3E0B0 /* Profile */ = {
@@ -666,6 +677,7 @@
 				4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */,
 				4D1B81A72C0613E100212D36 /* PhotosCollectionViewCell.swift in Sources */,
 				4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */,
+				4D308E222C36D1C100A51058 /* NetvorkManager.swift in Sources */,
 				4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */,
 				4D0DC83C2C1725BE00FC1422 /* LoginViewControllerDelegate.swift in Sources */,
 				4D1DA1A52BB4C8FB00A1E777 /* SceneDelegate.swift in Sources */,
