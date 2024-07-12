@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-        let config = AppConfiguration.allCases.randomElement()
-        NetvorkManager.request(for: config!)
+//        let config = AppConfiguration.allCases.randomElement()
+//        NetvorkManager.request(for: config!)
         
         
         

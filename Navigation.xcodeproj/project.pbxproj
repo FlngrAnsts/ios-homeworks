@@ -33,7 +33,7 @@
 		4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E192C36C87600A51058 /* 01 UGLY.mp3 */; };
 		4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */; };
 		4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D308E1E2C36CA5000A51058 /* iOSIntPackage */; };
-		4D308E222C36D1C100A51058 /* NetvorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D308E212C36D1C100A51058 /* NetvorkManager.swift */; };
+		4D308E222C36D1C100A51058 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D308E212C36D1C100A51058 /* NetworkManager.swift */; };
 		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 		4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */; };
 		4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */; };
@@ -72,6 +72,9 @@
 		4DCE973B2C1B2671005D3661 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973A2C1B2671005D3661 /* PostService.swift */; };
 		4DCE973E2C1C3217005D3661 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973D2C1C3217005D3661 /* Coordinator.swift */; };
 		4DCE97402C1C33D5005D3661 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973F2C1C33D5005D3661 /* MainCoordinator.swift */; };
+		4DD8A93A2C414B380076FE7A /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A9392C414B380076FE7A /* Planet.swift */; };
+		4DD8A93C2C41522E0076FE7A /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */; };
+		4DD8A93E2C4152720076FE7A /* ResidentPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */; };
 		4DFF97E72C0BA7460039C9F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97E62C0BA7460039C9F8 /* User.swift */; };
 		4DFF97EA2C0BAB290039C9F8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97E92C0BAB290039C9F8 /* UserService.swift */; };
 		4DFF97EC2C11D87D0039C9F8 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97EB2C11D87D0039C9F8 /* CurrentUserService.swift */; };
@@ -145,7 +148,7 @@
 		4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		4D308E192C36C87600A51058 /* 01 UGLY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 UGLY.mp3"; sourceTree = "<group>"; };
 		4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Enemy.mp3; sourceTree = "<group>"; };
-		4D308E212C36D1C100A51058 /* NetvorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetvorkManager.swift; sourceTree = "<group>"; };
+		4D308E212C36D1C100A51058 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
@@ -182,6 +185,9 @@
 		4DCE973A2C1B2671005D3661 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		4DCE973D2C1C3217005D3661 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4DCE973F2C1C33D5005D3661 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		4DD8A9392C414B380076FE7A /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentPlanet.swift; sourceTree = "<group>"; };
 		4DFF97E62C0BA7460039C9F8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DFF97E92C0BAB290039C9F8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		4DFF97EB2C11D87D0039C9F8 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
@@ -251,11 +257,11 @@
 		4D0DC84B2C18E70200FC1422 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				4DD8A9382C412DDA0076FE7A /* Info */,
 				4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */,
 				4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */,
 				4D6F56AC2C1C4930006F1E8E /* FeedCoordinator.swift */,
 				4D1DA1BA2BB4CB4C00A1E777 /* PostViewController.swift */,
-				4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -339,7 +345,9 @@
 		4D308E202C36D14800A51058 /* Network Service */ = {
 			isa = PBXGroup;
 			children = (
-				4D308E212C36D1C100A51058 /* NetvorkManager.swift */,
+				4D308E212C36D1C100A51058 /* NetworkManager.swift */,
+				4DD8A9392C414B380076FE7A /* Planet.swift */,
+				4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */,
 			);
 			path = "Network Service";
 			sourceTree = "<group>";
@@ -452,6 +460,15 @@
 				4DC9B4162C2994760027A242 /* TabBarController.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		4DD8A9382C412DDA0076FE7A /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4D1DA1BE2BB4CBA200A1E777 /* InfoViewController.swift */,
+				4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		4DDD08822C2D6F0100B8FB37 /* VC */ = {
@@ -663,10 +680,13 @@
 				4D0DC8352C1712B200FC1422 /* CustomButton.swift in Sources */,
 				4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */,
 				4D1B81A52C0613A500212D36 /* PhotosTableViewCell.swift in Sources */,
+				4DD8A93A2C414B380076FE7A /* Planet.swift in Sources */,
 				4DC9B4172C2994760027A242 /* TabBarController.swift in Sources */,
 				4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */,
 				4D8BFF992C34223600A47076 /* MediaTableViewCell.swift in Sources */,
+				4DD8A93E2C4152720076FE7A /* ResidentPlanet.swift in Sources */,
 				4DFF97F02C11E79E0039C9F8 /* TestUserService.swift in Sources */,
+				4DD8A93C2C41522E0076FE7A /* InfoTableViewCell.swift in Sources */,
 				4DCE97362C1AF251005D3661 /* ProfileViewModel.swift in Sources */,
 				4D6F56A92C1C37CC006F1E8E /* ProfileCoordinator.swift in Sources */,
 				4D8BFF972C33192600A47076 /* CheckerService.swift in Sources */,
@@ -677,7 +697,7 @@
 				4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */,
 				4D1B81A72C0613E100212D36 /* PhotosCollectionViewCell.swift in Sources */,
 				4D1DA1BF2BB4CBA200A1E777 /* InfoViewController.swift in Sources */,
-				4D308E222C36D1C100A51058 /* NetvorkManager.swift in Sources */,
+				4D308E222C36D1C100A51058 /* NetworkManager.swift in Sources */,
 				4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */,
 				4D0DC83C2C1725BE00FC1422 /* LoginViewControllerDelegate.swift in Sources */,
 				4D1DA1A52BB4C8FB00A1E777 /* SceneDelegate.swift in Sources */,
