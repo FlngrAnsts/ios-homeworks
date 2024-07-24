@@ -15,6 +15,10 @@
 		4D0DC8412C18B42700FC1422 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8402C18B42700FC1422 /* LoginFactory.swift */; };
 		4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8422C18B47D00FC1422 /* MyLoginFactory.swift */; };
 		4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */; };
+		4D1259062C4FDD6400CF4543 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1259052C4FDD6400CF4543 /* FirebaseAnalytics */; };
+		4D1259082C4FDD6400CF4543 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1259072C4FDD6400CF4543 /* FirebaseAuth */; };
+		4D12590A2C4FDD6400CF4543 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1259092C4FDD6400CF4543 /* FirebaseAuthCombine-Community */; };
+		4D12590C2C4FDD6400CF4543 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4D12590B2C4FDD6400CF4543 /* FirebaseFirestore */; };
 		4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */; };
 		4D12EA8D2BF7661400D745C0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12EA8C2BF7661400D745C0 /* UITableView.swift */; };
 		4D1B819F2C06124800212D36 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B819E2C06124800212D36 /* Reusable.swift */; };
@@ -53,10 +57,6 @@
 		4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAE2C3540A100A47076 /* Video.swift */; };
 		4D8BFFB32C35412C00A47076 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB22C35412C00A47076 /* VideoViewController.swift */; };
 		4D8BFFB52C35416400A47076 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */; };
-		4DA0F4AC2C35A98A003575F2 /* Lost [Official Music Video] - Linkin Park.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */; };
-		4DA0F4AD2C35A990003575F2 /* Imagine Dragons .mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */; };
-		4DA0F4AE2C35A993003575F2 /* The Clone Wars - Warriors.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */; };
-		4DA0F4AF2C35A996003575F2 /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */; };
 		4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */; };
 		4DBFBD022BFF61A0009E6EFB /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFBD012BFF61A0009E6EFB /* StorageService.docc */; };
 		4DBFBD082BFF61A0009E6EFB /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */; };
@@ -75,6 +75,7 @@
 		4DD8A93A2C414B380076FE7A /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A9392C414B380076FE7A /* Planet.swift */; };
 		4DD8A93C2C41522E0076FE7A /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */; };
 		4DD8A93E2C4152720076FE7A /* ResidentPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */; };
+		4DE2EFB52C4EB87100D8AD9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */; };
 		4DFF97E72C0BA7460039C9F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97E62C0BA7460039C9F8 /* User.swift */; };
 		4DFF97EA2C0BAB290039C9F8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97E92C0BAB290039C9F8 /* UserService.swift */; };
 		4DFF97EC2C11D87D0039C9F8 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97EB2C11D87D0039C9F8 /* CurrentUserService.swift */; };
@@ -168,10 +169,6 @@
 		4D8BFFAE2C3540A100A47076 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		4D8BFFB22C35412C00A47076 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
-		4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Imagine Dragons .mp4"; sourceTree = "<group>"; };
-		4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lost [Official Music Video] - Linkin Park.mp4"; sourceTree = "<group>"; };
-		4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Clone Wars - Warriors.mp4"; sourceTree = "<group>"; };
-		4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4"; sourceTree = "<group>"; };
 		4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecVideoViewController.swift; sourceTree = "<group>"; };
 		4DBFBCFE2BFF61A0009E6EFB /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBFBD002BFF61A0009E6EFB /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
@@ -188,6 +185,7 @@
 		4DD8A9392C414B380076FE7A /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentPlanet.swift; sourceTree = "<group>"; };
+		4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DFF97E62C0BA7460039C9F8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DFF97E92C0BAB290039C9F8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		4DFF97EB2C11D87D0039C9F8 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
@@ -201,6 +199,10 @@
 			files = (
 				4DBFBD132BFF61A0009E6EFB /* StorageService.framework in Frameworks */,
 				4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */,
+				4D1259062C4FDD6400CF4543 /* FirebaseAnalytics in Frameworks */,
+				4D1259082C4FDD6400CF4543 /* FirebaseAuth in Frameworks */,
+				4D12590A2C4FDD6400CF4543 /* FirebaseAuthCombine-Community in Frameworks */,
+				4D12590C2C4FDD6400CF4543 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +268,13 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		4D1259042C4FDA9500CF4543 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D12EA882BF764EA00D745C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +319,7 @@
 				4DBFBCFF2BFF61A0009E6EFB /* StorageService */,
 				4DBFBD0D2BFF61A0009E6EFB /* StorageServiceTests */,
 				4D1DA1A02BB4C8FB00A1E777 /* Products */,
+				4D1259042C4FDA9500CF4543 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -338,6 +348,7 @@
 				4D12EA8B2BF765EC00D745C0 /* Utils */,
 				4D1DA1AD2BB4C8FC00A1E777 /* LaunchScreen.storyboard */,
 				4D1DA1B02BB4C8FC00A1E777 /* Info.plist */,
+				4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -403,7 +414,6 @@
 		4D8BFFB12C35411600A47076 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				4D8FE5C62C358575006E8C7B /* video */,
 				4D8BFFB22C35412C00A47076 /* VideoViewController.swift */,
 				4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */,
 			);
@@ -419,17 +429,6 @@
 				4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		4D8FE5C62C358575006E8C7B /* video */ = {
-			isa = PBXGroup;
-			children = (
-				4D8FE5C82C3585A1006E8C7B /* Lost [Official Music Video] - Linkin Park.mp4 */,
-				4D8FE5C72C358591006E8C7B /* Imagine Dragons .mp4 */,
-				4D8FE5C92C3585A5006E8C7B /* The Clone Wars - Warriors.mp4 */,
-				4D8FE5CA2C3585AA006E8C7B /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 */,
-			);
-			path = video;
 			sourceTree = "<group>";
 		};
 		4DBFBCFF2BFF61A0009E6EFB /* StorageService */ = {
@@ -523,6 +522,10 @@
 			name = Navigation;
 			packageProductDependencies = (
 				4D308E1E2C36CA5000A51058 /* iOSIntPackage */,
+				4D1259052C4FDD6400CF4543 /* FirebaseAnalytics */,
+				4D1259072C4FDD6400CF4543 /* FirebaseAuth */,
+				4D1259092C4FDD6400CF4543 /* FirebaseAuthCombine-Community */,
+				4D12590B2C4FDD6400CF4543 /* FirebaseFirestore */,
 			);
 			productName = Navigation;
 			productReference = 4D1DA19F2BB4C8FB00A1E777 /* Navigation.app */;
@@ -598,6 +601,7 @@
 			mainGroup = 4D1DA1962BB4C8FB00A1E777;
 			packageReferences = (
 				4D308E1D2C36CA5000A51058 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				4DE2EFB62C4ECA0900D8AD9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 4D1DA1A02BB4C8FB00A1E777 /* Products */;
 			projectDirPath = "";
@@ -616,16 +620,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D1DA1AC2BB4C8FC00A1E777 /* Assets.xcassets in Resources */,
-				4DA0F4AF2C35A996003575F2 /* the GazettE 『THE SUICIDE CIRCUS』Music Video.mp4 in Resources */,
+				4DE2EFB52C4EB87100D8AD9F /* GoogleService-Info.plist in Resources */,
 				4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */,
 				4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */,
 				4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */,
 				4D8BFFA12C3441FF00A47076 /* 02 Inside Beast.mp3 in Resources */,
-				4DA0F4AE2C35A993003575F2 /* The Clone Wars - Warriors.mp4 in Resources */,
-				4DA0F4AD2C35A990003575F2 /* Imagine Dragons .mp4 in Resources */,
 				4D1DA1AF2BB4C8FC00A1E777 /* Base in Resources */,
 				4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */,
-				4DA0F4AC2C35A98A003575F2 /* Lost [Official Music Video] - Linkin Park.mp4 in Resources */,
 				4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */,
 				4D8BFFAD2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 in Resources */,
 				4D8BFFA72C34423300A47076 /* 05 Suicide Circus.mp3 in Resources */,
@@ -1082,9 +1083,37 @@
 				kind = branch;
 			};
 		};
+		4DE2EFB62C4ECA0900D8AD9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.29.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4D1259052C4FDD6400CF4543 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DE2EFB62C4ECA0900D8AD9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4D1259072C4FDD6400CF4543 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DE2EFB62C4ECA0900D8AD9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4D1259092C4FDD6400CF4543 /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DE2EFB62C4ECA0900D8AD9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		4D12590B2C4FDD6400CF4543 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DE2EFB62C4ECA0900D8AD9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		4D308E1E2C36CA5000A51058 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4D308E1D2C36CA5000A51058 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
