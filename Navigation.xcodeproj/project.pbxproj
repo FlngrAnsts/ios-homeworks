@@ -76,6 +76,10 @@
 		4DD8A93C2C41522E0076FE7A /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */; };
 		4DD8A93E2C4152720076FE7A /* ResidentPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */; };
 		4DE2EFB52C4EB87100D8AD9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */; };
+		4DEE3ACA2C917407000FB15D /* LikePostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE3AC92C917407000FB15D /* LikePostTableViewController.swift */; };
+		4DEE3ACC2C917437000FB15D /* LikeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE3ACB2C917437000FB15D /* LikeDataManager.swift */; };
+		4DEE3ACF2C917E9B000FB15D /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE3ACD2C917E9B000FB15D /* Navigation.xcdatamodeld */; };
+		4DEE3AD52C9188F0000FB15D /* LikeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE3AD42C9188F0000FB15D /* LikeCoordinator.swift */; };
 		4DFF97E72C0BA7460039C9F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97E62C0BA7460039C9F8 /* User.swift */; };
 		4DFF97EA2C0BAB290039C9F8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97E92C0BAB290039C9F8 /* UserService.swift */; };
 		4DFF97EC2C11D87D0039C9F8 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF97EB2C11D87D0039C9F8 /* CurrentUserService.swift */; };
@@ -186,6 +190,10 @@
 		4DD8A93B2C41522E0076FE7A /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		4DD8A93D2C4152720076FE7A /* ResidentPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentPlanet.swift; sourceTree = "<group>"; };
 		4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4DEE3AC92C917407000FB15D /* LikePostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostTableViewController.swift; sourceTree = "<group>"; };
+		4DEE3ACB2C917437000FB15D /* LikeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDataManager.swift; sourceTree = "<group>"; };
+		4DEE3ACE2C917E9B000FB15D /* Navigation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Navigation.xcdatamodel; sourceTree = "<group>"; };
+		4DEE3AD42C9188F0000FB15D /* LikeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCoordinator.swift; sourceTree = "<group>"; };
 		4DFF97E62C0BA7460039C9F8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DFF97E92C0BAB290039C9F8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		4DFF97EB2C11D87D0039C9F8 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
@@ -349,6 +357,7 @@
 				4D1DA1AD2BB4C8FC00A1E777 /* LaunchScreen.storyboard */,
 				4D1DA1B02BB4C8FC00A1E777 /* Info.plist */,
 				4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */,
+				4DEE3ACD2C917E9B000FB15D /* Navigation.xcdatamodeld */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -367,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				4D8BFF9A2C342C2400A47076 /* Media */,
+				4DEE3AD62C9188F8000FB15D /* Like */,
 				4DDD08822C2D6F0100B8FB37 /* VC */,
 				4D8BFFB62C3546BE00A47076 /* Profile */,
 				4D0DC8362C17150300FC1422 /* Login */,
@@ -478,6 +488,16 @@
 				4D1B81A82C06141A00212D36 /* PhotosViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		4DEE3AD62C9188F8000FB15D /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				4DEE3AC92C917407000FB15D /* LikePostTableViewController.swift */,
+				4DEE3ACB2C917437000FB15D /* LikeDataManager.swift */,
+				4DEE3AD42C9188F0000FB15D /* LikeCoordinator.swift */,
+			);
+			path = Like;
 			sourceTree = "<group>";
 		};
 		4DFF97E82C0BAAFF0039C9F8 /* User */ = {
@@ -659,6 +679,7 @@
 				4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */,
 				4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */,
 				4DC9B4192C299FCB0027A242 /* ControllerFactory.swift in Sources */,
+				4DEE3ACF2C917E9B000FB15D /* Navigation.xcdatamodeld in Sources */,
 				4D8BFF9C2C342C5200A47076 /* AudioViewController.swift in Sources */,
 				4D8BFFB32C35412C00A47076 /* VideoViewController.swift in Sources */,
 				4D1B819F2C06124800212D36 /* Reusable.swift in Sources */,
@@ -668,6 +689,7 @@
 				4D0DC8382C17152500FC1422 /* Checker.swift in Sources */,
 				4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */,
 				4DFF97EC2C11D87D0039C9F8 /* CurrentUserService.swift in Sources */,
+				4DEE3ACC2C917437000FB15D /* LikeDataManager.swift in Sources */,
 				4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */,
 				4D6F56AD2C1C4930006F1E8E /* FeedCoordinator.swift in Sources */,
 				4D1DA1BB2BB4CB4C00A1E777 /* PostViewController.swift in Sources */,
@@ -683,9 +705,11 @@
 				4D1B81A52C0613A500212D36 /* PhotosTableViewCell.swift in Sources */,
 				4DD8A93A2C414B380076FE7A /* Planet.swift in Sources */,
 				4DC9B4172C2994760027A242 /* TabBarController.swift in Sources */,
+				4DEE3ACA2C917407000FB15D /* LikePostTableViewController.swift in Sources */,
 				4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */,
 				4D8BFF992C34223600A47076 /* MediaTableViewCell.swift in Sources */,
 				4DD8A93E2C4152720076FE7A /* ResidentPlanet.swift in Sources */,
+				4DEE3AD52C9188F0000FB15D /* LikeCoordinator.swift in Sources */,
 				4DFF97F02C11E79E0039C9F8 /* TestUserService.swift in Sources */,
 				4DD8A93C2C41522E0076FE7A /* InfoTableViewCell.swift in Sources */,
 				4DCE97362C1AF251005D3661 /* ProfileViewModel.swift in Sources */,
@@ -1120,6 +1144,20 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		4DEE3ACD2C917E9B000FB15D /* Navigation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4DEE3ACE2C917E9B000FB15D /* Navigation.xcdatamodel */,
+			);
+			currentVersion = 4DEE3ACE2C917E9B000FB15D /* Navigation.xcdatamodel */;
+			name = Navigation.xcdatamodeld;
+			path = "/Users/nastya/Desktop/ios-homeworks/Navigation/Navigation.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4D1DA1972BB4C8FB00A1E777 /* Project object */;
 }

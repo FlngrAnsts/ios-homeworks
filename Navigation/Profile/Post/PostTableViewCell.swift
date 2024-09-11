@@ -120,21 +120,21 @@ class PostTableViewCell: UITableViewCell {
             ])
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
+//
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
     
     func update(_ model: Post) {
         postTitleView.text = model.author
         postImageView.image = UIImage(named: model.image)
-        postTextView.text = model.description
+        postTextView.text = model.postDescription
         postLikesView.text = "Likes: \(model.likes)"
         postViewsView.text = "Views: \(model.views)"
         

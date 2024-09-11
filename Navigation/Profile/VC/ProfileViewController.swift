@@ -63,12 +63,12 @@ class ProfileViewController: UIViewController {
         
         setupConstraints()
         tuneTableView()
-//        bindViewModel()
+        //        bindViewModel()
         viewModel.changeStateIfNeeded()
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-//        
-//        view.addGestureRecognizer(tapGesture)
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        //
+        //        view.addGestureRecognizer(tapGesture)
         
     }
     
@@ -91,14 +91,14 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//                timerTest()
+        //                timerTest()
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-//                killTimer()
+        //                killTimer()
     }
     
     func timerTest(){
@@ -271,26 +271,31 @@ extension ProfileViewController: UITableViewDataSource {
             
             return cell
         }
-//        ячейка медиа
+        //        ячейка медиа
         if (indexPath.row == 1) {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: MediaTableViewCell.cellID,
-            for: indexPath
-        ) as? MediaTableViewCell else {
-            fatalError("could not dequeueReusableCell")
-        }
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: MediaTableViewCell.cellID,
+                for: indexPath
+            ) as? MediaTableViewCell else {
+                fatalError("could not dequeueReusableCell")
+            }
             cell.buttonTapAudioCallback = audioVC
             cell.buttonTapVideoCallback = videoVC
             cell.buttonTapRECCallback = audioRecVC
-        
-        return cell
-    }
-                //рисует ячейку постов
+            
+            return cell
+        }
+        //рисует ячейку постов
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: PostTableViewCell.cellID,
             for: indexPath
         ) as? PostTableViewCell else {
             fatalError("could not dequeueReusableCell")
+        }
+        if cell.gestureRecognizers == nil {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+            tapGesture.numberOfTapsRequired = 2
+            cell.addGestureRecognizer(tapGesture)
         }
         
         cell.update(data[indexPath.row-2])
@@ -298,6 +303,13 @@ extension ProfileViewController: UITableViewDataSource {
         return cell
     }
     
+    @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+        if let cell = gesture.view as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            
+            print("Double tap")
+            LikeDataManager.shared.addLikePost(post: data[indexPath.row-2])
+        }
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate {}

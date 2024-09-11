@@ -79,7 +79,7 @@ class LogInViewController: UIViewController {
         
         textView.autocapitalizationType = .none
         
-//        textView.text = "Grivus"
+        textView.text = "test@test.ru"
         
         textView.delegate = self
         return textView
@@ -112,7 +112,7 @@ class LogInViewController: UIViewController {
         
         textView.autocapitalizationType = .none
         
-//        textView.text = "a123"
+        textView.text = "123456"
         
         textView.isSecureTextEntry = true
         

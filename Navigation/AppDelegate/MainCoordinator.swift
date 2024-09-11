@@ -19,13 +19,16 @@ class MainCoordinator: Coordinator {
         tabBarController = TabBarController()
         let profileCoordinator = configureProfile()
         let feedCoordinator = configureFeed()
+        let likeCoordinator = configureLike()
         coordinators.append(profileCoordinator)
         coordinators.append(feedCoordinator)
+        coordinators.append(likeCoordinator)
         
-        tabBarController.viewControllers = [feedCoordinator.navigationController, profileCoordinator.navigationController]
+        tabBarController.viewControllers = [feedCoordinator.navigationController, profileCoordinator.navigationController, likeCoordinator.navigationController]
         tabBarController.selectedIndex = 1
         profileCoordinator.start()
         feedCoordinator.start()
+        likeCoordinator.start()
     }
     
     private func configureProfile() -> ProfileCoordinator {
@@ -58,4 +61,19 @@ class MainCoordinator: Coordinator {
         return coordinator
     }
     
+    private func configureLike() -> LikeCoordinator {
+        
+        let navigationLike = UINavigationController()
+        navigationLike.title = "Likes"
+        navigationLike.tabBarItem = UITabBarItem(
+            title: "Likes",
+            image: UIImage(
+                systemName: "heart"
+            ),
+            tag: 2
+        )
+        let coordinator = LikeCoordinator(navigationController: navigationLike, factory: factory)
+        
+        return coordinator
+    }
 }
