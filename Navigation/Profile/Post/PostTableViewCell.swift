@@ -140,6 +140,15 @@ class PostTableViewCell: UITableViewCell {
         
     }
     
+    func update(_ model: LikePost) {
+        postTitleView.text = model.author
+        postImageView.image = UIImage(named: model.image ?? "")
+        postTextView.text = model.postDescription
+        postLikesView.text = "Likes: \(model.likes)"
+        postViewsView.text = "Views: \(model.views)"
+        
+    }
+    
     override var intrinsicContentSize: CGSize {
             CGSize(
                 width: UIView.noIntrinsicMetric,

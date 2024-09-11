@@ -64,7 +64,6 @@ class MainCoordinator: Coordinator {
     private func configureLike() -> LikeCoordinator {
         
         let navigationLike = UINavigationController()
-        navigationLike.title = "Likes"
         navigationLike.tabBarItem = UITabBarItem(
             title: "Likes",
             image: UIImage(

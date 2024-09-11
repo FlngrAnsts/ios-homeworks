@@ -306,6 +306,8 @@ extension ProfileViewController: UITableViewDataSource {
     @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
         if let cell = gesture.view as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
             
+            
+            
             print("Double tap")
             LikeDataManager.shared.addLikePost(post: data[indexPath.row-2])
         }
