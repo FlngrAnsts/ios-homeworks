@@ -14,6 +14,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         imageView.contentMode = .scaleAspectFill
+        
+        imageView.backgroundColor = .customBackgroundColor
         return imageView
     }()
     
@@ -30,7 +32,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     private func setupView() {
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .customBackgroundColor
     }
     
     private func setupSubviews() {

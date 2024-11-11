@@ -26,6 +26,7 @@ class MainCoordinator: Coordinator {
         
         tabBarController.viewControllers = [feedCoordinator.navigationController, profileCoordinator.navigationController, likeCoordinator.navigationController]
         tabBarController.selectedIndex = 1
+        UITabBar.appearance().backgroundColor = .customBackgroundColor
         profileCoordinator.start()
         feedCoordinator.start()
         likeCoordinator.start()

@@ -29,8 +29,7 @@ class LogInViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.backgroundColor = .customBackgroundColor
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -39,7 +38,7 @@ class LogInViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        
+        contentView.backgroundColor = .customBackgroundColor
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return contentView
@@ -74,7 +73,7 @@ class LogInViewController: UIViewController {
         textView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         textView.clipsToBounds = true
         
-        textView.textColor = .black
+        textView.textColor = .customTextColor
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
@@ -107,7 +106,7 @@ class LogInViewController: UIViewController {
         textView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         textView.clipsToBounds = true
         
-        textView.textColor = .black
+        textView.textColor = .customTextColor
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
@@ -196,10 +195,10 @@ class LogInViewController: UIViewController {
     }
     
     func setupView(){
+        view.backgroundColor = .customBackgroundColor
         self.navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.prefersLargeTitles = false
-        
-        view.backgroundColor = .white
+        navigationController?.navigationBar.backgroundColor = .customBackgroundColor
     }
     
     func addSubviews() {

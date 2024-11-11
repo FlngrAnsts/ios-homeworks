@@ -16,7 +16,7 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
+        label.textColor = .customTextColor
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
 
     lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .black
+        imageView.backgroundColor = .customTextColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
         let text = UILabel()
         
         text.font = UIFont.systemFont(ofSize: 14)
-        text.textColor = .systemGray
+        text.textColor = .customTextColor
         text.numberOfLines = 0
         
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class PostTableViewCell: UITableViewCell {
         let text = UILabel()
         
         text.font = UIFont.systemFont(ofSize: 16)
-        text.textColor = .black
+        text.textColor = .customTextColor
         text.translatesAutoresizingMaskIntoConstraints = false
         
         return text
@@ -56,7 +56,7 @@ class PostTableViewCell: UITableViewCell {
         let text = UILabel()
         
         text.font = UIFont.systemFont(ofSize: 16)
-        text.textColor = .black
+        text.textColor = .customTextColor
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -81,7 +81,7 @@ class PostTableViewCell: UITableViewCell {
     
     private func tuneView(){
         
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .customBackgroundColor
         accessoryType = .none
         
     }
