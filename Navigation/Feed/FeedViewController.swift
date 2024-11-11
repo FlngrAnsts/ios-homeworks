@@ -13,6 +13,18 @@ class FeedViewController: UIViewController {
     let feedModel = FeedModel()
     var coordinator: FeedCoordinator?
     
+    private lazy var mapButton: CustomButton = {
+        
+        let button = CustomButton(title: "Карта", titleColor: .systemBlue){
+            self.mapButtonPressed()
+        }
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        return button
+        
+    }()
+    
     private lazy var actionButton: CustomButton = {
         
         let button = CustomButton(title: "Перейти", titleColor: .systemBlue){
@@ -85,6 +97,7 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .systemGray4
         
         view.addSubview(stackView)
+        view.addSubview(mapButton)
         setupContraints()
         
     }
@@ -92,6 +105,10 @@ class FeedViewController: UIViewController {
     func setupContraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
+            
+            mapButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
+            mapButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            
             stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
         ])
@@ -105,4 +122,11 @@ class FeedViewController: UIViewController {
         
         postViewController.titlePost = Post.make()[0].author
     }
+    
+    func mapButtonPressed() {
+       let mapViewController = MapViewController()
+       
+       self.navigationController?.pushViewController(mapViewController, animated: true)
+       
+   }
 }
