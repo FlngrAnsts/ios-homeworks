@@ -39,6 +39,7 @@
 		4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */; };
 		4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D308E1E2C36CA5000A51058 /* iOSIntPackage */; };
 		4D308E222C36D1C100A51058 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D308E212C36D1C100A51058 /* NetworkManager.swift */; };
+		4D3376DF2CE7EE5500C4D199 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4D3376DE2CE7EE5500C4D199 /* Localizable.xcstrings */; };
 		4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */; };
 		4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */; };
 		4D5DBF5B2C2B1C3200D9B0E1 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */; };
@@ -158,6 +159,8 @@
 		4D308E192C36C87600A51058 /* 01 UGLY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 UGLY.mp3"; sourceTree = "<group>"; };
 		4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Enemy.mp3; sourceTree = "<group>"; };
 		4D308E212C36D1C100A51058 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4D3376DE2CE7EE5500C4D199 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		4D3376E02CE7EE9D00C4D199 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		4D3BF30B2BBEDC4E00A3E0B0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4D5DBF5A2C2B1C3200D9B0E1 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
@@ -266,7 +269,6 @@
 			children = (
 				4D1B819E2C06124800212D36 /* Reusable.swift */,
 				4D0DC8342C1712B200FC1422 /* CustomButton.swift */,
-				4D764EB42CA7453400EA8425 /* Extension.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -354,8 +356,10 @@
 			isa = PBXGroup;
 			children = (
 				4DCE973C2C1C31CA005D3661 /* AppDelegate */,
+				4D3376DE2CE7EE5500C4D199 /* Localizable.xcstrings */,
 				4D1DA1AB2BB4C8FC00A1E777 /* Assets.xcassets */,
 				4D8BFF942C2DC10400A47076 /* Error.swift */,
+				4D764EB42CA7453400EA8425 /* Extension.swift */,
 				4D12EA882BF764EA00D745C0 /* Model */,
 				4DFF97E82C0BAAFF0039C9F8 /* User */,
 				4D3BF3002BB986C700A3E0B0 /* Profile */,
@@ -626,6 +630,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 4D1DA1962BB4C8FB00A1E777;
 			packageReferences = (
@@ -650,6 +655,7 @@
 			files = (
 				4D1DA1AC2BB4C8FC00A1E777 /* Assets.xcassets in Resources */,
 				4DE2EFB52C4EB87100D8AD9F /* GoogleService-Info.plist in Resources */,
+				4D3376DF2CE7EE5500C4D199 /* Localizable.xcstrings in Resources */,
 				4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */,
 				4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */,
 				4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */,
@@ -785,6 +791,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4D1DA1AE2BB4C8FC00A1E777 /* Base */,
+				4D3376E02CE7EE9D00C4D199 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -797,6 +804,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -860,6 +868,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

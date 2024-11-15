@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
     }()
     
     private lazy var mapTypeSegmentedControl: UISegmentedControl = {
-        let mapTypeSegmentedControl = UISegmentedControl(items: ["Standard", "Satellite", "Hybrid"])
+        let mapTypeSegmentedControl = UISegmentedControl(items: ["Standard".localized, "Satellite".localized, "Hybrid".localized])
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapTypeSegmentedControl.selectedSegmentIndex = 0
         mapTypeSegmentedControl.addTarget(self, action: #selector(mapTypeChanged), for: .valueChanged)
@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
     
     private lazy var clearButton: UIButton = {
         let clearButton = UIButton(type: .system)
-        clearButton.setTitle("Очистить", for: .normal)
+        clearButton.setTitle("Clean".localized, for: .normal)
         clearButton.backgroundColor = .white
         clearButton.layer.cornerRadius = 5
         clearButton.layer.borderColor = UIColor.gray.cgColor
@@ -126,7 +126,7 @@ class MapViewController: UIViewController {
     func addAnnotation(at coordinate: CLLocationCoordinate2D) {
            let annotation = MKPointAnnotation()
            annotation.coordinate = coordinate
-        annotation.title = "Point on the map"
+        annotation.title = "Point on the map".localized
            mapView.addAnnotation(annotation)
        }
     

@@ -36,7 +36,7 @@ class MainCoordinator: Coordinator {
         
         let navigationProfile = UINavigationController()
         navigationProfile.tabBarItem = UITabBarItem(
-            title: "Profile",
+            title: "Profile".localized,
             image: UIImage(
                 systemName: "person.circle"
             ),
@@ -51,7 +51,7 @@ class MainCoordinator: Coordinator {
         
         let navigationFeed = UINavigationController()
         navigationFeed.tabBarItem = UITabBarItem(
-            title: "Feed",
+            title: "Feed".localized,
             image: UIImage(
                 systemName: "doc.richtext"
             ),
@@ -66,7 +66,7 @@ class MainCoordinator: Coordinator {
         
         let navigationLike = UINavigationController()
         navigationLike.tabBarItem = UITabBarItem(
-            title: "Likes",
+            title: "Likes".localized,
             image: UIImage(
                 systemName: "heart"
             ),

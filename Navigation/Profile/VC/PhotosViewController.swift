@@ -96,7 +96,7 @@ class PhotosViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .customBackgroundColor
-        title = "Photo Gallery"
+        title = "Photo Gallery".localized
         
     }
     

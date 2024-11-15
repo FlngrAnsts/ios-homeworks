@@ -75,7 +75,7 @@ class AudioRecVideoViewController: UIViewController, AVAudioRecorderDelegate {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
-        title = "Audio Record"
+        title = "Audio Record".localized
     }
     
     private func addSubviews(){

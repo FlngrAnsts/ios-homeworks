@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
     
     private lazy var mapButton: CustomButton = {
         
-        let button = CustomButton(title: "Карта", titleColor: .systemBlue){
+        let button = CustomButton(title: "Map".localized, titleColor: .systemBlue){
             self.mapButtonPressed()
         }
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +27,7 @@ class FeedViewController: UIViewController {
     
     private lazy var actionButton: CustomButton = {
         
-        let button = CustomButton(title: "Перейти", titleColor: .systemBlue){
+        let button = CustomButton(title: "Go".localized, titleColor: .systemBlue){
             self.buttonPressed()
         }
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -50,15 +50,15 @@ class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        let button = CustomButton(title: "Check Guess", titleColor: .black){
+        let button = CustomButton(title: "Check Guess".localized, titleColor: .black){
             if(self.checkGuessTextView.text != nil && self.feedModel.check(word: self.checkGuessTextView.text!)){
                 
                 self.checkGuessLabel.backgroundColor = .green
-                self.checkGuessLabel.text = "correctly"
+                self.checkGuessLabel.text = "correctly".localized
                 
             }else{
                 self.checkGuessLabel.backgroundColor = .red
-                self.checkGuessLabel.text = "failed"
+                self.checkGuessLabel.text = "failed".localized
             }
         }
         

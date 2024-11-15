@@ -59,7 +59,7 @@ class LogInViewController: UIViewController {
         
         textView.backgroundColor = .systemGray6
         
-        textView.placeholder = "test@test.ru"
+        textView.placeholder = "Login".localized
         
         textView.borderStyle = UITextField.BorderStyle.roundedRect
         textView.autocorrectionType = UITextAutocorrectionType.no
@@ -91,7 +91,7 @@ class LogInViewController: UIViewController {
         
         textView.backgroundColor = .systemGray6
         
-        textView.placeholder = "123456"
+        textView.placeholder = "Password".localized
         
         textView.borderStyle = UITextField.BorderStyle.roundedRect
         textView.autocorrectionType = UITextAutocorrectionType.no
@@ -121,7 +121,7 @@ class LogInViewController: UIViewController {
     
     private lazy var logInButton: CustomButton = {
         
-        let button = CustomButton(title: "Log In", titleColor: .white){
+        let button = CustomButton(title: "Log In".localized, titleColor: .white){
             self.buttonPressed()
         }
         
@@ -131,19 +131,6 @@ class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
-    }()
-    
-    private lazy var error: UILabel = {
-        let label = UILabel()
-        label.text = "Неверный логин"
-        label.textColor = .red
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
-        label.isHidden = true
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
     }()
     
 //    lazy var generatePassBtn: CustomButton = {
@@ -164,7 +151,7 @@ class LogInViewController: UIViewController {
 //    }()
     
     private lazy var signUpButton: CustomButton = {
-        let button = CustomButton(title: "Зарегистрироваться", titleColor: .white){
+        let button = CustomButton(title: "Register".localized, titleColor: .white){
             self.signUpAction()
         }
         button.layer.cornerRadius = 10
@@ -208,7 +195,6 @@ class LogInViewController: UIViewController {
         contentView.addSubview(loginView)
         contentView.addSubview(passwordView)
         contentView.addSubview(logInButton)
-        contentView.addSubview(error)
 //        contentView.addSubview(generatePassBtn)
         contentView.addSubview(activityIndicator)
         contentView.addSubview(signUpButton)
@@ -243,22 +229,22 @@ class LogInViewController: UIViewController {
         
         switch error{
         case .userNotFound:
-            errorMassage = "Пользователь не найден или введен не верный пароль"
+            errorMassage = "User not found or incorrect password entered".localized
         case .userNotFoundAndWrongPassword:
-            errorMassage = "Неправильно введен логин и/или пароль"
+            errorMassage = "Incorrect login and/or password entered".localized
         case .suchUserAlreadyExists:
-            errorMassage = "Такой пользователь уже зарегестрирован"
+            errorMassage = "This user is already registered".localized
         case .weakPass:
-            errorMassage = "Пароль должен состояить из более 6 символов"
+            errorMassage = "Password must be more than 6 characters long".localized
         case .authorized:
-            errorMassage = "Успешно зарегестрирован новый пользователь \(loginView.text ?? "")"
+            errorMassage = "New user successfully registered".localized // \(loginView.text ?? "")"
         case .authError(message: let message):
             errorMassage = message
         case .incorrectEmail:
-            errorMassage = "Некорректный адрес"
+            errorMassage = "Incorrect address".localized
         }
         
-        let alert = UIAlertController(title: "Ошибка", message: errorMassage, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error".localized, message: errorMassage, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
         
@@ -302,12 +288,12 @@ class LogInViewController: UIViewController {
                     logInError(with: .userNotFoundAndWrongPassword)
                 }
                 catch{
-                    logInError(with: .authError(message: "Неизвестрая ошибка"))
+                    logInError(with: .authError(message: "Unknown error".localized))
                 }
             
             
         }else{
-            let alert = UIAlertController(title: "Ошибка", message: "Введите логин и пароль", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error".localized, message: "Enter login and password".localized, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
             
@@ -325,7 +311,7 @@ class LogInViewController: UIViewController {
                 try loginDelegate.signUp(login: loginView.text!, password: passwordView.text!){ result in
                     switch result{
                     case .success(_):
-                        let alert = UIAlertController(title: "", message: "Новый пользователь зарегистрирован", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "", message: "New user successfully registered".localized, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
                         alert.modalTransitionStyle = .flipHorizontal
                         alert.modalPresentationStyle = .pageSheet
@@ -348,12 +334,12 @@ class LogInViewController: UIViewController {
                 logInError(with: .incorrectEmail)
             }
             catch{
-                logInError(with: .authError(message: "Неизвестрая ошибка"))
+                logInError(with: .authError(message: "Unknown error".localized))
             }
             
             
         }else{
-            let alert = UIAlertController(title: "Ошибка", message: "Введите логин и пароль", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error".localized, message: "Enter login and password".localized, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
             
@@ -439,10 +425,6 @@ class LogInViewController: UIViewController {
             signUpButton.heightAnchor.constraint(equalToConstant: 50),
             signUpButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            error.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 60),
-            error.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
-            error.trailingAnchor.constraint( equalTo: contentView.trailingAnchor,constant: -16),
-            error.heightAnchor.constraint(equalToConstant: 20 ),
             
 //            generatePassBtn.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 32),
 //            generatePassBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

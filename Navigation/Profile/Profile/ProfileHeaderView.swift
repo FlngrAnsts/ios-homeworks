@@ -83,7 +83,7 @@ class ProfileHeaderView: UIView {
     }()
     
     lazy var setStatusButton: CustomButton = {
-        let button = CustomButton(title: "Show status", titleColor: .white){
+        let button = CustomButton(title: "Show status".localized, titleColor: .white){
             self.buttonPressed()
         }
         

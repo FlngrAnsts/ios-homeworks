@@ -23,7 +23,7 @@ class PhotosTableViewCell: UITableViewCell {
         label.textColor = .customTextColor
         label.font = .boldSystemFont(ofSize: 24)
         
-        label.text = "Photos"
+        label.text = "Photos".localized
         
         return label
     }()
