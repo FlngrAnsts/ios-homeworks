@@ -108,7 +108,7 @@ class AudioViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
-        title = "Music"
+        title = "Music".localized
         
     }
     

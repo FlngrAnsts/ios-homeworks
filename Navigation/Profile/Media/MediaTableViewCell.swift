@@ -89,7 +89,7 @@ class MediaTableViewCell: UITableViewCell {
     }
     
     private func tuneView(){
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .customBackgroundColor
         accessoryType = .none
     }
     

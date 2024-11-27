@@ -21,15 +21,17 @@ class PostViewController: UIViewController {
         
         self.navigationItem.title = titlePost
         
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(buttonBar))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(buttonBar(_:)))
         navigationItem.rightBarButtonItem = add
         
     }
-    @objc func buttonBar() {
+    @objc func buttonBar(_ sender: UIButton) {
+//        coordinator?.showInfo()
         let infoVC = InfoViewController()
-        infoVC.modalPresentationStyle = .overCurrentContext
-        infoVC.modalTransitionStyle = .coverVertical
-        present(infoVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(infoVC, animated: true)
+//        infoVC.modalPresentationStyle = .overCurrentContext
+//        infoVC.modalTransitionStyle = .coverVertical
+//        present(infoVC, animated: true, completion: nil)
         
     }
     

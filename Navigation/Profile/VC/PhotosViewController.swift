@@ -95,8 +95,8 @@ class PhotosViewController: UIViewController {
         }
     
     private func setupView() {
-        view.backgroundColor = .systemBackground
-        title = "Photo Gallery"
+        view.backgroundColor = .customBackgroundColor
+        title = "Photo Gallery".localized
         
     }
     
@@ -106,7 +106,7 @@ class PhotosViewController: UIViewController {
     
     private func setupCollectionView() {
         view.addSubview(collectionView)
-        
+        collectionView.backgroundColor = .customBackgroundColor
         collectionView.dataSource = self
         collectionView.delegate = self
     }

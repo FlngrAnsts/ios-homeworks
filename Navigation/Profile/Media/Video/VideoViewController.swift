@@ -56,7 +56,7 @@ class VideoViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
-        title = "Video"
+        title = "Video".localized
     }
     
     private func addSubviews(){

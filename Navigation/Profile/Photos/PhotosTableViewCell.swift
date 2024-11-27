@@ -20,10 +20,10 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var collectionTitle: UILabel={
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .customTextColor
         label.font = .boldSystemFont(ofSize: 24)
         
-        label.text = "Photos"
+        label.text = "Photos".localized
         
         return label
     }()
@@ -90,7 +90,7 @@ class PhotosTableViewCell: UITableViewCell {
     
     private func tuneView(){
         
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .customBackgroundColor
         accessoryType = .none
         
     }

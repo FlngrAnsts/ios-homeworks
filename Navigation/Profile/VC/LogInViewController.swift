@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
     var viewModel: LogInModelProtocol?
     var coordinator: ProfileCoordinator?
     
-    //    var logInResult = LogInError.self
     
     var loginDelegate: LoginViewControllerDelegate
     
@@ -30,8 +30,7 @@ class LogInViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.backgroundColor = .customBackgroundColor
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -40,7 +39,7 @@ class LogInViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        
+        contentView.backgroundColor = .customBackgroundColor
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return contentView
@@ -61,7 +60,7 @@ class LogInViewController: UIViewController {
         
         textView.backgroundColor = .systemGray6
         
-        textView.placeholder = "Email of phone"
+        textView.placeholder = "Login".localized
         
         textView.borderStyle = UITextField.BorderStyle.roundedRect
         textView.autocorrectionType = UITextAutocorrectionType.no
@@ -75,12 +74,12 @@ class LogInViewController: UIViewController {
         textView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         textView.clipsToBounds = true
         
-        textView.textColor = .black
+        textView.textColor = .customTextColor
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
         
-        textView.text = "Grivus"
+        textView.text = "test@test.ru"
         
         textView.delegate = self
         return textView
@@ -93,7 +92,7 @@ class LogInViewController: UIViewController {
         
         textView.backgroundColor = .systemGray6
         
-        textView.placeholder = "Password"
+        textView.placeholder = "Password".localized
         
         textView.borderStyle = UITextField.BorderStyle.roundedRect
         textView.autocorrectionType = UITextAutocorrectionType.no
@@ -108,12 +107,12 @@ class LogInViewController: UIViewController {
         textView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         textView.clipsToBounds = true
         
-        textView.textColor = .black
+        textView.textColor = .customTextColor
         textView.font = UIFont.boldSystemFont(ofSize: 16)
         
         textView.autocapitalizationType = .none
         
-        textView.text = "a123"
+        textView.text = "123456"
         
         textView.isSecureTextEntry = true
         
@@ -121,50 +120,70 @@ class LogInViewController: UIViewController {
         return textView
     }()
     
-    lazy var logInButton: CustomButton = {
+    private lazy var logInButton: CustomButton = {
         
-        let button = CustomButton(title: "Log In", titleColor: .white){
+        let button = CustomButton(title: "Log In".localized, titleColor: .white){
             self.buttonPressed()
         }
         
         button.layer.cornerRadius = 10
-        
         button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
-        
         button.clipsToBounds = true
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
-    private lazy var error: UILabel = {
-        let label = UILabel()
-        label.text = "Неверный логин"
-        label.textColor = .red
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
-        label.isHidden = true
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
+    private let localAuthorizationService = LocalAuthorizationService()
     
-    lazy var generatePassBtn: CustomButton = {
-        
-        let button = CustomButton(title: "Generate Password", titleColor: .white){
-            self.generatePass()
+    lazy var biometricAuthButton: CustomButton = {
+        let button = CustomButton(title: " Авторизация по биометрии", titleColor: .white){
+            self.biometricAuthTapped()
+        }
+        switch localAuthorizationService.biometricType {
+        case .faceID:
+            button.setImage(UIImage(systemName: "faceid"), for: .normal)
+            button.tintColor = .white
+        case .touchID:
+            button.setImage(UIImage(systemName: "touchid"), for: .normal)
+            button.tintColor = .white
+        default:
+            button.setImage(nil, for: .normal)
         }
         
         button.layer.cornerRadius = 10
-        
         button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
-        
         button.clipsToBounds = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+        return button
+    }()
+    
+    //    lazy var generatePassBtn: CustomButton = {
+    //
+    //        let button = CustomButton(title: "Generate Password", titleColor: .white){
+    //            self.generatePass()
+    //        }
+    //
+    //        button.layer.cornerRadius = 10
+    //
+    //        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
+    //
+    //        button.clipsToBounds = true
+    //
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //
+    //        return button
+    //    }()
+    
+    private lazy var signUpButton: CustomButton = {
+        let button = CustomButton(title: "Register".localized, titleColor: .white){
+            self.signUpAction()
+        }
+        button.layer.cornerRadius = 10
+        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -189,10 +208,10 @@ class LogInViewController: UIViewController {
     }
     
     func setupView(){
+        view.backgroundColor = .customBackgroundColor
         self.navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.prefersLargeTitles = false
-        
-        view.backgroundColor = .white
+        navigationController?.navigationBar.backgroundColor = .customBackgroundColor
     }
     
     func addSubviews() {
@@ -201,10 +220,13 @@ class LogInViewController: UIViewController {
         contentView.addSubview(logoView)
         contentView.addSubview(loginView)
         contentView.addSubview(passwordView)
+        
         contentView.addSubview(logInButton)
-        contentView.addSubview(error)
-        contentView.addSubview(generatePassBtn)
+        contentView.addSubview(biometricAuthButton)
+        //        contentView.addSubview(generatePassBtn)
+        
         contentView.addSubview(activityIndicator)
+//        contentView.addSubview(signUpButton)
         
         scrollView.addSubview(contentView)
     }
@@ -231,18 +253,27 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
-    func logInError (caseOf error: LogInError){
+    func logInError (with error: LogInError){
         var errorMassage = ""
         
-        switch error {
+        switch error{
         case .userNotFound:
-            errorMassage = "Такой пользователь не существует"
-        case .incorrectPassord:
-            errorMassage = "Неверный пароль"
+            errorMassage = "User not found or incorrect password entered".localized
+        case .userNotFoundAndWrongPassword:
+            errorMassage = "Incorrect login and/or password entered".localized
+        case .suchUserAlreadyExists:
+            errorMassage = "This user is already registered".localized
+        case .weakPass:
+            errorMassage = "Password must be more than 6 characters long".localized
+        case .authorized:
+            errorMassage = "New user successfully registered".localized // \(loginView.text ?? "")"
+        case .authError(message: let message):
+            errorMassage = message
+        case .incorrectEmail:
+            errorMassage = "Incorrect address".localized
         }
         
-        
-        let alert = UIAlertController(title: "Ошибка", message: errorMassage, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error".localized, message: errorMassage, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
         
@@ -266,32 +297,32 @@ class LogInViewController: UIViewController {
 #endif
         
         
-        if (loginView.text?.isEmpty != nil && passwordView.text?.isEmpty != nil){
+        if (loginView.text != "" || passwordView.text != "" ) {
             do{
                 try loginDelegate.check(login: loginView.text!, password: passwordView.text!){ result in
                     switch result{
                     case .success(_):
-                        
-//                        let profileVC = ProfileViewController(viewModel: viewModel)
+                        //                        let profileVC = ProfileViewController(viewModel: viewModel)
                         profileVC.user = userProfile.user
                         self.navigationController?.pushViewController(profileVC, animated: true)
                     case .failure(let error):
-                        self.logInError(caseOf: error)
+                        self.logInError(with: error)
                     }
                 }
             }
             catch LogInError.userNotFound{
-                logInError(caseOf: .userNotFound)
+                logInError(with: .userNotFound)
             }
-            catch LogInError.incorrectPassord{
-                logInError(caseOf: .incorrectPassord)
+            catch LogInError.userNotFoundAndWrongPassword{
+                logInError(with: .userNotFoundAndWrongPassword)
             }
-            catch {
-                print("some error")
+            catch{
+                logInError(with: .authError(message: "Unknown error".localized))
             }
             
+            
         }else{
-            let alert = UIAlertController(title: "Ошибка", message: "Введите логин и пароль", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error".localized, message: "Enter login and password".localized, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
             
@@ -303,37 +334,102 @@ class LogInViewController: UIViewController {
         
     }
     
-    func generatePass(){
-           
-        let generate = BruteForce()
-        
-        var password = ""
-        
-        var userProfile: UserService
-#if DEBUG
-        userProfile = TestUserService(user: users[0])
-#else
-        userProfile = CurrentUserService(user: users[1])
-#endif
-        
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        
-//        очередь для подбора пороля
-        let queue = DispatchQueue(label: "bruteForce", qos: .default)
-        queue.async {
+    func signUpAction(){
+        if (loginView.text != "" || passwordView.text != "" ) {
+            do{
+                try loginDelegate.signUp(login: loginView.text!, password: passwordView.text!){ result in
+                    switch result{
+                    case .success(_):
+                        let alert = UIAlertController(title: "", message: "New user successfully registered".localized, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+                        alert.modalTransitionStyle = .flipHorizontal
+                        alert.modalPresentationStyle = .pageSheet
+                        self.present(alert, animated: true)
+                        
+                        self.loginView.text = ""
+                        self.passwordView.text = ""
+                    case .failure(let error):
+                        self.logInError(with: error)
+                    }
+                }
+            }
+            catch LogInError.suchUserAlreadyExists{
+                logInError(with: .suchUserAlreadyExists)
+            }
+            catch LogInError.weakPass{
+                logInError(with: .weakPass)
+            }
+            catch LogInError.incorrectEmail{
+                logInError(with: .incorrectEmail)
+            }
+            catch{
+                logInError(with: .authError(message: "Unknown error".localized))
+            }
             
-            password = generate.bruteForce(passwordToUnlock: userProfile.user.password)
             
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
-                self.passwordView.isSecureTextEntry = false
-                self.passwordView.text = password
+        }else{
+            let alert = UIAlertController(title: "Error".localized, message: "Enter login and password".localized, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+            
+            alert.modalTransitionStyle = .flipHorizontal
+            alert.modalPresentationStyle = .pageSheet
+            
+            present(alert, animated: true)
+        }
+    }
+    
+    private func biometricAuthTapped() {
+        localAuthorizationService.authorizeIfPossible { [weak self] success, error in
+            if success {
+                let service = PostService()
+                let viewModel = ProfileViewModel(service: service)
+                let profileVC = ProfileViewController(viewModel: viewModel)
+                self?.navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                let errorMessage = error?.localizedDescription ?? "Неизвестная ошибка"
+                self?.showAlert(message: errorMessage)
             }
         }
-        
     }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Ошибка авторизации", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        present(alert, animated: true)
+    }
+    
+    //    func generatePass(){
+    //
+    //        let generate = BruteForce()
+    //
+    //        var password = ""
+    //
+    //        var userProfile: UserService
+    //#if DEBUG
+    //        userProfile = TestUserService(user: users[0])
+    //#else
+    //        userProfile = CurrentUserService(user: users[1])
+    //#endif
+    //
+    //        activityIndicator.isHidden = false
+    //        activityIndicator.startAnimating()
+    //
+    ////        очередь для подбора пороля
+    //        let queue = DispatchQueue(label: "bruteForce", qos: .default)
+    //        queue.async {
+    //
+    //            password = generate.bruteForce(passwordToUnlock: userProfile.user.password)
+    //
+    //            DispatchQueue.main.async {
+    //                self.activityIndicator.stopAnimating()
+    //                self.activityIndicator.isHidden = true
+    //                self.passwordView.isSecureTextEntry = false
+    //                self.passwordView.text = password
+    //            }
+    //        }
+    //
+    //    }
     
     private func setupContraints() {
         let safeAreaGuide = view.safeAreaLayoutGuide
@@ -370,18 +466,25 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-//            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            //            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            error.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 60),
-            error.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
-            error.trailingAnchor.constraint( equalTo: contentView.trailingAnchor,constant: -16),
-            error.heightAnchor.constraint(equalToConstant: 20 ),
+//            signUpButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+//            signUpButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+//            signUpButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+//            signUpButton.heightAnchor.constraint(equalToConstant: 50),
+//            signUpButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            generatePassBtn.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 32),
-            generatePassBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            generatePassBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            generatePassBtn.heightAnchor.constraint(equalToConstant: 50),
-            generatePassBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            biometricAuthButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            biometricAuthButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            biometricAuthButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            biometricAuthButton.heightAnchor.constraint(equalToConstant: 50),
+            biometricAuthButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            //            generatePassBtn.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 32),
+            //            generatePassBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            //            generatePassBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            //            generatePassBtn.heightAnchor.constraint(equalToConstant: 50),
+            //            generatePassBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: passwordView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: passwordView.centerYAnchor),
@@ -389,6 +492,8 @@ class LogInViewController: UIViewController {
             
         ])
     }
+    
+    
     
     
     private func setupKeyboardObservers() {

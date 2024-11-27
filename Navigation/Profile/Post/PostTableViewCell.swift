@@ -16,7 +16,7 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
+        label.textColor = .customTextColor
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
 
     lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .black
+        imageView.backgroundColor = .customTextColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
         let text = UILabel()
         
         text.font = UIFont.systemFont(ofSize: 14)
-        text.textColor = .systemGray
+        text.textColor = .customTextColor
         text.numberOfLines = 0
         
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class PostTableViewCell: UITableViewCell {
         let text = UILabel()
         
         text.font = UIFont.systemFont(ofSize: 16)
-        text.textColor = .black
+        text.textColor = .customTextColor
         text.translatesAutoresizingMaskIntoConstraints = false
         
         return text
@@ -56,7 +56,7 @@ class PostTableViewCell: UITableViewCell {
         let text = UILabel()
         
         text.font = UIFont.systemFont(ofSize: 16)
-        text.textColor = .black
+        text.textColor = .customTextColor
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -81,7 +81,7 @@ class PostTableViewCell: UITableViewCell {
     
     private func tuneView(){
         
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .customBackgroundColor
         accessoryType = .none
         
     }
@@ -120,21 +120,30 @@ class PostTableViewCell: UITableViewCell {
             ])
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
+//
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
     
     func update(_ model: Post) {
         postTitleView.text = model.author
         postImageView.image = UIImage(named: model.image)
-        postTextView.text = model.description
+        postTextView.text = model.postDescription
+        postLikesView.text = "Likes: \(model.likes)"
+        postViewsView.text = "Views: \(model.views)"
+        
+    }
+    
+    func update(_ model: LikePost) {
+        postTitleView.text = model.author
+        postImageView.image = UIImage(named: model.image ?? "")
+        postTextView.text = model.postDescription
         postLikesView.text = "Likes: \(model.likes)"
         postViewsView.text = "Views: \(model.views)"
         

@@ -8,7 +8,12 @@
 import Foundation
 
 enum LogInError : Error{
-    case userNotFound
-    case incorrectPassord
     
+    case userNotFound
+    case userNotFoundAndWrongPassword
+    case suchUserAlreadyExists
+    case weakPass
+    case incorrectEmail
+    case authorized
+    case authError(message: String)
 }

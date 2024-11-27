@@ -25,7 +25,7 @@ class ProfileHeaderView: UIView {
     
     lazy  var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .customBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0
         
@@ -61,7 +61,7 @@ class ProfileHeaderView: UIView {
         
         label.text = "Anastasiya"
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
+        label.textColor = .customTextColor
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -73,7 +73,7 @@ class ProfileHeaderView: UIView {
         
         text.text = "Тут я что-то написал..."
         text.font = UIFont.systemFont(ofSize: 14)
-        text.textColor = .gray
+        text.textColor = .customTextColor
         text.lineBreakMode = .byWordWrapping
         text.numberOfLines = 2
         
@@ -83,7 +83,7 @@ class ProfileHeaderView: UIView {
     }()
     
     lazy var setStatusButton: CustomButton = {
-        let button = CustomButton(title: "Show status", titleColor: .white){
+        let button = CustomButton(title: "Show status".localized, titleColor: .white){
             self.buttonPressed()
         }
         
@@ -109,7 +109,7 @@ class ProfileHeaderView: UIView {
         button.alpha = 0
         
         button.addTarget(self, action: #selector(closeAnimateButtonPressed(_:)), for: .touchUpInside)
-        
+        button.tintColor = .customTextColor
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

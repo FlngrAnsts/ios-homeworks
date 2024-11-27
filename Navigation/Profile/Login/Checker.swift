@@ -13,21 +13,11 @@ class Checker {
             return instance
         }()
     
-    private let userLogin : String
+    private let userLogin = "user"
        
-    private let userPassword : String
+    private let userPassword = "pass"
        
-    var userProfile: UserService
-    private init() {
-#if DEBUG
-        userProfile = TestUserService(user: users[0])
-#else
-        userProfile = CurrentUserService(user: users[1])
-#endif
-        userLogin = userProfile.user.login
-        userPassword = userProfile.user.password
-        
-    }
+    private init() {}
        
     func check(login: String, password: String)-> Bool{
            login ==  userLogin && password == userPassword
