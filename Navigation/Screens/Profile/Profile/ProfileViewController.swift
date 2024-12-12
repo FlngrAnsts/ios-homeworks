@@ -12,15 +12,9 @@ import StorageService
 class ProfileViewController: UIViewController {
     
     var user: User?
-    
-    var timer : Timer?
-    var count = 10.0
-    
-    
-    
+    var routeToPhoto: () -> () = {}
+  
     var viewModel: ProfileViewModel
-    
-    var coordinator: ProfileCoordinator?
     
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
@@ -63,21 +57,14 @@ class ProfileViewController: UIViewController {
         
         setupConstraints()
         tuneTableView()
-        //        bindViewModel()
         viewModel.changeStateIfNeeded()
         
-        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-        //
-        //        view.addGestureRecognizer(tapGesture)
         
     }
     
     
     @objc func handleTap(sender: UITapGestureRecognizer){
         print("tapped")
-        killTimer()
-        
-        timerTest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,47 +78,15 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //                timerTest()
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        //                killTimer()
     }
     
-    func timerTest(){
-        
-        count = 10.0
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0,
-                                     repeats: count == 0 ? false : true) { [weak self] timer in
-            guard let self else {return}
-            
-            print (count)
-            if count == 0 {
-                killTimer()
-                logOut()
-            }
-            count -= 1
-        }
-        
-    }
-    
-    func logOut(){
-        let viewModel = LoginViewModel()
-        let logInVC = LogInViewController(viewModel: viewModel, delegate: MyLoginFactory().makeLoginInspector())
-        
-        self.navigationController?.pushViewController(logInVC, animated: false)
-    }
-    
-    func killTimer() {
-        self.timer?.invalidate()
-        self.timer = nil
-    }
-    
-    
+
     
     private func bindViewModel() {
         viewModel.currentState = { [weak self] state in
@@ -161,12 +116,7 @@ class ProfileViewController: UIViewController {
     
     
     private func setupView(){
-        
-//#if DEBUG
-//        self.view.backgroundColor = .systemGray4
-//#else
-//        self.view.backgroundColor = .systemGray6
-//#endif
+
         self.view.backgroundColor = .customBackgroundColor
         self.navigationController?.navigationBar.isHidden = true
         
@@ -268,7 +218,7 @@ extension ProfileViewController: UITableViewDataSource {
             ) as? PhotosTableViewCell else {
                 fatalError("could not dequeueReusableCell")
             }
-            cell.buttonTapCallback = photosVC
+            cell.buttonTapCallback = routeToPhoto
             
             return cell
         }

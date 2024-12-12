@@ -11,7 +11,7 @@ import StorageService
 
 class LikePostTableViewController: UITableViewController {
     
-    var coordinator: LikeCoordinator?
+//    var coordinator: LikeCoordinator?
     
     var likePosts = [LikePost]()
     

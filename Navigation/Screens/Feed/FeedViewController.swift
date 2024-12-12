@@ -20,7 +20,6 @@ class FeedViewController: UIViewController {
         }
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        
         return button
         
     }()

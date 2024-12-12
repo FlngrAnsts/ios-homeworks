@@ -18,11 +18,11 @@ struct LoginInspector: LoginViewControllerDelegate {
         }
     
     
-    func check(login: String, password: String, completion: @escaping (Result<String, LogInError>) -> Void) throws{
+    func check(login: String, password: String, completion: @escaping (Result<String, ApiError>) -> Void) throws{
             checkerService.checkCredentials(withEmail: login, password: password, completion: completion)
         }
     
-    func signUp (login: String, password: String, completion: @escaping (Result<String, LogInError>) -> Void) throws{
+    func signUp (login: String, password: String, completion: @escaping (Result<String, ApiError>) -> Void) throws{
             checkerService.signUp(withEmail: login, password: password, completion: completion)
         }
 }

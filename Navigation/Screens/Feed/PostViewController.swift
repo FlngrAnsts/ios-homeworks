@@ -12,7 +12,7 @@ class PostViewController: UIViewController {
     
     var titlePost: String = ""
     
-    var coordinator: FeedCoordinator?
+    var routeToInfo: () -> () = {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,12 @@ class PostViewController: UIViewController {
     }
     @objc func buttonBar(_ sender: UIButton) {
 //        coordinator?.showInfo()
-        let infoVC = InfoViewController()
-        self.navigationController?.pushViewController(infoVC, animated: true)
+//        let infoVC = InfoViewController()
+//        self.navigationController?.pushViewController(infoVC, animated: true)
 //        infoVC.modalPresentationStyle = .overCurrentContext
 //        infoVC.modalTransitionStyle = .coverVertical
 //        present(infoVC, animated: true, completion: nil)
-        
+        routeToInfo()
     }
     
 }

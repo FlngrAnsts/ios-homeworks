@@ -28,9 +28,9 @@ final class LoginViewModel: LogInModelProtocol {
         
         var userForProfile: UserService
 #if DEBUG
-        userForProfile = TestUserService(user: users[0])
+        userForProfile = TestUserService()
 #else
-        userForProfile = CurrentUserService(user: users[1])
+        userForProfile = CurrentUserService()
 #endif
         
         return userForProfile.user

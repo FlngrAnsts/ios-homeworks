@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LogInError : Error{
+enum ApiError : Error{
     
     case userNotFound
     case userNotFoundAndWrongPassword

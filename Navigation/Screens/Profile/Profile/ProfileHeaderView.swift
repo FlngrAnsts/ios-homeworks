@@ -9,18 +9,11 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-   
-    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
             height: 230
         )
-    }
-    
-    private enum Constant {
-        static let avatarSize: CGFloat = 125
-        static let closeAnimateButtonSize: CGFloat = 40
     }
     
     lazy  var backgroundView: UIView = {
@@ -83,7 +76,7 @@ class ProfileHeaderView: UIView {
     }()
     
     lazy var setStatusButton: CustomButton = {
-        let button = CustomButton(title: "Show status".localized, titleColor: .white){
+        let button = CustomButton(title: "New post".localized, titleColor: .white){
             self.buttonPressed()
         }
         
@@ -267,7 +260,6 @@ class ProfileHeaderView: UIView {
         super.init(frame: frame)
         addSubviews()
         setupContraints()
-       // setUserInfo()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

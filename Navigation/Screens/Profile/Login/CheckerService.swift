@@ -10,28 +10,28 @@ import FirebaseAuth
 
 protocol CheckerServiceProtocol{
     
-    func checkCredentials(withEmail: String, password: String ,completion: @escaping (Result<String, LogInError>) -> Void)
+    func checkCredentials(withEmail: String, password: String ,completion: @escaping (Result<String, ApiError>) -> Void)
     
-    func signUp(withEmail: String, password: String ,completion: @escaping (Result<String, LogInError>) -> Void)
+    func signUp(withEmail: String, password: String ,completion: @escaping (Result<String, ApiError>) -> Void)
     
 }
 
 class CheckerService: CheckerServiceProtocol{
     
-    func checkCredentials(withEmail: String, password: String, completion: @escaping (Result<String, LogInError>) -> Void) {
+    func checkCredentials(withEmail: String, password: String, completion: @escaping (Result<String, ApiError>) -> Void) {
         Auth.auth().signIn(withEmail: withEmail, password:password){ authResult, error in
             
             if let error {
                 let err = error as NSError
                 switch err.code{
                 case AuthErrorCode.invalidCredential.rawValue:
-                    completion(.failure(LogInError.userNotFound))
+                    completion(.failure(ApiError.userNotFound))
                 case AuthErrorCode.invalidEmail.rawValue:
-                    completion(.failure(LogInError.userNotFoundAndWrongPassword))
+                    completion(.failure(ApiError.userNotFoundAndWrongPassword))
                 case AuthErrorCode.wrongPassword.rawValue:
-                    completion(.failure(LogInError.userNotFoundAndWrongPassword))
+                    completion(.failure(ApiError.userNotFoundAndWrongPassword))
                 default:
-                    completion(.failure(LogInError.authError(message: "Unknown error")))
+                    completion(.failure(ApiError.authError(message: "Unknown error")))
                 }
             }
             if let authResult{
@@ -43,21 +43,20 @@ class CheckerService: CheckerServiceProtocol{
     }
     
     
-    
-    func signUp(withEmail: String, password: String, completion: @escaping (Result<String, LogInError>) -> Void) {
+    func signUp(withEmail: String, password: String, completion: @escaping (Result<String, ApiError>) -> Void) {
         
         FirebaseAuth.Auth.auth().createUser(withEmail: withEmail, password: password){ authResult, error  in
             if let error {
                 let err = error as NSError
                 switch err.code{
                 case AuthErrorCode.invalidEmail.rawValue:
-                    completion(.failure(LogInError.incorrectEmail))
+                    completion(.failure(ApiError.incorrectEmail))
                 case AuthErrorCode.emailAlreadyInUse.rawValue:
-                    completion(.failure(LogInError.suchUserAlreadyExists))
+                    completion(.failure(ApiError.suchUserAlreadyExists))
                 case AuthErrorCode.weakPassword.rawValue:
-                    completion(.failure(LogInError.weakPass))
+                    completion(.failure(ApiError.weakPass))
                 default:
-                    completion(.failure(LogInError.authError(message: "Unknown error")))
+                    completion(.failure(ApiError.authError(message: "Unknown error")))
                 }
             }
             if let authResult{

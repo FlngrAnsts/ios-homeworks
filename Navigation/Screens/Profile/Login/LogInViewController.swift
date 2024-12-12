@@ -10,18 +10,17 @@ import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
-    var viewModel: LogInModelProtocol?
-    var coordinator: ProfileCoordinator?
+
+    var routeToProfile: ((User) -> ())?
     
-    
-    var loginDelegate: LoginViewControllerDelegate
-    
-    init(viewModel: LoginViewModel, delegate: LoginViewControllerDelegate) {
-        self.viewModel = viewModel
-        self.loginDelegate = delegate
-        super.init(nibName: nil, bundle: nil)
-        
-    }
+    var userService: UserService
+    var loginDelegate: LoginViewControllerDelegate?
+
+      init(userService: UserService, delegate: LoginViewControllerDelegate) {
+          self.userService = userService
+          self.loginDelegate = delegate
+          super.init(nibName: nil, bundle: nil)
+      }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -159,22 +158,6 @@ class LogInViewController: UIViewController {
         return button
     }()
     
-    //    lazy var generatePassBtn: CustomButton = {
-    //
-    //        let button = CustomButton(title: "Generate Password", titleColor: .white){
-    //            self.generatePass()
-    //        }
-    //
-    //        button.layer.cornerRadius = 10
-    //
-    //        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
-    //
-    //        button.clipsToBounds = true
-    //
-    //        button.translatesAutoresizingMaskIntoConstraints = false
-    //
-    //        return button
-    //    }()
     
     private lazy var signUpButton: CustomButton = {
         let button = CustomButton(title: "Register".localized, titleColor: .white){
@@ -201,6 +184,13 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var userForProfile: UserService
+#if DEBUG
+        userForProfile = TestUserService()
+#else
+        userForProfile = CurrentUserService()
+#endif
+        
         setupView()
         addSubviews()
         setupContraints()
@@ -223,10 +213,8 @@ class LogInViewController: UIViewController {
         
         contentView.addSubview(logInButton)
         contentView.addSubview(biometricAuthButton)
-        //        contentView.addSubview(generatePassBtn)
         
         contentView.addSubview(activityIndicator)
-//        contentView.addSubview(signUpButton)
         
         scrollView.addSubview(contentView)
     }
@@ -253,7 +241,7 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
-    func logInError (with error: LogInError){
+    func logInError (with error: ApiError){
         var errorMassage = ""
         
         switch error{
@@ -285,35 +273,25 @@ class LogInViewController: UIViewController {
     
     func buttonPressed() {
         
-        let service = PostService()
-        let viewModel = ProfileViewModel(service: service)
-        let profileVC = ProfileViewController(viewModel: viewModel)
-        
-        var userProfile: UserService
-#if DEBUG
-        userProfile = TestUserService(user: users[0])
-#else
-        userProfile = CurrentUserService(user: users[1])
-#endif
-        
-        
         if (loginView.text != "" || passwordView.text != "" ) {
             do{
-                try loginDelegate.check(login: loginView.text!, password: passwordView.text!){ result in
+                try loginDelegate?.check(login: loginView.text!, password: passwordView.text!){ result in
                     switch result{
                     case .success(_):
-                        //                        let profileVC = ProfileViewController(viewModel: viewModel)
-                        profileVC.user = userProfile.user
+                        let service = PostService()
+                        let viewModel = ProfileViewModel(service: service)
+                        let profileVC = ProfileViewController(viewModel: viewModel)
+                        profileVC.user = self.userService.user
                         self.navigationController?.pushViewController(profileVC, animated: true)
                     case .failure(let error):
                         self.logInError(with: error)
                     }
                 }
             }
-            catch LogInError.userNotFound{
+            catch ApiError.userNotFound{
                 logInError(with: .userNotFound)
             }
-            catch LogInError.userNotFoundAndWrongPassword{
+            catch ApiError.userNotFoundAndWrongPassword{
                 logInError(with: .userNotFoundAndWrongPassword)
             }
             catch{
@@ -337,7 +315,7 @@ class LogInViewController: UIViewController {
     func signUpAction(){
         if (loginView.text != "" || passwordView.text != "" ) {
             do{
-                try loginDelegate.signUp(login: loginView.text!, password: passwordView.text!){ result in
+                try loginDelegate?.signUp(login: loginView.text!, password: passwordView.text!){ result in
                     switch result{
                     case .success(_):
                         let alert = UIAlertController(title: "", message: "New user successfully registered".localized, preferredStyle: .alert)
@@ -353,13 +331,13 @@ class LogInViewController: UIViewController {
                     }
                 }
             }
-            catch LogInError.suchUserAlreadyExists{
+            catch ApiError.suchUserAlreadyExists{
                 logInError(with: .suchUserAlreadyExists)
             }
-            catch LogInError.weakPass{
+            catch ApiError.weakPass{
                 logInError(with: .weakPass)
             }
-            catch LogInError.incorrectEmail{
+            catch ApiError.incorrectEmail{
                 logInError(with: .incorrectEmail)
             }
             catch{
@@ -399,37 +377,7 @@ class LogInViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    //    func generatePass(){
-    //
-    //        let generate = BruteForce()
-    //
-    //        var password = ""
-    //
-    //        var userProfile: UserService
-    //#if DEBUG
-    //        userProfile = TestUserService(user: users[0])
-    //#else
-    //        userProfile = CurrentUserService(user: users[1])
-    //#endif
-    //
-    //        activityIndicator.isHidden = false
-    //        activityIndicator.startAnimating()
-    //
-    ////        очередь для подбора пороля
-    //        let queue = DispatchQueue(label: "bruteForce", qos: .default)
-    //        queue.async {
-    //
-    //            password = generate.bruteForce(passwordToUnlock: userProfile.user.password)
-    //
-    //            DispatchQueue.main.async {
-    //                self.activityIndicator.stopAnimating()
-    //                self.activityIndicator.isHidden = true
-    //                self.passwordView.isSecureTextEntry = false
-    //                self.passwordView.text = password
-    //            }
-    //        }
-    //
-    //    }
+    
     
     private func setupContraints() {
         let safeAreaGuide = view.safeAreaLayoutGuide
@@ -466,7 +414,7 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            //            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
 //            signUpButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
 //            signUpButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -479,12 +427,6 @@ class LogInViewController: UIViewController {
             biometricAuthButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             biometricAuthButton.heightAnchor.constraint(equalToConstant: 50),
             biometricAuthButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            //            generatePassBtn.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 32),
-            //            generatePassBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            //            generatePassBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            //            generatePassBtn.heightAnchor.constraint(equalToConstant: 50),
-            //            generatePassBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: passwordView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: passwordView.centerYAnchor),
