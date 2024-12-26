@@ -10,7 +10,7 @@ import UIKit
 class CustomButton: UIButton {
     
     typealias Action = () -> Void
-    
+
     var buttonAction: Action
     
     init(title: String, titleColor: UIColor, action: @escaping Action) {
@@ -19,7 +19,6 @@ class CustomButton: UIButton {
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
         self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        
     }
     
     required init?(coder: NSCoder) {

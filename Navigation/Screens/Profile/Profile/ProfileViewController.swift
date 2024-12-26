@@ -6,24 +6,24 @@
 //
 
 import UIKit
-import StorageService
+import CoreData
 
 
 class ProfileViewController: UIViewController {
     
-    var user: User?
+    private var coreDataService = CoreDataManager.shared
+    var user: UserData
     var routeToPhoto: () -> () = {}
+    var routeToLogin: (()->())?
   
-    var viewModel: ProfileViewModel
-    
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
-    init(viewModel: ProfileViewModel) {
-        self.viewModel = viewModel
+    init(user: UserData) {
+        self.user = user
         super.init(nibName: nil, bundle: nil)
         
     }
@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController {
         
         setupConstraints()
         tuneTableView()
-        viewModel.changeStateIfNeeded()
+        
         
         
     }
@@ -68,11 +68,12 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.beginAppearanceTransition(true, animated: true)
-        self.endAppearanceTransition()
         
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.navigationBar.isHidden = false
+        let logoutButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"), style: .done, target: self, action: #selector(logoutButtonTapped))
+        navigationItem.rightBarButtonItem = logoutButton
+        logoutButton.tintColor = UIColor.customTextColor
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,42 +87,19 @@ class ProfileViewController: UIViewController {
         
     }
     
-
-    
-    private func bindViewModel() {
-        viewModel.currentState = { [weak self] state in
-            guard let self else { return }
-            switch state {
-            case .initial:
-                print("initial")
-            case .loading:
-                tableView.isHidden = true
-                activityIndicator.isHidden = false
-                activityIndicator.startAnimating()
-            case .loaded(let post):
-                DispatchQueue.main.async { [weak self] in
-                    guard let self else { return }
-                    self.data = post
-                    tableView.isHidden = false
-                    tableView.reloadData()
-                    activityIndicator.isHidden = true
-                    activityIndicator.stopAnimating()
-                }
-            case .error:
-                print("error")
-            }
-            
-        }
-    }
-    
     
     private func setupView(){
-
         self.view.backgroundColor = .customBackgroundColor
-        self.navigationController?.navigationBar.isHidden = true
-        
+//        self.navigationController?.navigationBar.isHidden = false
+//        let logoutButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"), style: .done, target: self, action: #selector(logoutButtonTapped))
+//        navigationItem.rightBarButtonItem = logoutButton
+//        logoutButton.tintColor = UIColor.customTextColor
         
     }
+    
+    @objc private func logoutButtonTapped() {
+        routeToLogin?()
+       }
     
     private func addSubviews(){
         view.addSubview(tableView)
@@ -164,11 +142,10 @@ class ProfileViewController: UIViewController {
     }
     
     private func tuneTableView(){
-        
+        let user = user
         let headerView = ProfileHeaderView()
-        if let user = user{
-            headerView.setupProfile(user: user)
-        }
+        headerView.setupProfile(user: user)
+        
         tableView.setAndLayout(headerView: headerView)
         
         tableView.tableFooterView = UIView()
@@ -243,26 +220,26 @@ extension ProfileViewController: UITableViewDataSource {
         ) as? PostTableViewCell else {
             fatalError("could not dequeueReusableCell")
         }
-        if cell.gestureRecognizers == nil {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
-            tapGesture.numberOfTapsRequired = 2
-            cell.addGestureRecognizer(tapGesture)
-        }
+//        if cell.gestureRecognizers == nil {
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+//            tapGesture.numberOfTapsRequired = 2
+//            cell.addGestureRecognizer(tapGesture)
+//        }
         
         cell.update(data[indexPath.row-2])
         
         return cell
     }
     
-    @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
-        if let cell = gesture.view as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
-            
-            
-            
-            print("Double tap")
-            LikeDataManager.shared.addLikePost(post: data[indexPath.row-2])
-        }
-    }
+//    @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+//        if let cell = gesture.view as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+//            
+//            
+//            
+//            print("Double tap")
+//            LikeDataManager.shared.addLikePost(post: data[indexPath.row-2])
+//        }
+//    }
 }
 
 extension ProfileViewController: UITableViewDelegate {}

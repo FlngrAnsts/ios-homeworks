@@ -9,6 +9,17 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    private var currentUser: UserData?
+    
+   override init(frame: CGRect) {
+            super.init(frame: frame)
+            addSubviews()
+            setupContraints()
+        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
@@ -28,7 +39,7 @@ class ProfileHeaderView: UIView {
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         
-        imageView.image = UIImage(named: "Avatar")
+        imageView.backgroundColor = .systemGray4
         
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -202,10 +213,16 @@ class ProfileHeaderView: UIView {
         }
     }
     
-    func setupProfile(user: User){
-            avatarImageView.image = user.avatar
-            fullNameLabel.text = user.fullName
-            statusLabel.text = user.status
+    func setupProfile(user: UserData){
+        currentUser = user
+        if user.avatar != ""{
+            avatarImageView.image = UIImage(named: user.avatar! /*?? ""*/ )
+        } else {
+            avatarImageView.image = UIImage(systemName: "person.circle")
+            avatarImageView.tintColor = .gray
+        }
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
         }
     
     
@@ -256,13 +273,6 @@ class ProfileHeaderView: UIView {
         ])
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubviews()
-        setupContraints()
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
 }

@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import CoreData
 import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
     static let cellID = "PostTableViewCell"
+    private var postInCell: PostData?
+    private var profile: UserData?
+    private var likeButtonCheck = false
+    private var likeTotal = 0
     
     lazy var postTitleView: UILabel = {
         let label = UILabel()
@@ -42,14 +47,22 @@ class PostTableViewCell: UITableViewCell {
         return text
     }()
     
-    lazy var postLikesView: UILabel = {
-        let text = UILabel()
-        
-        text.font = UIFont.systemFont(ofSize: 16)
-        text.textColor = .customTextColor
-        text.translatesAutoresizingMaskIntoConstraints = false
-        
-        return text
+//    lazy var postLikesView: UILabel = {
+//        let text = UILabel()
+//        
+//        text.font = UIFont.systemFont(ofSize: 16)
+//        text.textColor = .customTextColor
+//        text.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        return text
+//    }()
+    
+    private lazy var likeButton: UIButton = {
+        let button = CustomButton(title: "\(likeTotal)", titleColor: .customTextColor, action: changerLike)
+        button.setImage(UIImage(systemName: "suit.heart"), for: .normal)
+        button.imageView?.tintColor = .customTextColor
+        button.contentMode = .scaleAspectFit
+        return button
     }()
     
     lazy var postViewsView: UILabel = {
@@ -90,7 +103,7 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(postTitleView)
         contentView.addSubview(postImageView)
         contentView.addSubview(postTextView)
-        contentView.addSubview(postLikesView)
+        contentView.addSubview(likeButton)
         contentView.addSubview(postViewsView)
     }
     
@@ -110,9 +123,9 @@ class PostTableViewCell: UITableViewCell {
             postTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             postTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            postLikesView.topAnchor.constraint(equalTo: postTextView.bottomAnchor, constant: 16),
-            postLikesView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            postLikesView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            likeButton.topAnchor.constraint(equalTo: postTextView.bottomAnchor, constant: 16),
+            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             postViewsView.topAnchor.constraint(equalTo: postTextView.bottomAnchor, constant: 16),
             postViewsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -131,11 +144,29 @@ class PostTableViewCell: UITableViewCell {
 //        // Configure the view for the selected state
 //    }
     
+    private lazy var changerLike: (() -> Void) = {
+        self.changeLike()
+    }
+    
+    private func changeLike() {
+        if likeButtonCheck == false {
+            likeButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+            likeTotal += 1
+            likeButton.setTitle("\(likeTotal)", for: .normal)
+            likeButtonCheck = true
+        } else {
+            likeButton.setImage(UIImage(systemName: "suit.heart"), for: .normal)
+            likeTotal -= 1
+            likeButton.setTitle("\(likeTotal)", for: .normal)
+            likeButtonCheck = false
+        }
+    }
+    
     func update(_ model: Post) {
         postTitleView.text = model.author
         postImageView.image = UIImage(named: model.image)
         postTextView.text = model.postDescription
-        postLikesView.text = "Likes: \(model.likes)"
+//        likeButton.text = "Likes: \(model.likes)"
         postViewsView.text = "Views: \(model.views)"
         
     }
@@ -144,7 +175,7 @@ class PostTableViewCell: UITableViewCell {
         postTitleView.text = model.author
         postImageView.image = UIImage(named: model.image ?? "")
         postTextView.text = model.postDescription
-        postLikesView.text = "Likes: \(model.likes)"
+//        postLikesView.text = "Likes: \(model.likes)"
         postViewsView.text = "Views: \(model.views)"
         
     }

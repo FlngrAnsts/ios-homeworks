@@ -6,379 +6,174 @@
 //
 
 import UIKit
-import FirebaseAuth
+import CoreData
 
 class LogInViewController: UIViewController {
+    // MARK: - Services
     
+    private let localAuthorizationService = LocalAuthorizationService()
+ 
+    
+    var routeToProfile: ((UserData) -> ())?
+    var routeToRegistration:(()->())?
 
-    var routeToProfile: ((User) -> ())?
     
-    var userService: UserService
-    var loginDelegate: LoginViewControllerDelegate?
-
-      init(userService: UserService, delegate: LoginViewControllerDelegate) {
-          self.userService = userService
-          self.loginDelegate = delegate
-          super.init(nibName: nil, bundle: nil)
-      }
+    // MARK: - UI Elements Optimization with Comments
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // ScrollView: Обеспечивает прокрутку содержимого.
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
         scrollView.backgroundColor = .customBackgroundColor
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         return scrollView
     }()
     
+    // ContentView: Контейнер для всех дочерних элементов.
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .customBackgroundColor
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         return contentView
     }()
     
+    // LogoView: Отображение логотипа приложения.
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
-    private lazy var loginView: UITextField = {[unowned self] in
-        let textView = UITextField()
-        
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        
-        textView.backgroundColor = .systemGray6
-        
-        textView.placeholder = "Login".localized
-        
-        textView.borderStyle = UITextField.BorderStyle.roundedRect
-        textView.autocorrectionType = UITextAutocorrectionType.no
-        textView.keyboardType = UIKeyboardType.default
-        textView.returnKeyType = UIReturnKeyType.done
-        textView.clearButtonMode = UITextField.ViewMode.whileEditing
-        
-        textView.layer.borderColor = UIColor.lightGray.cgColor
-        textView.layer.borderWidth = 0.5
-        textView.layer.cornerRadius = 10
-        textView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        textView.clipsToBounds = true
-        
-        textView.textColor = .customTextColor
-        textView.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        textView.autocapitalizationType = .none
-        
-        textView.text = "test@test.ru"
-        
-        textView.delegate = self
+    // LoginView: Поле ввода для логина.
+    private lazy var loginView: CustomTextField = {
+        let textView = CustomTextField(placeholder: "Email".localized, isSecure: false, cornerRadius: [.layerMaxXMinYCorner, .layerMinXMinYCorner])
+        textView.text = "test1@test"
         return textView
     }()
     
-    private lazy var passwordView: UITextField = {[unowned self] in
-        let textView = UITextField()
-        
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        
-        textView.backgroundColor = .systemGray6
-        
-        textView.placeholder = "Password".localized
-        
-        textView.borderStyle = UITextField.BorderStyle.roundedRect
-        textView.autocorrectionType = UITextAutocorrectionType.no
-        textView.keyboardType = UIKeyboardType.default
-        textView.returnKeyType = UIReturnKeyType.done
-        textView.clearButtonMode = UITextField.ViewMode.whileEditing
-        textView.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        
-        textView.layer.borderColor = UIColor.lightGray.cgColor
-        textView.layer.borderWidth = 0.5
-        textView.layer.cornerRadius = 10
-        textView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        textView.clipsToBounds = true
-        
-        textView.textColor = .customTextColor
-        textView.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        textView.autocapitalizationType = .none
-        
+    // PasswordView: Поле ввода для пароля.
+    private lazy var passwordView:  CustomTextField = {
+        let textView = CustomTextField(placeholder: "Password".localized, isSecure: false, cornerRadius: [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
         textView.text = "123456"
-        
-        textView.isSecureTextEntry = true
-        
-        textView.delegate = self
         return textView
     }()
-    
+
+    // LogInButton: Кнопка для выполнения входа.
     private lazy var logInButton: CustomButton = {
-        
         let button = CustomButton(title: "Log In".localized, titleColor: .white){
             self.buttonPressed()
         }
-        
         button.layer.cornerRadius = 10
         button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }()
     
-    private let localAuthorizationService = LocalAuthorizationService()
-    
-    lazy var biometricAuthButton: CustomButton = {
-        let button = CustomButton(title: " Авторизация по биометрии", titleColor: .white){
-            self.biometricAuthTapped()
-        }
-        switch localAuthorizationService.biometricType {
-        case .faceID:
-            button.setImage(UIImage(systemName: "faceid"), for: .normal)
-            button.tintColor = .white
-        case .touchID:
-            button.setImage(UIImage(systemName: "touchid"), for: .normal)
-            button.tintColor = .white
-        default:
-            button.setImage(nil, for: .normal)
-        }
-        
-        button.layer.cornerRadius = 10
-        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
-        button.clipsToBounds = true
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    
+    //signUpButton: кнопка для перехода в форму регистрации
     private lazy var signUpButton: CustomButton = {
-        let button = CustomButton(title: "Register".localized, titleColor: .white){
+        let button = CustomButton(title: "Register".localized, titleColor: .color){
             self.signUpAction()
         }
-        button.layer.cornerRadius = 10
-        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        
-        let indicator = UIActivityIndicatorView(style: .medium)
-        
-        indicator.isHidden = true
-        
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        return indicator
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var userForProfile: UserService
-#if DEBUG
-        userForProfile = TestUserService()
-#else
-        userForProfile = CurrentUserService()
-#endif
-        
         setupView()
         addSubviews()
         setupContraints()
         
+        showUsers()
+        
+        
     }
     
-    func setupView(){
-        view.backgroundColor = .customBackgroundColor
-        self.navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.backgroundColor = .customBackgroundColor
-    }
     
-    func addSubviews() {
-        view.addSubview(scrollView)
-        
-        contentView.addSubview(logoView)
-        contentView.addSubview(loginView)
-        contentView.addSubview(passwordView)
-        
-        contentView.addSubview(logInButton)
-        contentView.addSubview(biometricAuthButton)
-        
-        contentView.addSubview(activityIndicator)
-        
-        scrollView.addSubview(contentView)
-    }
+    func showUsers() {
+            let users = CoreDataManager.shared.fetchAllUsers()
+            for user in users {
+                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"), isAuth: \(user.isAuthorized)")
+            }
+        }
     
+
+    // MARK: - Жизненный цикл контроллера
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        tabBarController?.tabBar.isHidden = true
         setupKeyboardObservers()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        tabBarController?.tabBar.isHidden = false
         removeKeyboardObservers()
     }
     
+    // MARK: - Настройка основного представления
     
-    @objc func willShowKeyboard(_ notification: NSNotification) {
-        let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        scrollView.contentInset.bottom = keyboardHeight ?? 0.0
+    // Устанавливает базовые параметры экрана: цвет фона и настройки навигационной панели.
+    private func setupView() {
+        view.backgroundColor = .customBackgroundColor
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.backgroundColor = .customBackgroundColor
     }
-    
-    @objc func willHideKeyboard(_ notification: NSNotification) {
-        scrollView.contentInset.bottom = 0.0
+
+    // Добавляет все подвиды в иерархию представлений.
+    private func addSubviews() {
+        // Добавление scrollView на главный view
+        view.addSubview(scrollView)
+        
+        // Добавление UI-элементов в contentView
+        [logoView, loginView, passwordView, logInButton, signUpButton].forEach { contentView.addSubview($0) }
+        
+        // Добавление contentView в scrollView
+        scrollView.addSubview(contentView)
     }
+   
     
-    func logInError (with error: ApiError){
-        var errorMassage = ""
-        
-        switch error{
-        case .userNotFound:
-            errorMassage = "User not found or incorrect password entered".localized
-        case .userNotFoundAndWrongPassword:
-            errorMassage = "Incorrect login and/or password entered".localized
-        case .suchUserAlreadyExists:
-            errorMassage = "This user is already registered".localized
-        case .weakPass:
-            errorMassage = "Password must be more than 6 characters long".localized
-        case .authorized:
-            errorMassage = "New user successfully registered".localized // \(loginView.text ?? "")"
-        case .authError(message: let message):
-            errorMassage = message
-        case .incorrectEmail:
-            errorMassage = "Incorrect address".localized
-        }
-        
-        let alert = UIAlertController(title: "Error".localized, message: errorMassage, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
-        
-        alert.modalTransitionStyle = .flipHorizontal
-        alert.modalPresentationStyle = .pageSheet
-        
-        present(alert, animated: true)
-    }
-    
-    func buttonPressed() {
-        
-        if (loginView.text != "" || passwordView.text != "" ) {
-            do{
-                try loginDelegate?.check(login: loginView.text!, password: passwordView.text!){ result in
-                    switch result{
-                    case .success(_):
-                        let service = PostService()
-                        let viewModel = ProfileViewModel(service: service)
-                        let profileVC = ProfileViewController(viewModel: viewModel)
-                        profileVC.user = self.userService.user
-                        self.navigationController?.pushViewController(profileVC, animated: true)
-                    case .failure(let error):
-                        self.logInError(with: error)
-                    }
-                }
-            }
-            catch ApiError.userNotFound{
-                logInError(with: .userNotFound)
-            }
-            catch ApiError.userNotFoundAndWrongPassword{
-                logInError(with: .userNotFoundAndWrongPassword)
-            }
-            catch{
-                logInError(with: .authError(message: "Unknown error".localized))
-            }
-            
-            
-        }else{
-            let alert = UIAlertController(title: "Error".localized, message: "Enter login and password".localized, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
-            
-            alert.modalTransitionStyle = .flipHorizontal
-            alert.modalPresentationStyle = .pageSheet
-            
+    private func showErrorAlert(message: String) {
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }
+    
+    // MARK: - Действия пользователя
+
+    // Обрабатывает нажатие кнопки входа.
+    private func buttonPressed() {
         
-    }
-    
-    func signUpAction(){
-        if (loginView.text != "" || passwordView.text != "" ) {
-            do{
-                try loginDelegate?.signUp(login: loginView.text!, password: passwordView.text!){ result in
-                    switch result{
-                    case .success(_):
-                        let alert = UIAlertController(title: "", message: "New user successfully registered".localized, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
-                        alert.modalTransitionStyle = .flipHorizontal
-                        alert.modalPresentationStyle = .pageSheet
-                        self.present(alert, animated: true)
-                        
-                        self.loginView.text = ""
-                        self.passwordView.text = ""
-                    case .failure(let error):
-                        self.logInError(with: error)
-                    }
-                }
-            }
-            catch ApiError.suchUserAlreadyExists{
-                logInError(with: .suchUserAlreadyExists)
-            }
-            catch ApiError.weakPass{
-                logInError(with: .weakPass)
-            }
-            catch ApiError.incorrectEmail{
-                logInError(with: .incorrectEmail)
-            }
-            catch{
-                logInError(with: .authError(message: "Unknown error".localized))
-            }
-            
-            
-        }else{
-            let alert = UIAlertController(title: "Error".localized, message: "Enter login and password".localized, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
-            
-            alert.modalTransitionStyle = .flipHorizontal
-            alert.modalPresentationStyle = .pageSheet
-            
-            present(alert, animated: true)
+        guard let email = loginView.text, !email.isEmpty,
+              let password = passwordView.text, !password.isEmpty else {
+            showErrorAlert(message: "Please enter email and password")
+            return
+        }
+        
+        switch CoreDataManager.shared.fetchUser(email: email, password: password) {
+        case .success(let user):
+            // Переход на экран профиля через замыкание
+            routeToProfile?(user)
+            user.isAuthorized = true
+        case .failure(let error):
+            showErrorAlert(message: error.localizedDescription)
         }
     }
-    
-    private func biometricAuthTapped() {
-        localAuthorizationService.authorizeIfPossible { [weak self] success, error in
-            if success {
-                let service = PostService()
-                let viewModel = ProfileViewModel(service: service)
-                let profileVC = ProfileViewController(viewModel: viewModel)
-                self?.navigationController?.pushViewController(profileVC, animated: true)
-            } else {
-                let errorMessage = error?.localizedDescription ?? "Неизвестная ошибка"
-                self?.showAlert(message: errorMessage)
-            }
-        }
+
+    // Обрабатывает нажатие кнопки регистрации.
+    private func signUpAction() {
+            routeToRegistration?()
     }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Ошибка авторизации", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ОК", style: .default))
-        present(alert, animated: true)
-    }
-    
-    
-    
+
+    // MARK: - Вспомогательные методы
+
+
     private func setupContraints() {
         let safeAreaGuide = view.safeAreaLayoutGuide
         
@@ -405,7 +200,7 @@ class LogInViewController: UIViewController {
             loginView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginView.heightAnchor.constraint(equalToConstant: 50),
             
-            passwordView.topAnchor.constraint(equalTo: loginView.bottomAnchor),
+            passwordView.topAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -1),
             passwordView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             passwordView.heightAnchor.constraint(equalToConstant: 50),
@@ -414,53 +209,41 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-//            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-//            signUpButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
-//            signUpButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            signUpButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-//            signUpButton.heightAnchor.constraint(equalToConstant: 50),
-//            signUpButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            biometricAuthButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
-            biometricAuthButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            biometricAuthButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            biometricAuthButton.heightAnchor.constraint(equalToConstant: 50),
-            biometricAuthButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            activityIndicator.centerXAnchor.constraint(equalTo: passwordView.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: passwordView.centerYAnchor),
-            
+            signUpButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 8),
+            signUpButton.centerXAnchor.constraint(equalTo: logInButton.centerXAnchor),
+            signUpButton.heightAnchor.constraint(equalToConstant: 20),
+            signUpButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
         ])
     }
     
+    // MARK: - Управление клавиатурой
+
+    // Изменяет нижний отступ `UIScrollView` при появлении клавиатуры.
+    @objc private func willShowKeyboard(_ notification: NSNotification) {
+        let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+        scrollView.contentInset.bottom = keyboardHeight ?? 0.0
+    }
+
+    // Сбрасывает нижний отступ `UIScrollView` при скрытии клавиатуры.
+    @objc private func willHideKeyboard(_ notification: NSNotification) {
+        scrollView.contentInset.bottom = 0.0
+    }
     
-    
-    
+    // MARK: - Настройка наблюдателей клавиатуры
+
+    // Устанавливает наблюдателей на появление и скрытие клавиатуры.
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
-        
-        notificationCenter.addObserver(
-            self,
-            selector: #selector(self.willShowKeyboard(_:)),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        
-        notificationCenter.addObserver(
-            self,
-            selector: #selector(self.willHideKeyboard(_:)),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
+        notificationCenter.addObserver(self, selector: #selector(willShowKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(willHideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
+    // Удаляет наблюдателей за событиями клавиатуры.
     private func removeKeyboardObservers() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
-    
     
 }
 

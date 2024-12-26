@@ -22,6 +22,10 @@ class MainCoordinator: Coordinator {
         self.add(coordinator: profileCoordinator)
         self.add(coordinator: likeCoordinator)
         
+        // Получаем экран регистрации
+        let registrationViewController = profileCoordinator.getRegistrationViewController()
+        
+        
         let controllers = [feedCoordinator.navigationController, profileCoordinator.navigationController, likeCoordinator.navigationController]
         tabBarController.viewControllers = controllers
 //        tabBarController.selectedIndex = 0

@@ -25,16 +25,5 @@ class FeedCoordinator: Coordinator {
         self.navigationController = UINavigationController(rootViewController: feedViewController)
         
     }
-    
-    func routeToPostViewController(post: Post) {
-            let postViewController = PostViewController()
-        postViewController.titlePost = post.author
-            postViewController.routeToInfo = routeToInfoViewController
-            navigationController.pushViewController(postViewController, animated: true)
-        }
-        
-        func routeToInfoViewController(){
-            let infoViewController = InfoViewController()
-            navigationController.pushViewController(infoViewController, animated: true)
-        }
+ 
 }

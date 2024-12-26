@@ -41,20 +41,6 @@ final class LikeDataManager {
     
     func addLikePost(post: Post/*, in viewController: UIViewController*/){
 
-//        persistentContainer.performBackgroundTask { [weak self] backContext in
-//            guard let self else {
-//                return
-//            }
-//            let likePost = LikePost(context: persistentContainer.viewContext)
-//            likePost.id = Int16(post.id)
-//            likePost.author = post.author
-//            likePost.image = post.image
-//            likePost.likes = Int16(post.likes)
-//            likePost.views = Int16(post.views)
-//            likePost.postDescription = post.postDescription
-//            try? backContext.save()
-//        }
-        
         persistentContainer.performBackgroundTask { [weak self] backContext in
             guard let self = self else {
                 return
