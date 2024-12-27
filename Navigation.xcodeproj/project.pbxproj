@@ -65,6 +65,7 @@
 		4D8BFFB52C35416400A47076 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */; };
 		4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */; };
 		4DAD9E442D1AD005000A0F01 /* CurrentProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD9E432D1AD005000A0F01 /* CurrentProfileService.swift */; };
+		4DAD9E472D1EAC48000A0F01 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD9E462D1EAC48000A0F01 /* SettingViewController.swift */; };
 		4DCE973B2C1B2671005D3661 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973A2C1B2671005D3661 /* PostService.swift */; };
 		4DCE973E2C1C3217005D3661 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973D2C1C3217005D3661 /* Coordinator.swift */; };
 		4DCE97402C1C33D5005D3661 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973F2C1C33D5005D3661 /* MainCoordinator.swift */; };
@@ -150,6 +151,7 @@
 		4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecVideoViewController.swift; sourceTree = "<group>"; };
 		4DAD9E432D1AD005000A0F01 /* CurrentProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentProfileService.swift; sourceTree = "<group>"; };
+		4DAD9E462D1EAC48000A0F01 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		4DBFBD002BFF61A0009E6EFB /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		4DBFBD012BFF61A0009E6EFB /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			children = (
 				4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */,
 				4D3BF3092BBABAC800A3E0B0 /* ProfileHeaderView.swift */,
+				4DAD9E462D1EAC48000A0F01 /* SettingViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -385,6 +388,8 @@
 		4DAD9E452D1C1A11000A0F01 /* to DELETE */ = {
 			isa = PBXGroup;
 			children = (
+				4D3376E12CECCED400C4D199 /* LocalNotificationsService.swift */,
+				4D3376E32CEF5F3600C4D199 /* LocalAuthorizationService.swift */,
 				4D0DC8392C1716D800FC1422 /* UsersList.swift */,
 				4DCE973A2C1B2671005D3661 /* PostService.swift */,
 				4DFF97E82C0BAAFF0039C9F8 /* User */,
@@ -432,8 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				4D8BFF942C2DC10400A47076 /* Error.swift */,
-				4D3376E12CECCED400C4D199 /* LocalNotificationsService.swift */,
-				4D3376E32CEF5F3600C4D199 /* LocalAuthorizationService.swift */,
 				4D1B819E2C06124800212D36 /* Reusable.swift */,
 				4D12EA882BF764EA00D745C0 /* Model */,
 				4D0DC84A2C18DC1300FC1422 /* CustomView */,
@@ -615,6 +618,7 @@
 				4DCE97402C1C33D5005D3661 /* MainCoordinator.swift in Sources */,
 				4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */,
 				4DAD9E442D1AD005000A0F01 /* CurrentProfileService.swift in Sources */,
+				4DAD9E472D1EAC48000A0F01 /* SettingViewController.swift in Sources */,
 				4D1B81A72C0613E100212D36 /* PhotosCollectionViewCell.swift in Sources */,
 				4D3BF30C2BBEDC4E00A3E0B0 /* LogInViewController.swift in Sources */,
 				4D3376E42CEF5F3600C4D199 /* LocalAuthorizationService.swift in Sources */,
@@ -774,9 +778,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please give permission";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please give permission";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -806,9 +810,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please give permission";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please give permission";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

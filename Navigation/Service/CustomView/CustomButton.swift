@@ -18,6 +18,10 @@ class CustomButton: UIButton {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
+        self.titleLabel?.lineBreakMode = .byWordWrapping
+        self.titleLabel?.textAlignment = .center
+        self.titleLabel?.numberOfLines = 0
+//        self.sizeToFit()
         self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
     

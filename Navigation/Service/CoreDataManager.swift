@@ -48,34 +48,10 @@ class CoreDataManager {
             return .failure(.authError(message: "Unexpected error: \(error.localizedDescription)"))
         }
     }
-    
-//    func checkUser(email: String, password: String, completion: @escaping (Result<String, ApiError>) /*(Bool, String?)*/ -> Void) {
-//        
-////        let context = CoreDataManager.shared.context
-//
-//        // Поиск пользователя по email 
-//        let fetchRequest: NSFetchRequest<UserData> = UserData.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "email == %@  AND password == %@", email, password)
-//
-//        do {
-//            let results = try context.fetch(fetchRequest)
-//            
-//        if let user = results.first {
-//                // Успешная аутентификация, возвращаем email пользователя
-//                let email = user.email ?? ""
-//                completion(.success(email))
-//            } else {
-//                // Если пользователь не найден
-//                completion(.failure(ApiError.userNotFoundAndWrongPassword))
-//            }
-//        } catch {
-//            // Обработка ошибок Core Data
-//            completion(.failure(ApiError.authError(message: "Ошибка при проверке учетных данных: \(error.localizedDescription)")))
-//        }
-//    }
+
     
     
-    func createUser(email: String, fullName: String, password: String/*, avatar: String, status: String*/) -> Result<UserData, ApiError> {
+    func createUser(email: String,firstName:String, lastName: String, password: String, avatar: Data/*, status: String*/) -> Result<UserData, ApiError> {
             guard password.count >= 6 else {
                 return .failure(.weakPass)
             }
@@ -89,10 +65,12 @@ class CoreDataManager {
                     let newUser = UserData(context: context)
                     newUser.id = UUID()
                     newUser.email = email
-                    newUser.fullName = fullName
+                    newUser.firstName = firstName
+                    newUser.lastName = lastName
+                    newUser.fullName = firstName + " " + lastName
                     newUser.password = password
-                    newUser.avatar = ""
-                    newUser.status = ""
+                    newUser.avatar = avatar
+                    newUser.status = "Welcome"
                     newUser.isAuthorized = false
                     
                     try context.save()
@@ -207,29 +185,29 @@ extension CoreDataManager {
     }
     
     func fetchAuthorizedUser() -> UserData? {
-            let context = persistentContainer.viewContext
-            let request: NSFetchRequest<UserData> = UserData.fetchRequest()
-            request.predicate = NSPredicate(format: "isAuthorized == %@", NSNumber(value: true))
-            request.fetchLimit = 1
-            
-            do {
-                return try context.fetch(request).first
-            } catch {
-                print("Error fetching authorized user: \(error)")
-                return nil
-            }
-        }
+        let context = persistentContainer.viewContext
+        let request: NSFetchRequest<UserData> = UserData.fetchRequest()
+        request.predicate = NSPredicate(format: "isAuthorized == %@", NSNumber(value: true))
+        request.fetchLimit = 1
         
-        func authorizeUser(user: UserData) {
-            let context = persistentContainer.viewContext
-            user.isAuthorized = true
-            
-            do {
-                try context.save()
-            } catch {
-                print("Error authorizing user: \(error)")
-            }
+        do {
+            return try context.fetch(request).first
+        } catch {
+            print("Error fetching authorized user: \(error)")
+            return nil
         }
+    }
+    
+    func authorizeUser(user: UserData) {
+        let context = persistentContainer.viewContext
+        user.isAuthorized = true
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error authorizing user: \(error)")
+        }
+    }
     
     // Метод для выхода (сброс флага авторизации)
     func logoutUser(user: UserData) {
@@ -241,31 +219,8 @@ extension CoreDataManager {
         } catch {
             print("Error authorizing user: \(error)")
         }
-//        let context = persistentContainer.viewContext
-//        let request: NSFetchRequest<UserData> = UserData.fetchRequest()
-//        request.predicate = NSPredicate(format: "isAuthorized == %@", NSNumber(value: true)) // предполагаем, что в модели есть флаг "isAuthorized"
-//        
-//        do {
-//            let authorizedUsers = try context.fetch(request)
-//            for user in authorizedUsers {
-//                user.isAuthorized = false  // Убираем авторизацию, не удаляя пользователя
-//            }
-//            try context.save()
-//        } catch {
-//            print("Error logging out user: \(error)")
-//        }
-    }
         
-//        func logoutUser(user: UserData) {
-//            let context = persistentContainer.viewContext
-//            user.status = "unauthorized"
-//            
-//            do {
-//                try context.save()
-//            } catch {
-//                print("Error logging out user: \(error)")
-//            }
-//        }
+    }
 }
 
 extension UserData {

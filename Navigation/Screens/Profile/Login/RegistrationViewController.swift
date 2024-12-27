@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var routeToProfile: ((UserData) -> ())?
     
@@ -23,6 +23,7 @@ class RegistrationViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    private var avatarFilePath: String?
     
     private lazy var changeAvatarButton: CustomButton = {
         let button = CustomButton(title: "Select an avatar".localized, titleColor: .color){
@@ -69,19 +70,18 @@ class RegistrationViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .customBackgroundColor
         setupView()
-        setupBindings()
         navigationController?.navigationBar.isHidden = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
@@ -97,116 +97,115 @@ class RegistrationViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(confirmPasswordTextField)
         view.addSubview(registerButton)
-
+        
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             avatarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-
+            
             changeAvatarButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
             changeAvatarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
+            
             emailTextField.topAnchor.constraint(equalTo: changeAvatarButton.bottomAnchor, constant: 20),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             emailTextField.heightAnchor.constraint(equalToConstant: 44),
-
+            
             firstNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
             firstNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             firstNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             firstNameTextField.heightAnchor.constraint(equalToConstant: 44),
-
+            
             lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 12),
             lastNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             lastNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             lastNameTextField.heightAnchor.constraint(equalToConstant: 44),
-
+            
             passwordTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 12),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44),
-
+            
             confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 12),
             confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 44),
-
+            
             registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 20),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             registerButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
-
-    private func setupBindings() {
-  
-    }
-
+    
     private func changeAvatarTapped() {
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.delegate = self
-//        imagePicker.sourceType = .photoLibrary
-//        imagePicker.allowsEditing = true
-//        present(imagePicker, animated: true)
-    }
-
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//        picker.dismiss(animated: true)
-//
-//        if let selectedImage = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-//            avatarImageView.image = selectedImage
-//            viewModel.changeAvatart(avatar: selectedImage)
-//        }
-//    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true)
-    }
-    
-
-    
-    private func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-    
-    private func showSuccessAlert(message: String) {
-            let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
+        // Проверяем, доступен ли доступ к фото
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = true // позволяет редактировать фото
+            self.present(picker, animated: true, completion: nil)
         }
-
+    }
+    // Данный метод будет вызван после выбора фото из галереи
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Получаем выбранное фото
+        if let selectedImage = info[.editedImage] as? UIImage {
+            avatarImageView.image = selectedImage
+            //            avatarFilePath = saveImageToDocumentsDirectory(image: selectedImage)
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // Этот метод вызывается, если пользователь отменяет выбор
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+    
     private func registerTapped() {
         
         guard let email = emailTextField.text, !email.isEmpty,
               let firstName = firstNameTextField.text, !firstName.isEmpty,
               let lastName = lastNameTextField.text, !lastName.isEmpty,
-              let password = passwordTextField.text, !password.isEmpty
+              let password = passwordTextField.text, !password.isEmpty,
+              let avatarImage = avatarImageView.image,
+              let avatarData = avatarImage.jpegData(compressionQuality: 0.8)
         else {
             showErrorAlert(message: "Please fill in all fields")
             return
         }
-        let fullName = "\(firstName) \(lastName)"
+//        let fullName = "\(firstName) \(lastName)"
         
-        // Используем CoreDataManager для создания пользователя
-        switch CoreDataManager.shared.createUser(email: email, fullName: fullName, password: password/*, avatar: avatar, status: status*/) {
-        case .success(let newUser):
-            // После успешной регистрации вызываем замыкание для маршрутизации на профиль
+        if password == confirmPasswordTextField.text!{
             
-            routeToProfile?(newUser)
-            newUser.isAuthorized = true
-            
-            showSuccessAlert(message: "User successfully registered")
-        case .failure(let error):
-            showErrorAlert(message: error.localizedDescription)
+            // Используем CoreDataManager для создания пользователя
+            switch CoreDataManager.shared.createUser(email: email, firstName: firstName, lastName: lastName, password: password, avatar: avatarData) {
+            case .success(let newUser):
+                // После успешной регистрации вызываем замыкание для маршрутизации на профиль
+                
+                routeToProfile?(newUser)
+                newUser.isAuthorized = true
+                
+                showSuccessAlert(message: "User successfully registered")
+            case .failure(let error):
+                showErrorAlert(message: error.localizedDescription)
+            }
+        }else{
+            showErrorAlert(message: "Passwords do not match")
+            confirmPasswordTextField.text = ""
         }
-
-        }
+        
+    }
     
-
-
+    
+    
 }
 
 

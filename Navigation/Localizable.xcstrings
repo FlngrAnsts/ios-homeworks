@@ -56,6 +56,17 @@
         }
       }
     },
+    "Edit profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать профиль"
+          }
+        }
+      }
+    },
     "Enter login and password" : {
       "extractionState" : "manual",
       "localizations" : {

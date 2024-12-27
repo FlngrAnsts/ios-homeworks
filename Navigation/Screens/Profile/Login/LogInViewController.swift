@@ -11,9 +11,6 @@ import CoreData
 class LogInViewController: UIViewController {
     // MARK: - Services
     
-    private let localAuthorizationService = LocalAuthorizationService()
- 
-    
     var routeToProfile: ((UserData) -> ())?
     var routeToRegistration:(()->())?
 
@@ -87,9 +84,7 @@ class LogInViewController: UIViewController {
         setupView()
         addSubviews()
         setupContraints()
-        
         showUsers()
-        
         
     }
     
@@ -97,7 +92,7 @@ class LogInViewController: UIViewController {
     func showUsers() {
             let users = CoreDataManager.shared.fetchAllUsers()
             for user in users {
-                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"), isAuth: \(user.isAuthorized)")
+                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"),pass: \(user.password ?? "no") isAuth: \(user.isAuthorized)")
             }
         }
     
@@ -138,13 +133,6 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(contentView)
     }
    
-    
-    private func showErrorAlert(message: String) {
-            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
-        }
-    
     // MARK: - Действия пользователя
 
     // Обрабатывает нажатие кнопки входа.

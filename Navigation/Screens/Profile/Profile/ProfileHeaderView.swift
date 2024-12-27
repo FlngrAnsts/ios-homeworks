@@ -11,11 +11,13 @@ class ProfileHeaderView: UIView {
     
     private var currentUser: UserData?
     
-   override init(frame: CGRect) {
-            super.init(frame: frame)
-            addSubviews()
-            setupContraints()
-        }
+    var buttonSettingCallback: () -> () = {}
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews()
+        setupContraints()
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -23,7 +25,7 @@ class ProfileHeaderView: UIView {
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
-            height: 230
+            height: 200
         )
     }
     
@@ -52,9 +54,9 @@ class ProfileHeaderView: UIView {
         imageView.isUserInteractionEnabled = true
         
         let tap = UITapGestureRecognizer(
-                   target: self,
-                   action: #selector(tapAvatar)
-               )
+            target: self,
+            action: #selector(tapAvatar)
+        )
         imageView.addGestureRecognizer(tap)
         
         return imageView
@@ -63,7 +65,6 @@ class ProfileHeaderView: UIView {
     lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "Anastasiya"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .customTextColor
         
@@ -75,26 +76,24 @@ class ProfileHeaderView: UIView {
     lazy var statusLabel: UILabel = {
         let text = UILabel()
         
-        text.text = "Тут я что-то написал..."
-        text.font = UIFont.systemFont(ofSize: 14)
+        text.font = UIFont.systemFont(ofSize: 15)
         text.textColor = .customTextColor
         text.lineBreakMode = .byWordWrapping
         text.numberOfLines = 2
+        text.textAlignment = .left
         
         text.translatesAutoresizingMaskIntoConstraints = false
         
         return text
     }()
     
-    lazy var setStatusButton: CustomButton = {
+    lazy var newPostButton: CustomButton = {
         let button = CustomButton(title: "New post".localized, titleColor: .white){
             self.buttonPressed()
         }
         
         button.backgroundColor = .systemBlue
-        
         button.layer.cornerRadius = 4
-        
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowOpacity = 0.7
         button.layer.shadowRadius = 4
@@ -119,14 +118,29 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    private lazy var settingButton: CustomButton = {
+        let button = CustomButton(title: "Edit profile".localized, titleColor: .color){
+            self.settingAction()
+        }
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     func buttonPressed() {
         print(statusLabel.text!)
-      
+        
+    }
+    
+    func settingAction(){
+        buttonSettingCallback()
+        
     }
     
     @objc func closeAnimateButtonPressed(_ sender: UIButton) {
         closeAnimationExample()
-     
+        
     }
     
     @objc private func tapAvatar(gesture: UIGestureRecognizer) {
@@ -167,7 +181,6 @@ class ProfileHeaderView: UIView {
                     
                     self.backgroundView.alpha = 0.6
                 }
-                
                 // 2
                 UIView.addKeyframe(
                     withRelativeStartTime: 0.5,
@@ -176,8 +189,6 @@ class ProfileHeaderView: UIView {
                     self.closeAnimateButton.alpha = 1
                 }
             },
-            
-            
             completion: { finished in
                 print("Did finish Open animate")
             })
@@ -185,29 +196,21 @@ class ProfileHeaderView: UIView {
     }
     
     private func closeAnimationExample() {
-        
         let center = 16 + Constant.avatarSize/2
-        
         UIView.animate(
             withDuration: 0.5,
             delay: 1.0,
             options: .curveLinear
         ) {
-            
             self.closeAnimateButton.alpha = 0.0
-            
             self.backgroundView.alpha = 0.0
-            
             self.avatarImageView.center = CGPoint(
                 x: center,
                 y: center
             )
-            
             self.avatarImageView.layer.cornerRadius = 65
             self.avatarImageView.layer.borderWidth = 3
             self.avatarImageView.transform = CGAffineTransform.identity
-            
-            
         } completion: { finished in
             print("Did finish close animate")
         }
@@ -215,25 +218,35 @@ class ProfileHeaderView: UIView {
     
     func setupProfile(user: UserData){
         currentUser = user
-        if user.avatar != ""{
-            avatarImageView.image = UIImage(named: user.avatar! /*?? ""*/ )
-        } else {
+        if (user.avatar != nil) {
+            avatarImageView.image = UIImage(data: user.avatar!)
+        }else {
             avatarImageView.image = UIImage(systemName: "person.circle")
-            avatarImageView.tintColor = .gray
         }
         fullNameLabel.text = user.fullName
         statusLabel.text = user.status
-        }
+    }
     
+    func update(with user: UserData) {
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
+        
+        if let avatarData = user.avatar {
+            avatarImageView.image = UIImage(data: avatarData)
+        } else {
+            avatarImageView.image = UIImage(systemName: "person.circle")
+        }
+    }
     
     func addSubviews() {
         
         addSubview(fullNameLabel)
         addSubview(statusLabel)
-        addSubview(setStatusButton)
+        addSubview(newPostButton)
         addSubview(backgroundView)
         addSubview(closeAnimateButton)
         addSubview(avatarImageView)
+        addSubview(settingButton)
         
     }
     
@@ -251,13 +264,17 @@ class ProfileHeaderView: UIView {
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
             fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
             
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
-            
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 24),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
             statusLabel.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
+            
+            settingButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
+            settingButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor, constant: 4),
+            settingButton.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: -4),
+            
+            newPostButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
+            newPostButton.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            newPostButton.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16),
             
             backgroundView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
@@ -273,6 +290,6 @@ class ProfileHeaderView: UIView {
         ])
     }
     
-
+    
     
 }

@@ -9,12 +9,16 @@ import UIKit
 import CoreData
 
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, ProfileSettingsDelegate  {
+
+//    private var coreDataService = CoreDataManager.shared
     
-    private var coreDataService = CoreDataManager.shared
-    var user: UserData
+    var currentUser: UserData?
     var routeToPhoto: () -> () = {}
     var routeToLogin: (()->())?
+    private let profileHeaderView = ProfileHeaderView()
+    
+    fileprivate var data = Post.make()
   
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
@@ -23,7 +27,7 @@ class ProfileViewController: UIViewController {
     }()
     
     init(user: UserData) {
-        self.user = user
+        self.currentUser = user
         super.init(nibName: nil, bundle: nil)
         
     }
@@ -32,8 +36,6 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    fileprivate var data = Post.make()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
@@ -48,52 +50,33 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         addSubviews()
-        
         setupConstraints()
         tuneTableView()
         
-        
-        
+        loadUserData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
     
     @objc func handleTap(sender: UITapGestureRecognizer){
         print("tapped")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
+
+    private func setupView(){
+        self.view.backgroundColor = .customBackgroundColor
         self.navigationController?.navigationBar.isHidden = false
         let logoutButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"), style: .done, target: self, action: #selector(logoutButtonTapped))
         navigationItem.rightBarButtonItem = logoutButton
         logoutButton.tintColor = UIColor.customTextColor
         self.navigationItem.hidesBackButton = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
-    
-    private func setupView(){
-        self.view.backgroundColor = .customBackgroundColor
-//        self.navigationController?.navigationBar.isHidden = false
-//        let logoutButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"), style: .done, target: self, action: #selector(logoutButtonTapped))
-//        navigationItem.rightBarButtonItem = logoutButton
-//        logoutButton.tintColor = UIColor.customTextColor
         
     }
     
@@ -141,10 +124,28 @@ class ProfileViewController: UIViewController {
         self.navigationController?.pushViewController(audioRecVC, animated: true)
     }
     
+    func settingVC(){
+        let profileVC = SettingViewController()
+        profileVC.currentUser = currentUser
+        profileVC.delegate = self
+        present(profileVC, animated: true)
+    }
+    private func loadUserData() {
+        // Загружаем данные текущего пользователя из Core Data
+        if let user = currentUser {
+            profileHeaderView.update(with: user)
+        }
+    }
+
+    func didUpdateProfile(user: UserData) {
+        currentUser = user
+        profileHeaderView.update(with: user)
+    }
+    
     private func tuneTableView(){
-        let user = user
-        let headerView = ProfileHeaderView()
-        headerView.setupProfile(user: user)
+        let headerView = profileHeaderView
+        headerView.buttonSettingCallback = settingVC
+        tableView.tableHeaderView = profileHeaderView
         
         tableView.setAndLayout(headerView: headerView)
         
@@ -243,4 +244,21 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 extension ProfileViewController: UITableViewDelegate {}
+
+//extension ProfileViewController: ProfileSettingsDelegate {
+//    func didUpdateProfile(user: UserData) {
+//        // Обновляем интерфейс
+//        self.user = user
+//        self.updateUI()
+//    }
+//    
+//    private func updateUI() {
+//        // Обновляем данные на экране
+//        nameLabel.text = user?.fullName
+//        statusLabel.text = currentUser?.status
+//        if let avatarData = currentUser?.avatar {
+//            avatarImageView.image = UIImage(data: avatarData)
+//        }
+//    }
+//}
 
