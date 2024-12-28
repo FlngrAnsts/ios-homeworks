@@ -92,7 +92,7 @@ class LogInViewController: UIViewController {
     func showUsers() {
             let users = CoreDataManager.shared.fetchAllUsers()
             for user in users {
-                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"),pass: \(user.password ?? "no") isAuth: \(user.isAuthorized)")
+                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"),pass: \(user.password ?? "no"), Posts: \(String(describing: user.posts?.count)), Photo: \(String(describing: user.photos?.count)), FavPosts: \(String(describing: user.likedPosts?.count)), isAuth: \(user.isAuthorized)")
             }
         }
     

@@ -10,7 +10,7 @@ import UIKit
 class PhotosTableViewCell: UITableViewCell {
     
     static let cellID = "PhotosTableViewCell"
-    var buttonTapCallback: () -> () = {}
+    var buttonTapCallback: (()->())?
     
     private enum Constants{
         static let cornerRadius = 6
@@ -38,7 +38,7 @@ class PhotosTableViewCell: UITableViewCell {
     }()
     
     @objc func tapArrow(_: UIResponder){
-        buttonTapCallback()
+        buttonTapCallback!()
     }
     
     private lazy var collectionImageView_1: UIImageView = {
@@ -146,16 +146,31 @@ class PhotosTableViewCell: UITableViewCell {
         
     }
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func create(with photo: [PhotoData]){
+        // Обновляем каждое ImageView с проверкой на наличие данных
+        if photo.indices.contains(0), let imageData = photo[0].image {
+            collectionImageView_1.image = UIImage(data: imageData)
+        } else {
+            collectionImageView_1.image = nil // Очищаем, если данных нет
+        }
+        
+        if photo.indices.contains(1), let imageData = photo[1].image {
+            collectionImageView_2.image = UIImage(data: imageData)
+        } else {
+            collectionImageView_2.image = nil // Очищаем, если данных нет
+        }
+        
+        if photo.indices.contains(2), let imageData = photo[2].image {
+            collectionImageView_3.image = UIImage(data: imageData)
+        } else {
+            collectionImageView_3.image = nil // Очищаем, если данных нет
+        }
+        
+        if photo.indices.contains(3), let imageData = photo[3].image {
+            collectionImageView_4.image = UIImage(data: imageData)
+        } else {
+            collectionImageView_4.image = nil // Очищаем, если данных нет
+        }
     }
 
 }

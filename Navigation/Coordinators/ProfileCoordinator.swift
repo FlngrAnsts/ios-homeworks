@@ -63,6 +63,7 @@ class ProfileCoordinator: Coordinator {
     // Маршрут на экран фотографий
     func routeToPhoto() {
         let photosViewController = PhotosViewController()
+        photosViewController.currentUser = currentUser
         navigationController.pushViewController(photosViewController, animated: true)
     }
     
@@ -89,6 +90,7 @@ class ProfileCoordinator: Coordinator {
             CoreDataManager.shared.logoutUser(user: user)
             self.routeToLogin()
         }
+        profileViewController.routeToPhoto = routeToPhoto
         return profileViewController
     }
     
@@ -102,94 +104,6 @@ class ProfileCoordinator: Coordinator {
         }
         return registrationViewController
     }
-    
-    
-    
-    
-    //    var childCoordinators: [Coordinator] = []
-    //    var navigationController : UINavigationController
-    //
-    //    func getNavigationController() -> UINavigationController{
-    //        return self.navigationController
-    //    }
-    //    var isAuthorized = false
-    //    var user:UserData
-    //
-    //    init() {//var user: UserData?
-    //
-    //        self.navigationController = UINavigationController()
-    //        var viewController: UIViewController?
-    //        if isAuthorized{
-    //            viewController = getProfileViewController()
-    //        } else {
-    //            viewController = getLoginViewController()
-    //        }
-    //
-    ////        if CurrentProfileService.shared.featchCurrentProfile() == nil {
-    ////            viewController = getLoginViewController()
-    ////        } else {
-    ////            CoreDataManager.shared.getUser()
-    ////            viewController = getProfileViewController()
-    ////
-    ////        }
-    //
-    //        viewController?.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
-    //        self.navigationController = UINavigationController(rootViewController: viewController!)
-    //
-    //    }
-    //
-    //    func routeToProfile(user: User){
-    //            let profileViewController = getProfileViewController()
-    ////            profileViewController.user = user
-    //            navigationController.pushViewController(profileViewController, animated: true)
-    //        }
-    //
-    //        func routeToLogin(){
-    //            let loginViewConntroller = getLoginViewController()
-    //            navigationController.pushViewController(loginViewConntroller, animated: true)
-    //        }
-    //
-    //        func routeToPhoto(){
-    //            let photosViewController = PhotosViewController()
-    //            self.navigationController.pushViewController(photosViewController, animated: true)
-    //        }
-    //
-    //        func getLoginViewController() -> LogInViewController{
-    //
-    //            let loginViewConntroller = LogInViewController(/*userService: userService, delegate: MyLoginFactory().makeLoginInspector()*/)
-    //            loginViewConntroller.routeToProfile = routeToProfile
-    //            return loginViewConntroller
-    //        }
-    //
-    //        func getProfileViewController() -> ProfileViewController{
-    //
-    //
-    //            let profileController = ProfileViewController(user: user)
-    ////            profileController.routeToPhoto = routeToPhoto
-    //            return profileController
-    //        }
-    //
-    ////    func routeToProfile(user: User){
-    ////        let profileViewController = getProfileViewController()
-    ////        profileViewController.user = user
-    ////        navigationController.pushViewController(profileViewController, animated: true)
-    ////    }
-    ////
-    ////    func routeToPhoto(){
-    ////        let photosViewController = PhotosViewController()
-    ////        self.navigationController.pushViewController(photosViewController, animated: true)
-    ////
-    ////    }
-    ////
-    ////
-    ////    func getProfileViewController() -> ProfileViewController{
-    ////
-    ////        let profileVM = ProfileViewModel()
-    ////        let profileController = ProfileViewController(viewModel: profileVM)
-    ////        profileController.routeToPhoto = routeToPhoto
-    ////        return profileController
-    ////    }
-    
     
 }
 

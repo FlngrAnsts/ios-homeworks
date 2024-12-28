@@ -14,7 +14,6 @@
 		4D0DC83E2C17274A00FC1422 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */; };
 		4D0DC8412C18B42700FC1422 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8402C18B42700FC1422 /* LoginFactory.swift */; };
 		4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC8422C18B47D00FC1422 /* MyLoginFactory.swift */; };
-		4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */; };
 		4D1259062C4FDD6400CF4543 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1259052C4FDD6400CF4543 /* FirebaseAnalytics */; };
 		4D1259082C4FDD6400CF4543 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1259072C4FDD6400CF4543 /* FirebaseAuth */; };
 		4D12590A2C4FDD6400CF4543 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1259092C4FDD6400CF4543 /* FirebaseAuthCombine-Community */; };
@@ -33,8 +32,6 @@
 		4D1DA1AF2BB4C8FC00A1E777 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4D1DA1AE2BB4C8FC00A1E777 /* Base */; };
 		4D1DA1B72BB4CA7400A1E777 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */; };
 		4D1DA1B92BB4CAA500A1E777 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */; };
-		4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E192C36C87600A51058 /* 01 UGLY.mp3 */; };
-		4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */; };
 		4D308E1F2C36CA5000A51058 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D308E1E2C36CA5000A51058 /* iOSIntPackage */; };
 		4D3376DF2CE7EE5500C4D199 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4D3376DE2CE7EE5500C4D199 /* Localizable.xcstrings */; };
 		4D3376E22CECCED400C4D199 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3376E12CECCED400C4D199 /* LocalNotificationsService.swift */; };
@@ -52,20 +49,10 @@
 		4D764EB52CA7453400EA8425 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D764EB42CA7453400EA8425 /* Extension.swift */; };
 		4D8BFF952C2DC10400A47076 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF942C2DC10400A47076 /* Error.swift */; };
 		4D8BFF972C33192600A47076 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF962C33192600A47076 /* CheckerService.swift */; };
-		4D8BFF992C34223600A47076 /* MediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF982C34223600A47076 /* MediaTableViewCell.swift */; };
-		4D8BFF9C2C342C5200A47076 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFF9B2C342C5200A47076 /* AudioViewController.swift */; };
-		4D8BFFA12C3441FF00A47076 /* 02 Inside Beast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA02C3441FF00A47076 /* 02 Inside Beast.mp3 */; };
-		4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA22C34421200A47076 /* 07 Last Heaven.mp3 */; };
-		4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA42C34422100A47076 /* 11 Filth in the Beauty.mp3 */; };
-		4D8BFFA72C34423300A47076 /* 05 Suicide Circus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA62C34423300A47076 /* 05 Suicide Circus.mp3 */; };
-		4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFA82C34426500A47076 /* 03 Ninth Odd Smell.mp3 */; };
-		4D8BFFAD2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAC2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 */; };
 		4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFAE2C3540A100A47076 /* Video.swift */; };
-		4D8BFFB32C35412C00A47076 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB22C35412C00A47076 /* VideoViewController.swift */; };
-		4D8BFFB52C35416400A47076 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */; };
-		4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */; };
 		4DAD9E442D1AD005000A0F01 /* CurrentProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD9E432D1AD005000A0F01 /* CurrentProfileService.swift */; };
 		4DAD9E472D1EAC48000A0F01 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD9E462D1EAC48000A0F01 /* SettingViewController.swift */; };
+		4DAD9E492D1F1963000A0F01 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD9E482D1F1963000A0F01 /* CreatePostViewController.swift */; };
 		4DCE973B2C1B2671005D3661 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973A2C1B2671005D3661 /* PostService.swift */; };
 		4DCE973E2C1C3217005D3661 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973D2C1C3217005D3661 /* Coordinator.swift */; };
 		4DCE97402C1C33D5005D3661 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE973F2C1C33D5005D3661 /* MainCoordinator.swift */; };
@@ -102,7 +89,6 @@
 		4D0DC83D2C17274A00FC1422 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		4D0DC8402C18B42700FC1422 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		4D0DC8422C18B47D00FC1422 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
-		4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4D12EA8C2BF7661400D745C0 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		4D1B819E2C06124800212D36 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -120,8 +106,6 @@
 		4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		4D1DA1B82BB4CAA500A1E777 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D1DA1BC2BB4CB6600A1E777 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		4D308E192C36C87600A51058 /* 01 UGLY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 UGLY.mp3"; sourceTree = "<group>"; };
-		4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Enemy.mp3; sourceTree = "<group>"; };
 		4D3376DE2CE7EE5500C4D199 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4D3376E02CE7EE9D00C4D199 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4D3376E12CECCED400C4D199 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
@@ -138,20 +122,10 @@
 		4D764EB42CA7453400EA8425 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		4D8BFF942C2DC10400A47076 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		4D8BFF962C33192600A47076 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
-		4D8BFF982C34223600A47076 /* MediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewCell.swift; sourceTree = "<group>"; };
-		4D8BFF9B2C342C5200A47076 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
-		4D8BFFA02C3441FF00A47076 /* 02 Inside Beast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "02 Inside Beast.mp3"; sourceTree = "<group>"; };
-		4D8BFFA22C34421200A47076 /* 07 Last Heaven.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "07 Last Heaven.mp3"; sourceTree = "<group>"; };
-		4D8BFFA42C34422100A47076 /* 11 Filth in the Beauty.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "11 Filth in the Beauty.mp3"; sourceTree = "<group>"; };
-		4D8BFFA62C34423300A47076 /* 05 Suicide Circus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "05 Suicide Circus.mp3"; sourceTree = "<group>"; };
-		4D8BFFA82C34426500A47076 /* 03 Ninth Odd Smell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "03 Ninth Odd Smell.mp3"; sourceTree = "<group>"; };
-		4D8BFFAC2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3"; sourceTree = "<group>"; };
 		4D8BFFAE2C3540A100A47076 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		4D8BFFB22C35412C00A47076 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
-		4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecVideoViewController.swift; sourceTree = "<group>"; };
 		4DAD9E432D1AD005000A0F01 /* CurrentProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentProfileService.swift; sourceTree = "<group>"; };
 		4DAD9E462D1EAC48000A0F01 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4DAD9E482D1F1963000A0F01 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		4DBFBD002BFF61A0009E6EFB /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		4DBFBD012BFF61A0009E6EFB /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		4DBFBD0E2BFF61A0009E6EFB /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
@@ -217,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				4D1DA1B62BB4CA7400A1E777 /* FeedViewController.swift */,
-				4D0DC84C2C18E72A00FC1422 /* FeedModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -233,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				4D1B81A12C06135700212D36 /* Photo.swift */,
-				4D8BFFAE2C3540A100A47076 /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,8 +234,9 @@
 		4D1B81A32C06137F00212D36 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				4D1DA1BC2BB4CB6600A1E777 /* Post.swift */,
+				4DEE3AD62C9188F8000FB15D /* Like */,
 				4D12EA892BF7658400D745C0 /* PostTableViewCell.swift */,
+				4DAD9E482D1F1963000A0F01 /* CreatePostViewController.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -294,12 +267,12 @@
 				4DEAB17B2D0B83750063611E /* Coordinators */,
 				4D3376DE2CE7EE5500C4D199 /* Localizable.xcstrings */,
 				4D1DA1AB2BB4C8FC00A1E777 /* Assets.xcassets */,
+				4DEE3ACD2C917E9B000FB15D /* Navigation.xcdatamodeld */,
 				4D1DA1AD2BB4C8FC00A1E777 /* LaunchScreen.storyboard */,
 				4DEAB1772D0B6E0B0063611E /* Screens */,
 				4DEAB1782D0B6E220063611E /* Service */,
 				4D1DA1B02BB4C8FC00A1E777 /* Info.plist */,
 				4DE2EFB42C4EB87100D8AD9F /* GoogleService-Info.plist */,
-				4DEE3ACD2C917E9B000FB15D /* Navigation.xcdatamodeld */,
 				4DAD9E452D1C1A11000A0F01 /* to DELETE */,
 			);
 			path = Navigation;
@@ -308,8 +281,6 @@
 		4D3BF3002BB986C700A3E0B0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				4D8BFF9A2C342C2400A47076 /* Media */,
-				4DEE3AD62C9188F8000FB15D /* Like */,
 				4D8BFFB62C3546BE00A47076 /* Profile */,
 				4D0DC8362C17150300FC1422 /* Login */,
 				4D1B81A32C06137F00212D36 /* Post */,
@@ -331,50 +302,6 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		4D8BFF9A2C342C2400A47076 /* Media */ = {
-			isa = PBXGroup;
-			children = (
-				4DA0F4B22C36BB7B003575F2 /* AudioRecVideoViewController.swift */,
-				4D8BFFB12C35411600A47076 /* Video */,
-				4D8BFFB02C3540EE00A47076 /* Audio */,
-				4D8BFF982C34223600A47076 /* MediaTableViewCell.swift */,
-			);
-			path = Media;
-			sourceTree = "<group>";
-		};
-		4D8BFF9D2C34408A00A47076 /* Music */ = {
-			isa = PBXGroup;
-			children = (
-				4D308E192C36C87600A51058 /* 01 UGLY.mp3 */,
-				4D8BFFA02C3441FF00A47076 /* 02 Inside Beast.mp3 */,
-				4D8BFFA22C34421200A47076 /* 07 Last Heaven.mp3 */,
-				4D8BFFA42C34422100A47076 /* 11 Filth in the Beauty.mp3 */,
-				4D8BFFA62C34423300A47076 /* 05 Suicide Circus.mp3 */,
-				4D8BFFA82C34426500A47076 /* 03 Ninth Odd Smell.mp3 */,
-				4D308E1B2C36C8BF00A51058 /* Enemy.mp3 */,
-				4D8BFFAC2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 */,
-			);
-			path = Music;
-			sourceTree = "<group>";
-		};
-		4D8BFFB02C3540EE00A47076 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				4D8BFF9D2C34408A00A47076 /* Music */,
-				4D8BFF9B2C342C5200A47076 /* AudioViewController.swift */,
-			);
-			path = Audio;
-			sourceTree = "<group>";
-		};
-		4D8BFFB12C35411600A47076 /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				4D8BFFB22C35412C00A47076 /* VideoViewController.swift */,
-				4D8BFFB42C35416400A47076 /* VideoTableViewCell.swift */,
-			);
-			path = Video;
-			sourceTree = "<group>";
-		};
 		4D8BFFB62C3546BE00A47076 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +315,11 @@
 		4DAD9E452D1C1A11000A0F01 /* to DELETE */ = {
 			isa = PBXGroup;
 			children = (
+				4D1DA1BC2BB4CB6600A1E777 /* Post.swift */,
+				4DEE3ACB2C917437000FB15D /* LikeDataManager.swift */,
+				4D12EA882BF764EA00D745C0 /* Model */,
+				4D8BFFAE2C3540A100A47076 /* Video.swift */,
+				4DAD9E432D1AD005000A0F01 /* CurrentProfileService.swift */,
 				4D3376E12CECCED400C4D199 /* LocalNotificationsService.swift */,
 				4D3376E32CEF5F3600C4D199 /* LocalAuthorizationService.swift */,
 				4D0DC8392C1716D800FC1422 /* UsersList.swift */,
@@ -438,11 +370,9 @@
 			children = (
 				4D8BFF942C2DC10400A47076 /* Error.swift */,
 				4D1B819E2C06124800212D36 /* Reusable.swift */,
-				4D12EA882BF764EA00D745C0 /* Model */,
 				4D0DC84A2C18DC1300FC1422 /* CustomView */,
 				4D12EA8B2BF765EC00D745C0 /* Utils */,
 				4D527C452D1983FD006FD2B5 /* CoreDataManager.swift */,
-				4DAD9E432D1AD005000A0F01 /* CurrentProfileService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -453,6 +383,7 @@
 				4D527C3E2D160181006FD2B5 /* AppCoordinator.swift */,
 				4DCE973D2C1C3217005D3661 /* Coordinator.swift */,
 				4DCE973F2C1C33D5005D3661 /* MainCoordinator.swift */,
+				4DEE3AD42C9188F0000FB15D /* LikeCoordinator.swift */,
 				4D6F56AC2C1C4930006F1E8E /* FeedCoordinator.swift */,
 				4D6F56A82C1C37CC006F1E8E /* ProfileCoordinator.swift */,
 			);
@@ -463,8 +394,6 @@
 			isa = PBXGroup;
 			children = (
 				4DEE3AC92C917407000FB15D /* LikePostTableViewController.swift */,
-				4DEE3ACB2C917437000FB15D /* LikeDataManager.swift */,
-				4DEE3AD42C9188F0000FB15D /* LikeCoordinator.swift */,
 			);
 			path = Like;
 			sourceTree = "<group>";
@@ -554,15 +483,7 @@
 				4D1DA1AC2BB4C8FC00A1E777 /* Assets.xcassets in Resources */,
 				4DE2EFB52C4EB87100D8AD9F /* GoogleService-Info.plist in Resources */,
 				4D3376DF2CE7EE5500C4D199 /* Localizable.xcstrings in Resources */,
-				4D8BFFA32C34421200A47076 /* 07 Last Heaven.mp3 in Resources */,
-				4D8BFFA52C34422100A47076 /* 11 Filth in the Beauty.mp3 in Resources */,
-				4D8BFFA92C34426500A47076 /* 03 Ninth Odd Smell.mp3 in Resources */,
-				4D8BFFA12C3441FF00A47076 /* 02 Inside Beast.mp3 in Resources */,
 				4D1DA1AF2BB4C8FC00A1E777 /* Base in Resources */,
-				4D308E1C2C36C8BF00A51058 /* Enemy.mp3 in Resources */,
-				4D308E1A2C36C87600A51058 /* 01 UGLY.mp3 in Resources */,
-				4D8BFFAD2C34440700A47076 /* League_of_Legends_Cailin_Russo_Chrissy_Costanza_-_Phoenix_(musmore.com).mp3 in Resources */,
-				4D8BFFA72C34423300A47076 /* 05 Suicide Circus.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,8 +498,6 @@
 				4D0DC8412C18B42700FC1422 /* LoginFactory.swift in Sources */,
 				4D0DC8432C18B47D00FC1422 /* MyLoginFactory.swift in Sources */,
 				4DEE3ACF2C917E9B000FB15D /* Navigation.xcdatamodeld in Sources */,
-				4D8BFF9C2C342C5200A47076 /* AudioViewController.swift in Sources */,
-				4D8BFFB32C35412C00A47076 /* VideoViewController.swift in Sources */,
 				4D527C462D1983FD006FD2B5 /* CoreDataManager.swift in Sources */,
 				4D1B819F2C06124800212D36 /* Reusable.swift in Sources */,
 				4D1B81A92C06141A00212D36 /* PhotosViewController.swift in Sources */,
@@ -588,10 +507,8 @@
 				4D12EA8A2BF7658400D745C0 /* PostTableViewCell.swift in Sources */,
 				4DFF97EC2C11D87D0039C9F8 /* CurrentUserService.swift in Sources */,
 				4DEE3ACC2C917437000FB15D /* LikeDataManager.swift in Sources */,
-				4DA0F4B32C36BB7B003575F2 /* AudioRecVideoViewController.swift in Sources */,
 				4D6F56AD2C1C4930006F1E8E /* FeedCoordinator.swift in Sources */,
 				4D1DA1A32BB4C8FB00A1E777 /* AppDelegate.swift in Sources */,
-				4D0DC84D2C18E72A00FC1422 /* FeedModel.swift in Sources */,
 				4D527C442D160AD3006FD2B5 /* RegistrationViewController.swift in Sources */,
 				4D1BB3B92C91B6D100DE2931 /* TextPicker.swift in Sources */,
 				4D8BFF952C2DC10400A47076 /* Error.swift in Sources */,
@@ -605,7 +522,6 @@
 				4D1B81A52C0613A500212D36 /* PhotosTableViewCell.swift in Sources */,
 				4DEE3ACA2C917407000FB15D /* LikePostTableViewController.swift in Sources */,
 				4D3BF30A2BBABAC900A3E0B0 /* ProfileHeaderView.swift in Sources */,
-				4D8BFF992C34223600A47076 /* MediaTableViewCell.swift in Sources */,
 				4D527C402D160324006FD2B5 /* Post.swift in Sources */,
 				4D527C422D16083A006FD2B5 /* CustomTextField.swift in Sources */,
 				4DEE3AD52C9188F0000FB15D /* LikeCoordinator.swift in Sources */,
@@ -617,6 +533,7 @@
 				4D1DA1B72BB4CA7400A1E777 /* FeedViewController.swift in Sources */,
 				4DCE97402C1C33D5005D3661 /* MainCoordinator.swift in Sources */,
 				4D8BFFAF2C3540A100A47076 /* Video.swift in Sources */,
+				4DAD9E492D1F1963000A0F01 /* CreatePostViewController.swift in Sources */,
 				4DAD9E442D1AD005000A0F01 /* CurrentProfileService.swift in Sources */,
 				4DAD9E472D1EAC48000A0F01 /* SettingViewController.swift in Sources */,
 				4D1B81A72C0613E100212D36 /* PhotosCollectionViewCell.swift in Sources */,
@@ -626,7 +543,6 @@
 				4D0DC83C2C1725BE00FC1422 /* LoginViewControllerDelegate.swift in Sources */,
 				4D1DA1A52BB4C8FB00A1E777 /* SceneDelegate.swift in Sources */,
 				4D0DC83A2C1716D800FC1422 /* UsersList.swift in Sources */,
-				4D8BFFB52C35416400A47076 /* VideoTableViewCell.swift in Sources */,
 				4D3376E22CECCED400C4D199 /* LocalNotificationsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

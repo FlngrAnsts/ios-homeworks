@@ -7,18 +7,12 @@
 
 import UIKit
 import iOSIntPackage
+import CoreData
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    var timer : Timer?
-
-    fileprivate lazy var photos: [Photo] = Photo.make()
-    
-    lazy var images: [UIImage] = photos.map({UIImage(named: $0.image) ?? UIImage()})
-    
-    var coordinator: ProfileCoordinator?
-    
-    //lazy var images: [UIImage] = []
+    var currentUser: UserData?
+    var profilePhotos: [PhotoData] = []
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -36,72 +30,41 @@ class PhotosViewController: UIViewController {
     }()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupSubviews()
         setupLayouts()
-        
-        processImageOfThresd()
-        
-//        self.timer?.invalidate()
-//        self.timer = nil
-
-    }
-    
-    
-    func processImageOfThresd(){
-        
-        let startTime = CFAbsoluteTimeGetCurrent()
-        
-        ImageProcessor().processImagesOnThread(
-            sourceImages: photos.map({UIImage(named: $0.image) ?? UIImage()}),
-            filter: .noir,
-            qos: .background)
-        { [weak self] cgImages in
-            self?.images = cgImages.compactMap{$0}.map{UIImage(cgImage: $0)}
-            
-            let stopTime = CFAbsoluteTimeGetCurrent()
-                print("Code execution time: \(stopTime-startTime) s.")
-            
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-        }
-        
+        fetchPhotosFromCoreData()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        fetchPhotosFromCoreData()
+//        collectionView.reloadData()
         }
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             
-            let navigationBar = self.navigationController?.navigationBar
-            navigationBar?.tintColor = .systemBlue
-            navigationBar?.barStyle = .default
-
         }
     
-
-        
-        override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
-            
-        }
     
     private func setupView() {
         view.backgroundColor = .customBackgroundColor
         title = "Photo Gallery".localized
+        let addPhotoButton = UIBarButtonItem(image: UIImage(systemName: "plus.square"), style: .done, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addPhotoButton
+        addPhotoButton.tintColor = UIColor.customTextColor
         
     }
     
     private func setupSubviews() {
         setupCollectionView()
+        
     }
     
     private func setupCollectionView() {
@@ -125,18 +88,60 @@ class PhotosViewController: UIViewController {
     private enum LayoutConstant {
         static let spacing: CGFloat = 8.0
     }
+    
+    @objc private func addButtonTapped(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true)
+    }
+    private func fetchPhotosFromCoreData() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<PhotoData> = PhotoData.fetchRequest()
+        
+        do {
+            profilePhotos = try context.fetch(fetchRequest)
+            
+            
+            collectionView.reloadData()
+        } catch {
+            print("Failed to fetch photos: \(error.localizedDescription)")
+        }
+    }
+    
+    private func savePhotoToCoreData(image: UIImage) {
+        guard currentUser != nil else {
+                return
+            }
+        guard let imageData = image.pngData() else { return }
+        let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+        let photo = CoreDataManager.shared.addPhoto(date: date, image: imageData)
+        currentUser?.addToPhotos(photo)
+//        collectionView.reloadData()
+    }
+
+    
+    // MARK: - UIImagePickerControllerDelegate
+     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            savePhotoToCoreData(image: selectedImage)
+        }
+        dismiss(animated: true){ [weak self] in
+            self?.fetchPhotosFromCoreData() // Обновление контента после закрытия
+        }
+    }
+    
+     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+         dismiss(animated: true)
+    }
+    
 }
-
-
 
 extension PhotosViewController: UICollectionViewDataSource {
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        images.count
-    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return profilePhotos.count
+        }
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -146,13 +151,11 @@ extension PhotosViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotosCollectionViewCell.identifier,
             for: indexPath) as! PhotosCollectionViewCell
         
-//        let photo = photos[indexPath.row]
-//        cell.setup(with: photo)
-        
-        let image = images[indexPath.row]
-        cell.setupImg(image: image)
+        let imageData = profilePhotos[indexPath.item]
+            cell.configure(with: imageData) // Настройка ячейки
         
         return cell
+        
     }
 }
 
@@ -198,12 +201,5 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-//extension PhotosViewController: ImageLibrarySubscriber {
-//    func receive(images: [UIImage]) {
-//        images = images
-//        collectionView.reloadData()
-//    }
-//    
-//}
 
 

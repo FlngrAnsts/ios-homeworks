@@ -12,6 +12,7 @@ class ProfileHeaderView: UIView {
     private var currentUser: UserData?
     
     var buttonSettingCallback: () -> () = {}
+    var buttonPostCallback: () -> () = {}
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,7 +90,7 @@ class ProfileHeaderView: UIView {
     
     lazy var newPostButton: CustomButton = {
         let button = CustomButton(title: "New post".localized, titleColor: .white){
-            self.buttonPressed()
+            self.createPostButton()
         }
         
         button.backgroundColor = .systemBlue
@@ -128,9 +129,8 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    func buttonPressed() {
-        print(statusLabel.text!)
-        
+    func createPostButton() {
+        buttonPostCallback()
     }
     
     func settingAction(){
@@ -227,16 +227,16 @@ class ProfileHeaderView: UIView {
         statusLabel.text = user.status
     }
     
-    func update(with user: UserData) {
-        fullNameLabel.text = user.fullName
-        statusLabel.text = user.status
-        
-        if let avatarData = user.avatar {
-            avatarImageView.image = UIImage(data: avatarData)
-        } else {
-            avatarImageView.image = UIImage(systemName: "person.circle")
-        }
-    }
+//    func update(with user: UserData) {
+//        fullNameLabel.text = user.fullName
+//        statusLabel.text = user.status
+//        
+//        if let avatarData = user.avatar {
+//            avatarImageView.image = UIImage(data: avatarData)
+//        } else {
+//            avatarImageView.image = UIImage(systemName: "person.circle")
+//        }
+//    }
     
     func addSubviews() {
         

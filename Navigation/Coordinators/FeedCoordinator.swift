@@ -12,18 +12,18 @@ import StorageService
 
 class FeedCoordinator: Coordinator {
     
+    
     var childCoordinators: [Coordinator] = []
     var navigationController : UINavigationController
-
-    func getNavigationController() -> UINavigationController{
-            return self.navigationController
-        }
     
     init() {
-        let feedViewController = FeedViewController()
-        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
-        self.navigationController = UINavigationController(rootViewController: feedViewController)
-        
+        self.navigationController = UINavigationController()
+        let feedVC: UIViewController
+        feedVC = FeedViewController()
+        feedVC.title = "Feed"
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "doc.richtext"), tag: 0)
+        self.navigationController = UINavigationController(rootViewController: feedVC)
+
     }
  
 }

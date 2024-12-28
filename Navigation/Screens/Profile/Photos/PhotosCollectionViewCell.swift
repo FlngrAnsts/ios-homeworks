@@ -14,6 +14,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         imageView.backgroundColor = .customBackgroundColor
         return imageView
@@ -50,15 +52,22 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setup(
-        with photo: Photo
-    ) {
-        collectionImageView.image = UIImage(named: photo.image)
-    }
+    func configure(with image: PhotoData) {
+        if (image.image != nil){
+            collectionImageView.image = UIImage(data: image.image!)
+        }
+        
+        }
     
-    func setupImg(
-        image: UIImage
-    ) {
-        collectionImageView.image = image
-    }
+//    func setup(
+//        with photo: Photo
+//    ) {
+//        collectionImageView.image = UIImage(named: photo.image)
+//    }
+//    
+//    func setupImg(
+//        image: UIImage
+//    ) {
+//        collectionImageView.image = image
+//    }
 }

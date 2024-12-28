@@ -8,124 +8,90 @@
 import UIKit
 import StorageService
 
-class FeedViewController: UIViewController {
+class FeedViewController: UITableViewController {
     
-//    let feedModel = FeedModel()
-//    var coordinator: FeedCoordinator?
-//    
-//    private lazy var mapButton: CustomButton = {
-//        
-//        let button = CustomButton(title: "Map".localized, titleColor: .systemBlue){
-//            self.mapButtonPressed()
-//        }
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        return button
-//        
-//    }()
-//    
-//    private lazy var actionButton: CustomButton = {
-//        
-//        let button = CustomButton(title: "Go".localized, titleColor: .systemBlue){
-//            self.buttonPressed()
-//        }
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        
-//        return button
-//        
-//    }()
-//    
-//    private lazy var checkGuessTextView: UITextField = {//[unowned self] in
-//        let textView = UITextField()
-//        
-//        textView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        textView.backgroundColor = .lightGray
-//        textView.borderStyle = UITextField.BorderStyle.roundedRect
-//        textView.autocorrectionType = UITextAutocorrectionType.no
-//        
-//        return textView
-//    }()
-//    
-//    private lazy var checkGuessButton: CustomButton = {
-//        let button = CustomButton(title: "Check Guess".localized, titleColor: .black){
-//            if(self.checkGuessTextView.text != nil && self.feedModel.check(word: self.checkGuessTextView.text!)){
-//                
-//                self.checkGuessLabel.backgroundColor = .green
-//                self.checkGuessLabel.text = "correctly".localized
-//                
-//            }else{
-//                self.checkGuessLabel.backgroundColor = .red
-//                self.checkGuessLabel.text = "failed".localized
-//            }
-//        }
-//        
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        return button
-//    }()
-//    
-//    private lazy var checkGuessLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.textAlignment = .center
-//        label.textColor = .white
-//        return label
-//    }()
-//    
-//    private lazy var stackView: UIStackView = { [unowned self] in
-//            let stackView = UIStackView()
-//            stackView.translatesAutoresizingMaskIntoConstraints = false
-//            stackView.axis = .vertical
-//            stackView.spacing = 10.0
-//            stackView.addArrangedSubview(self.actionButton)
-//            
-//            
-//            stackView.addArrangedSubview(self.checkGuessTextView)
-//            stackView.addArrangedSubview(self.checkGuessButton)
-//            stackView.addArrangedSubview(self.checkGuessLabel)
-//        
-//            return stackView
-//        }()
-//    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        view.backgroundColor = .systemGray4
-//        
-//        view.addSubview(stackView)
-//        view.addSubview(mapButton)
-//        setupContraints()
-//        
+    var currentUser: UserData?
+    var postArray: [PostData] = []
+//    init(user: UserData) {
+//        self.currentUser = user
+//        super.init(nibName: nil, bundle: nil)
 //    }
-//    
-//    func setupContraints() {
-//        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
-//        NSLayoutConstraint.activate([
-//            
-//            mapButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
-//            mapButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-//            
-//            stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-//            stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-//        ])
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
 //    }
-//    
-//    
-//     func buttonPressed() {
-//        let postViewController = PostViewController()
-//        
-//        self.navigationController?.pushViewController(postViewController, animated: true)
-//        
-//        postViewController.titlePost = Post.make()[0].author
-//    }
-//    
-//    func mapButtonPressed() {
-//       let mapViewController = MapViewController()
-//       
-//       self.navigationController?.pushViewController(mapViewController, animated: true)
-//       
-//   }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
+        self.tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.cellID)
+        getUser()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUI()
+    }
+    func getUser(){
+        currentUser = CoreDataManager.shared.fetchAuthorizedUser()
+    }
+    
+    func updateUI() {
+        if let postsSet = currentUser!.posts as? Set<PostData> {
+            
+            // Convert the NSSet (or Set) to an array
+            var postsArray = Array(postsSet)
+            
+            // Sort the posts by the date in descending order (newest first)
+            postsArray.sort { (post1, post2) -> Bool in
+                // Convert the date strings to Date objects for comparison
+                if let date1 = post1.date, let date2 = post2.date {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" // Adjust format if necessary
+                    if let formattedDate1 = dateFormatter.date(from: date1),
+                       let formattedDate2 = dateFormatter.date(from: date2) {
+                        return formattedDate1 > formattedDate2 // Newest post first
+                    }
+                }
+                return false
+            }
+            
+            // Assign the sorted posts back to the array
+            postArray = postsArray
+            
+            tableView.reloadData()  // Assuming you have a tableView set up
+        } else {
+            print("No posts found.")
+        }
+        self.tableView.reloadData()
+    }
+    
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        postArray.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: PostTableViewCell.cellID,
+            for: indexPath
+        ) as? PostTableViewCell else {
+            fatalError("could not dequeueReusableCell")
+        }
+        let user = currentUser
+        cell.getUser(with: user!)
+        cell.update(postArray[indexPath.row])
+        
+        return cell
+    }
+    
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+ 
+    
 }
