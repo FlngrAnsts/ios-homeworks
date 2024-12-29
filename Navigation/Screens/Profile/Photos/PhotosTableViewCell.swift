@@ -17,11 +17,9 @@ class PhotosTableViewCell: UITableViewCell {
         static let photoWidth = (UIScreen.main.bounds.width - (12+8+8+8+12))/4
     }
 
-    private lazy var collectionTitle: UILabel={
-       let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .customTextColor
-        label.font = .boldSystemFont(ofSize: 24)
+    private lazy var collectionTitle: CustomLabel = {
+        let label = CustomLabel(fontSize: 24, textColor: .customTextColor)
+        label.numberOfLines = 2
         
         label.text = "Photos".localized
         
@@ -74,11 +72,7 @@ class PhotosTableViewCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(
-            style: style,
-            reuseIdentifier: reuseIdentifier
-            )
-
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
             tuneView()
             addSubviews()
             setupConstraints()
@@ -89,10 +83,8 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     private func tuneView(){
-        
         contentView.backgroundColor = .customBackgroundColor
         accessoryType = .none
-        
     }
     
     private func addSubviews(){

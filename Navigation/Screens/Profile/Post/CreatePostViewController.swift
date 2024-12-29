@@ -22,7 +22,7 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
         textView.backgroundColor = .secondarySystemBackground
         textView.layer.cornerRadius = 8
         textView.clipsToBounds = true
-        textView.text = "Enter your post description here..."
+        textView.text = "Enter your post description here...".localized
         textView.isEditable = true
         return textView
     }()
@@ -41,7 +41,7 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
     
     private let createPostButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Create Post", for: .normal)
+        button.setTitle("Create Post".localized, for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
@@ -62,7 +62,6 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: - UI Setup
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        title = "Create Post"
         
         // Add subviews
         view.addSubview(postDescriptionTextView)
@@ -124,7 +123,7 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
             
             let currentDate = Date()
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             let dateString = dateFormatter.string(from: currentDate)
             
             let newPost = CoreDataManager.shared.addPost(
@@ -135,6 +134,7 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
             )
         
         currentUser?.addToPosts(newPost)
+        CoreDataManager.shared.saveContext()
         delegate?.didCreatePost(newPost)
             print("Post created successfully")
         dismiss(animated: true)

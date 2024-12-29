@@ -75,7 +75,7 @@ class LikePostTableViewController: UITableViewController {
         }
         let user = currentUser
         cell.getUser(with: user!)
-        cell.update(likedPostArray[indexPath.row])
+        cell.update(with: likedPostArray[indexPath.row])
         
         return cell
     }

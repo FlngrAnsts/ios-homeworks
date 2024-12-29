@@ -11,6 +11,22 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     var routeToProfile: ((UserData) -> ())?
     
+    // ScrollView: Обеспечивает прокрутку содержимого.
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .customBackgroundColor
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    // ContentView: Контейнер для всех дочерних элементов.
+    private lazy var contentView: UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .customBackgroundColor
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+    
     // UI-элементы
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -77,65 +93,87 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         setupView()
         navigationController?.navigationBar.isHidden = false
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        setupKeyboardObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
+        removeKeyboardObservers()
     }
     
-    
     private func setupView() {
-        view.addSubview(avatarImageView)
-        view.addSubview(changeAvatarButton)
-        view.addSubview(emailTextField)
-        view.addSubview(firstNameTextField)
-        view.addSubview(lastNameTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(confirmPasswordTextField)
-        view.addSubview(registerButton)
+        // Добавляем ScrollView и ContentView
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        // Добавляем элементы в ContentView
+        contentView.addSubview(avatarImageView)
+        contentView.addSubview(changeAvatarButton)
+        contentView.addSubview(emailTextField)
+        contentView.addSubview(firstNameTextField)
+        contentView.addSubview(lastNameTextField)
+        contentView.addSubview(passwordTextField)
+        contentView.addSubview(confirmPasswordTextField)
+        contentView.addSubview(registerButton)
         
         NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            avatarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            // ScrollView
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            // ContentView
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            // UI элементы
+            avatarImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 20),
+            avatarImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
             
             changeAvatarButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
-            changeAvatarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            changeAvatarButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
             emailTextField.topAnchor.constraint(equalTo: changeAvatarButton.bottomAnchor, constant: 20),
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emailTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            emailTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             emailTextField.heightAnchor.constraint(equalToConstant: 44),
             
             firstNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
-            firstNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            firstNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            firstNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            firstNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             firstNameTextField.heightAnchor.constraint(equalToConstant: 44),
             
             lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 12),
-            lastNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            lastNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            lastNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            lastNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             lastNameTextField.heightAnchor.constraint(equalToConstant: 44),
             
             passwordTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 12),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            passwordTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            passwordTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44),
             
             confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 12),
-            confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            confirmPasswordTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            confirmPasswordTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 44),
             
             registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 20),
-            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            registerButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            registerButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             registerButton.heightAnchor.constraint(equalToConstant: 50),
+            registerButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20) // Обеспечивает прокрутку
         ])
     }
     
@@ -154,7 +192,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         // Получаем выбранное фото
         if let selectedImage = info[.editedImage] as? UIImage {
             avatarImageView.image = selectedImage
-            //            avatarFilePath = saveImageToDocumentsDirectory(image: selectedImage)
         }
         
         picker.dismiss(animated: true, completion: nil)
@@ -163,10 +200,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     // Этот метод вызывается, если пользователь отменяет выбор
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    private func getDocumentsDirectory() -> URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
     private func registerTapped() {
@@ -181,7 +214,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             showErrorAlert(message: "Please fill in all fields")
             return
         }
-//        let fullName = "\(firstName) \(lastName)"
         
         if password == confirmPasswordTextField.text!{
             
@@ -189,9 +221,9 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             switch CoreDataManager.shared.createUser(email: email, firstName: firstName, lastName: lastName, password: password, avatar: avatarData) {
             case .success(let newUser):
                 // После успешной регистрации вызываем замыкание для маршрутизации на профиль
-                
                 routeToProfile?(newUser)
                 newUser.isAuthorized = true
+                CoreDataManager.shared.finishReg(user: newUser)
                 
                 showSuccessAlert(message: "User successfully registered")
             case .failure(let error):
@@ -202,6 +234,23 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             confirmPasswordTextField.text = ""
         }
         
+    }
+    
+    private func setupKeyboardObservers() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(willShowKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(willHideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    private func removeKeyboardObservers() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    @objc private func willShowKeyboard(_ notification: NSNotification) {
+        let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+        scrollView.contentInset.bottom = keyboardHeight ?? 0.0
+    }
+    
+    @objc private func willHideKeyboard(_ notification: NSNotification) {
+        scrollView.contentInset.bottom = 0.0
     }
     
     

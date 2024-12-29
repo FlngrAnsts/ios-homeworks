@@ -7,13 +7,14 @@
         <relationship name="userPhotos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="photos" inverseEntity="UserData"/>
     </entity>
     <entity name="PostData" representedClassName="PostData" syncable="YES" codeGenerationType="class">
-        <attribute name="author" attributeType="String"/>
-        <attribute name="date" attributeType="String"/>
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" attributeType="Binary"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="isLiked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="likes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="postDescription" attributeType="String"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="postDescription" optional="YES" attributeType="String"/>
+        <relationship name="feedPosts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="feedPosts" inverseEntity="UserData"/>
         <relationship name="likedPosts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="likedPosts" inverseEntity="UserData"/>
         <relationship name="userPosts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="posts" inverseEntity="UserData"/>
     </entity>
@@ -27,6 +28,7 @@
         <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="feedPosts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostData" inverseName="feedPosts" inverseEntity="PostData"/>
         <relationship name="likedPosts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostData" inverseName="likedPosts" inverseEntity="PostData"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoData" inverseName="userPhotos" inverseEntity="PhotoData"/>
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostData" inverseName="userPosts" inverseEntity="PostData"/>

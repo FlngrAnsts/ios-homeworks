@@ -17,7 +17,7 @@ class LikeCoordinator: Coordinator {
         self.navigationController = UINavigationController()
             let likeVC = LikePostTableViewController()
             likeVC.title = "Liked posts"
-            likeVC.tabBarItem = UITabBarItem(title: "like", image: UIImage(systemName: "heart"), tag: 2)
+        likeVC.tabBarItem = UITabBarItem(title: "Likes".localized, image: UIImage(systemName: "heart"), tag: 2)
             self.navigationController = UINavigationController(rootViewController: likeVC)
     }
     

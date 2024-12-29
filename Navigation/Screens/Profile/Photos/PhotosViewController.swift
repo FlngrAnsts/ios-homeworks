@@ -44,7 +44,7 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate & 
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
         fetchPhotosFromCoreData()
-//        collectionView.reloadData()
+        collectionView.reloadData()
         }
         
         override func viewDidAppear(_ animated: Bool) {
@@ -117,7 +117,7 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate & 
         let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
         let photo = CoreDataManager.shared.addPhoto(date: date, image: imageData)
         currentUser?.addToPhotos(photo)
-//        collectionView.reloadData()
+        CoreDataManager.shared.saveContext()
     }
 
     

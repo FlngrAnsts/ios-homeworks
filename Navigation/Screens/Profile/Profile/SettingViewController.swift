@@ -28,45 +28,35 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate &
     private let changePhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Изменить фото", for: .normal)
+        button.setTitle("Edit photo".localized, for: .normal)
         return button
     }()
     
-    private let firstNameTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Имя"
-        textField.borderStyle = .roundedRect
-        return textField
+    private lazy var firstNameTextField: CustomTextField = {
+        let textView = CustomTextField(placeholder: "Name".localized, isSecure: false, cornerRadius: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner])
+        return textView
     }()
     
-    private let lastNameTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Фамилия"
-        textField.borderStyle = .roundedRect
-        return textField
+    private lazy var lastNameTextField: CustomTextField = {
+        let textView = CustomTextField(placeholder: "Surename".localized, isSecure: false, cornerRadius: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner])
+        return textView
     }()
     
-    private let statusTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Статус"
-        textField.borderStyle = .roundedRect
-        return textField
+    private lazy var statusTextField: CustomTextField = {
+        let textView = CustomTextField(placeholder: "Status".localized, isSecure: false, cornerRadius: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner])
+        return textView
     }()
     
-    private let saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Сохранить", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.tintColor = .white
+    private lazy var saveButton: CustomButton = {
+        let button = CustomButton(title: "Save".localized, titleColor: .white){
+            self.saveButtonTapped()
+        }
         button.layer.cornerRadius = 10
+        button.setBackgroundImage(UIImage(named: "ButtonColor"), for: .normal)
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,14 +109,11 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate &
         ])
     }
     
-    // Настройка действий
     private func setupActions() {
         changePhotoButton.addTarget(self, action: #selector(changePhotoTapped), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     
     // Загрузка данных пользователя
-    
     private func loadUserData() {
         guard let user = currentUser else { return }
         
@@ -139,7 +126,6 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate &
         }
     }
     
-    // Обработчик изменения фото
     @objc private func changePhotoTapped() {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -155,30 +141,24 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate &
             showErrorAlert(message: "Заполните все поля")
             return
         }
-        
-        // Обновляем текущего пользователя
         guard let user = currentUser else { return }
-        
         user.firstName = firstName
         user.lastName = lastName
         user.fullName = firstName + " " + lastName
         user.status = status
-        
         if let avatarImage = avatarImageView.image {
             user.avatar = avatarImage.jpegData(compressionQuality: 0.8)
         }
         
-        // Сохраняем изменения в Core Data
         do {
             try CoreDataManager.shared.saveContext()
-            delegate?.didUpdateProfile(user: user) // Уведомляем делегата
+            delegate?.didUpdateProfile(user: user)
             dismiss(animated: true)
             showSuccessAlert(message: "Данные профиля сохранены")
         } catch {
             showErrorAlert(message: "Не удалось сохранить изменения: \(error.localizedDescription)")
         }
     }
-    
     
 }
 

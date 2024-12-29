@@ -44,14 +44,12 @@ class LogInViewController: UIViewController {
     // LoginView: Поле ввода для логина.
     private lazy var loginView: CustomTextField = {
         let textView = CustomTextField(placeholder: "Email".localized, isSecure: false, cornerRadius: [.layerMaxXMinYCorner, .layerMinXMinYCorner])
-        textView.text = "test1@test"
         return textView
     }()
     
     // PasswordView: Поле ввода для пароля.
     private lazy var passwordView:  CustomTextField = {
         let textView = CustomTextField(placeholder: "Password".localized, isSecure: false, cornerRadius: [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
-        textView.text = "123456"
         return textView
     }()
 
@@ -85,14 +83,14 @@ class LogInViewController: UIViewController {
         addSubviews()
         setupContraints()
         showUsers()
-        
+        self.navigationItem.hidesBackButton = true
     }
     
     
     func showUsers() {
             let users = CoreDataManager.shared.fetchAllUsers()
             for user in users {
-                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"),pass: \(user.password ?? "no"), Posts: \(String(describing: user.posts?.count)), Photo: \(String(describing: user.photos?.count)), FavPosts: \(String(describing: user.likedPosts?.count)), isAuth: \(user.isAuthorized)")
+                print("User: \(user.fullName ?? "Unknown"), Email: \(user.email ?? "Unknown"),pass: \(user.password ?? "no"), Posts: \(String(describing: user.posts?.count)), Feed: \(String(describing: user.feedPosts?.count)) Photo: \(String(describing: user.photos?.count)), FavPosts: \(String(describing: user.likedPosts?.count)), isAuth: \(user.isAuthorized)")
             }
         }
     

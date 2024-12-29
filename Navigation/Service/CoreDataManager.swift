@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CoreDataManager {
     static let shared = CoreDataManager()
@@ -73,6 +74,7 @@ class CoreDataManager {
                 newUser.posts = []
                 newUser.photos = []
                 newUser.likedPosts = []
+                newUser.feedPosts = []
                 
                 try context.save()
                 return .success(newUser)
@@ -103,27 +105,23 @@ class CoreDataManager {
     // Удаление поста
     func deletePost(by post: PostData) {
         let context = persistentContainer.viewContext
-        context.delete(post)  // Directly delete the post object
+        context.delete(post)
         
-        // Save the context to persist the deletion
         saveContext()
     }
     
     func likePost(user: UserData, post: PostData) {
         _ = persistentContainer.viewContext
         
-        // Update the like state and the like count of the post
         post.isLiked.toggle()
         post.likes = post.isLiked ? post.likes + 1 : post.likes - 1
         
-        // Add or remove the post from the liked posts of the user
         if post.isLiked {
             user.addToLikedPosts(post)
         } else {
             user.removeFromLikedPosts(post)
         }
         
-        // Save the changes to Core Data
         saveContext()
     }
        
@@ -141,16 +139,58 @@ class CoreDataManager {
     
     func deletePhoto(by photo: PhotoData) {
         let context = persistentContainer.viewContext
-        context.delete(photo)  // Directly delete the post object
+        context.delete(photo)
         
-        // Save the context to persist the deletion
         saveContext()
     }
     
+    func finishReg(user: UserData){
+        _ = persistentContainer.viewContext
+        var i = 0
+        
+        while i != 5 {
+            user.addToFeedPosts(createFeedPosts())
+            saveContext()
+            i += 1
+        }
+    }
     
+    func createFeedPosts()-> PostData{
+        var feedPosts = PostData(context: persistentContainer.viewContext)
+        let userNames = ["Darth Vader","General Grivus", "Lurtz", "Rex", "Natsu"]
+        let userImages = ["Image_1", "Image_2", "Image_3", "Image_4", "Image_5", "Image_6", "Image_7", "Image_8", "Image_9", "Image_10"]
+        let postText = ["hello word", "I am not a Robot", "Random Text", ""]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDate = dateFormatter.date(from: "2024-01-01") ?? Date()
+        let endDate = dateFormatter.date(from: "2024-12-31") ?? Date()
+        let randomDate = randomDate(from: startDate, to: endDate) ?? Date()
+        let dateString = dateFormatter.string(from: randomDate)
+        let randomPost = addPost(author: userNames.randomElement()!, date: dateString, image: UIImage(named: userImages.randomElement()!)!.pngData() ?? Data() , postDescription: postText.randomElement()!)
+        
+        
+        feedPosts = randomPost
+        saveContext()
+        return feedPosts
+    }
+    
+    func randomDate(from startDate: Date, to endDate: Date) -> Date? {
+        let timeIntervalStart = startDate.timeIntervalSince1970
+        let timeIntervalEnd = endDate.timeIntervalSince1970
+        
+        guard timeIntervalStart <= timeIntervalEnd else {
+            return nil // Проверка на корректность диапазона
+        }
+        
+        let randomTimeInterval = TimeInterval.random(in: timeIntervalStart...timeIntervalEnd)
+        return Date(timeIntervalSince1970: randomTimeInterval)
+    }
 }
 
 extension CoreDataManager {
+    
+    
     func fetchAllUsers() -> [UserData] {
         let context = persistentContainer.viewContext
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
@@ -199,6 +239,8 @@ extension CoreDataManager {
             print("Error authorizing user: \(error)")
         }
     }
+    
+    
     
 }
 

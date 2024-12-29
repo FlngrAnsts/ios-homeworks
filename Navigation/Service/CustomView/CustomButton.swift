@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+final class CustomButton: UIButton {
     
     typealias Action = () -> Void
 
@@ -21,7 +21,6 @@ class CustomButton: UIButton {
         self.titleLabel?.lineBreakMode = .byWordWrapping
         self.titleLabel?.textAlignment = .center
         self.titleLabel?.numberOfLines = 0
-//        self.sizeToFit()
         self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
     

@@ -21,7 +21,7 @@ class FeedCoordinator: Coordinator {
         let feedVC: UIViewController
         feedVC = FeedViewController()
         feedVC.title = "Feed"
-        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "doc.richtext"), tag: 0)
+        feedVC.tabBarItem = UITabBarItem(title: "Feed".localized, image: UIImage(systemName: "doc.richtext"), tag: 0)
         self.navigationController = UINavigationController(rootViewController: feedVC)
 
     }
