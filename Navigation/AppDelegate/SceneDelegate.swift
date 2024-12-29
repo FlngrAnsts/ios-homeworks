@@ -16,54 +16,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(windowScene: scene)
-        
-//        let config = AppConfiguration.allCases.randomElement()
-//        NetvorkManager.request(for: config!)
-        
-        
-        
-        window?.rootViewController = mainCoordinator.tabBarController
-        window?.makeKeyAndVisible()
-        
-//        let feedViewController = FeedViewController()
-//        feedViewController.title = "Feed"
-//        feedViewController.tabBarItem = UITabBarItem(
-//            title: "Feed",
-//            image: UIImage(systemName: "doc.richtext"),
-//            tag: 0
-//        )
+//        let window = UIWindow(windowScene: scene)
 //        
-////        let delegate = LoginInspector()
-//        
-//        let factory = MyLoginFactory.makeLoginInspector()
-//        
-//        let logInViewController = LogInViewController(delegate: factory)
-//        logInViewController.title = "Profile"
-//        logInViewController.tabBarItem = UITabBarItem(
-//            title: "Profile",
-//            image: UIImage(systemName: "person.circle"),
-//            tag: 1
-//        )
-//        
-////        let profileVC = ProfileViewController()
-//        
-//      
-//        let tabBarController = UITabBarController()
-//        
-//        let controllers = [feedViewController, logInViewController]
-//        tabBarController.viewControllers = controllers.map {
-//            UINavigationController(rootViewController: $0)
-//        }
-//        
-//        tabBarController.selectedIndex = 1
-//        tabBarController.tabBar.barTintColor = .white
-//        tabBarController.tabBar.backgroundColor = .white
-//        
-//        window.rootViewController = tabBarController
+//        let appCoordinator = AppCoordinator()
+//
+//        window.rootViewController = appCoordinator.rootControiller
+//    
 //        window.makeKeyAndVisible()
 //        
 //        self.window = window
+        
+        window = UIWindow(windowScene: scene)
+        
+        window?.rootViewController = mainCoordinator.tabBarController
+        window?.makeKeyAndVisible()
         
     }
     

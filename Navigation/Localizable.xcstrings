@@ -1,17 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Audio Record" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запись аудио"
-          }
-        }
-      }
-    },
     "Back" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -45,6 +34,17 @@
         }
       }
     },
+    "Confirm your password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердите пароль"
+          }
+        }
+      }
+    },
     "correctly" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -56,6 +56,39 @@
         }
       }
     },
+    "Create Post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый пост"
+          }
+        }
+      }
+    },
+    "Edit photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить фото"
+          }
+        }
+      }
+    },
+    "Edit profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать профиль"
+          }
+        }
+      }
+    },
     "Enter login and password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -63,6 +96,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введите логин и пароль"
+          }
+        }
+      }
+    },
+    "Enter your post description here..." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your post description here..."
           }
         }
       }
@@ -188,13 +232,24 @@
         }
       }
     },
-    "Music" : {
+    "Name" : {
       "extractionState" : "manual",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Музыка"
+            "value" : "Имя"
+          }
+        }
+      }
+    },
+    "New post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый пост"
           }
         }
       }
@@ -243,17 +298,6 @@
         }
       }
     },
-    "Point on the map" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Точка на карте"
-          }
-        }
-      }
-    },
     "Profile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -271,7 +315,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрироваться"
+            "value" : "Регистрация"
           }
         }
       }
@@ -283,6 +327,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Спутник"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сщхранить"
+          }
+        }
+      }
+    },
+    "Select an avatar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать аватар"
           }
         }
       }
@@ -305,6 +371,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Стандарт"
+          }
+        }
+      }
+    },
+    "Status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус"
+          }
+        }
+      }
+    },
+    "Surename" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фамилия"
           }
         }
       }
@@ -338,17 +426,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пользователь не найден или введен не верный пароль"
-          }
-        }
-      }
-    },
-    "Video" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Видео"
           }
         }
       }
