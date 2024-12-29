@@ -158,7 +158,7 @@ class CoreDataManager {
     func createFeedPosts()-> PostData{
         var feedPosts = PostData(context: persistentContainer.viewContext)
         let userNames = ["Darth Vader","General Grivus", "Lurtz", "Rex", "Natsu"]
-        let userImages = ["Image_1", "Image_2", "Image_3", "Image_4", "Image_5", "Image_6", "Image_7", "Image_8", "Image_9", "Image_10"]
+        let userImages = ["Image_1", "Image_2", "Image_3", "Image_4", "Image_5", "Image_6", "Image_7", "Image_8", "Image_9", "Image_10", "Image_11", "Image_12", "Image_13", "Image_14", "Image_15"]
         let postText = ["hello word", "I am not a Robot", "Random Text", ""]
         
         let dateFormatter = DateFormatter()
