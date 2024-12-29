@@ -26,7 +26,7 @@ public extension UIViewController {
 extension UIColor {
     static let customBackgroundColor: UIColor = {
           return UIColor { (traitCollection: UITraitCollection) -> UIColor in
-              return traitCollection.userInterfaceStyle == .dark ? .black : .systemGray5
+              return traitCollection.userInterfaceStyle == .dark ? .black : .systemGray4
           }
       }()
     
@@ -38,7 +38,7 @@ extension UIColor {
     
     static let customPhotoBackgroundColor: UIColor = {
           return UIColor { (traitCollection: UITraitCollection) -> UIColor in
-              return traitCollection.userInterfaceStyle == .dark ? .white : .black
+              return traitCollection.userInterfaceStyle == .dark ? .systemGray : .systemGray5
           }
       }()
     

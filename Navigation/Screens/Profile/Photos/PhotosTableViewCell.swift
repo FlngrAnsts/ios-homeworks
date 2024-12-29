@@ -20,7 +20,6 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var collectionTitle: CustomLabel = {
         let label = CustomLabel(fontSize: 24, textColor: .customTextColor)
         label.numberOfLines = 2
-        
         label.text = "Photos".localized
         
         return label

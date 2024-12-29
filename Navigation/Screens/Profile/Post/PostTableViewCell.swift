@@ -22,7 +22,6 @@ class PostTableViewCell: UITableViewCell {
     lazy var authorLabelView: CustomLabel = {
         let label = CustomLabel(fontSize: 20, textColor: .customTextColor)
         label.numberOfLines = 2
-        
         return label
     }()
     
@@ -30,7 +29,7 @@ class PostTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .customPhotoBackgroundColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -40,7 +39,6 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
-        
         return label
     }()
     
